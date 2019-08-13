@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".me.AmendActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/message_tbr"
+        android:background="@color/app_theme_color"
+        android:minHeight="?android:attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/back"
+                android:src="@drawable/leak_canary_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_centerInParent="true"
+                android:text="@string/me_amend"
+                android:textColor="@color/write"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp_18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="@dimen/dp_10"
+        android:layout_below="@id/message_tbr"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.example.myapplication.view.RoundImage
+                android:layout_centerHorizontal="true"
+                android:id="@+id/headportrait"
+                android:layout_width="@dimen/dp_50"
+                android:layout_height="@dimen/dp_50" />
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:id="@+id/getname"
+                android:layout_below="@id/headportrait"
+                android:text="@string/me_amend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_5"
+            android:gravity="center_vertical">
+            <TextView
+                android:text="@string/name"
+                android:layout_margin="@dimen/dp_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/name"
+                android:background="@null"
+                android:layout_marginLeft="@dimen/dp_40"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <TextView
+            android:background="@color/grey_second"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_5"
+            android:gravity="center_vertical">
+            <TextView
+                android:text="@string/six"
+                android:layout_margin="@dimen/dp_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <RadioGroup
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/dp_40"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:text="男"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <RadioButton
+                    android:text="女"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RadioGroup>
+        </LinearLayout>
+        <TextView
+            android:background="@color/grey_second"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_5"
+            android:gravity="center_vertical">
+            <TextView
+                android:text="@string/nickname"
+                android:layout_margin="@dimen/dp_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/nickname"
+                android:background="@null"
+                android:layout_marginLeft="@dimen/dp_40"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <TextView
+            android:background="@color/grey_second"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_5"
+            android:gravity="center_vertical">
+            <TextView
+                android:text="@string/age"
+                android:layout_margin="@dimen/dp_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/age"
+                android:background="@null"
+                android:layout_marginLeft="@dimen/dp_40"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <TextView
+            android:background="@color/grey_second"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_5"
+            android:gravity="center_vertical">
+            <TextView
+                android:text="@string/site"
+                android:layout_margin="@dimen/dp_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/site"
+                android:background="@null"
+                android:layout_marginLeft="@dimen/dp_40"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <TextView
+            android:background="@color/grey_second"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:padding="@dimen/dp_5"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="上传项目（最多上传5张照片）"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            
+        </LinearLayout>
+        <TextView
+            android:background="@color/grey_second"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <TextView
+            android:text="*注：上传图片大小不超过2M"
+            android:padding="@dimen/dp_5"
+            android:textSize="@dimen/sp_8"
+            android:textColor="@color/blue_theme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="确认"
+            android:gravity="center"
+            android:background="@drawable/blue_frame"
+            android:padding="@dimen/dp_5"
+            android:textColor="@color/blue_theme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</RelativeLayout>

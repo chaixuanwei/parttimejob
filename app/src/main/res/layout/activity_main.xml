@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frame_layout"
+        android:layout_above="@+id/line"/>
+
+    <TextView
+        android:id="@+id/line"
+        android:background="@color/grey_second"
+        android:layout_above="@id/bottom_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1" />
+
+    <com.example.myapplication.customs.MyBottomView
+        android:id="@+id/bottom_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:changeDrawable="true"
+        app:changeTextColor="true"
+        app:textSelectedColor="@color/app_theme_color"
+        app:textUnSelectedColor="@color/grey_first"
+        app:bottomTextSize="@dimen/sp_6"
+        app:textFirst="@string/first_page"
+        app:textFourth="@string/me"
+        app:textSecond="@string/issue"
+        app:textThird="@string/message"
+        app:bottomNum="4"
+        app:imageUnSelectedFirst="@drawable/leak_canary_icon"
+        app:imageUnSelectedSecond="@drawable/leak_canary_icon"
+        app:imageUnSelectedThird="@drawable/leak_canary_icon"
+        app:imageUnSelectedFourth="@drawable/leak_canary_icon"
+        app:imageSelectedFirst="@drawable/leak_canary_icon"
+        app:imageSelectedSecond="@drawable/leak_canary_icon"
+        app:imageSelectedThird="@drawable/leak_canary_icon"
+        app:imageSelectedFourth="@drawable/leak_canary_icon"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
