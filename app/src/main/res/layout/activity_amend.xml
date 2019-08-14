@@ -189,7 +189,7 @@
         <TextView
             android:text="确认"
             android:gravity="center"
-            android:background="@drawable/blue_frame"
+            android:background="@drawable/blue_round_frame"
             android:padding="@dimen/dp_5"
             android:textColor="@color/blue_theme"
             android:layout_width="match_parent"

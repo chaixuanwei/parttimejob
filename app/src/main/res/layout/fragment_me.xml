@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.example.myapplication.view.RoundImage
+            android:id="@+id/head"
             android:layout_weight="1"
             android:src="@drawable/leak_canary_icon"
             android:layout_width="@dimen/dp_50"
@@ -23,13 +24,16 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
             <TextView
+                android:id="@+id/name"
                 android:layout_weight="1"
                 android:text="reasdfasdfadsf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-            <TextView
+            <EditText
+                android:id="@+id/signature"
                 android:layout_weight="1"
-                android:text="@string/first_page"
+                android:hint="个性签名"
+                android:textSize="@dimen/sp_12"
                 android:background="@drawable/splash_round"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -45,7 +49,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/grade"
+        android:id="@+id/grade_ll"
         android:layout_below="@id/my_name"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -57,11 +61,13 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
             <TextView
+                android:id="@+id/grade"
                 android:layout_weight="1"
                 android:text="0级"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/grade_name"
                 android:layout_weight="1"
                 android:text="兼职达人"
                 android:layout_width="wrap_content"
@@ -74,11 +80,13 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
             <TextView
+                android:id="@+id/credte_line"
                 android:layout_weight="1"
                 android:text="80%"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/credte_line_name"
                 android:layout_weight="1"
                 android:text="信用度"
                 android:layout_width="wrap_content"
@@ -91,11 +99,13 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
             <TextView
+                android:id="@+id/comment"
                 android:layout_weight="1"
                 android:text="628"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/comment_name"
                 android:layout_weight="1"
                 android:text="评论"
                 android:layout_width="wrap_content"
@@ -104,9 +114,9 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/situation"
+        android:id="@+id/situation_ll"
         android:orientation="horizontal"
-        android:layout_below="@id/grade"
+        android:layout_below="@id/grade_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -120,6 +130,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/waitlist"
                 android:text="待录取"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -135,6 +146,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/work"
                 android:text="工作中"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -150,6 +162,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/salary"
                 android:text="工资未结"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -165,6 +178,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/waitappraise"
                 android:text="待评价"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -173,7 +187,7 @@
 
     <LinearLayout
         android:id="@+id/list"
-        android:layout_below="@id/situation"
+        android:layout_below="@id/situation_ll"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

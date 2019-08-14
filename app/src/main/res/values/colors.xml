@@ -12,8 +12,8 @@
     <color name="white">#FFFFFF</color>
     <color name="black_theme">#000000</color>
     <color name="grey_first">#222222</color>
-    <color name="grey_second">#a4a4a4</color>
-    <color name="grey_theme">#a4a4a4</color>
+    <color name="grey_second">#A9A9A9</color>
+    <color name="grey_theme">#A9A9A9</color>
     <color name="red_theme">#d53d3c</color>
     <color name="blue_theme">#3885af</color>
     <color name="green_theme">#1AAC19</color>

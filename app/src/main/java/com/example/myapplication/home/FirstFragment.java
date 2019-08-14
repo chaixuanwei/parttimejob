@@ -27,7 +27,6 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
     static FirstFragment fragment;
     @BindView(R.id.place)
     TextView place;
-    Unbinder unbinder;
     private static final int REQUEST_CODE_PICK_CITY = 0;
 
     public static FirstFragment newInstance() {
@@ -61,9 +60,6 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
         if (requestCode == REQUEST_CODE_PICK_CITY && resultCode == RESULT_OK){
             if (data != null){
                 String city = data.getStringExtra(CityPickerActivity.KEY_PICKED_CITY);
-//                if (!city.equals("全国")) {
-//                    city += "市";
-//                }
                 place.setText(city);
             }
         }
@@ -87,19 +83,5 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
     @Override
     public void onResponse(int whichApi, Object[] t) {
 
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
     }
 }

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".me.CompaintActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/message_tbr"
+        android:minHeight="?android:attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/leak_canary_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_centerInParent="true"
+                android:text="在线投诉"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp_18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:background="@drawable/black_square_frame"
+            android:padding="@dimen/dp_10"
+            android:text="信息不实"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:background="@drawable/black_square_frame"
+            android:padding="@dimen/dp_10"
+            android:text="违法"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:background="@drawable/black_square_frame"
+            android:padding="@dimen/dp_10"
+            android:text="骚扰"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:background="@drawable/black_square_frame"
+            android:padding="@dimen/dp_10"
+            android:text="工资"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:background="@drawable/black_square_frame"
+            android:padding="@dimen/dp_10"
+            android:text="其他问题"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RadioGroup>
+    <EditText
+        android:background="@drawable/black_square_frame"
+        android:minLines="5"
+        android:gravity="top"
+        android:padding="@dimen/dp_10"
+        android:hint="请清楚详细描述投诉的原因"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:gravity="center_horizontal"
+        android:id="@+id/bt_login"
+        android:text="提交投诉"
+        android:textColor="@color/app_theme_color"
+        android:padding="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_50"
+        android:background="@drawable/blue_round_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
