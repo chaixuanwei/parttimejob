@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.DetailActivity">
+    tools:context=".home.activity.DetailActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/detail_tbr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/app_theme_color"
         android:minHeight="?android:attr/actionBarSize">
 
         <RelativeLayout
@@ -30,12 +31,16 @@
 
             <ImageView
                 android:id="@+id/collect"
+                android:src="@mipmap/collect"
+                android:paddingTop="@dimen/dp_10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/complain" />
 
             <ImageView
                 android:id="@+id/complain"
+                android:src="@mipmap/report"
+                android:padding="@dimen/dp_10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -51,7 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:background="@drawable/write_background"
+            android:background="@drawable/write_round_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
@@ -78,6 +83,8 @@
 
                 <TextView
                     android:id="@+id/job_place"
+                    android:drawableLeft="@mipmap/place"
+                    android:drawablePadding="@dimen/dp_5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/atonce" />
@@ -98,6 +105,8 @@
                 <TextView
                     android:id="@+id/stop"
                     android:layout_width="wrap_content"
+                    android:drawablePadding="@dimen/dp_5"
+                    android:drawableLeft="@mipmap/time"
                     android:layout_height="wrap_content"
                     android:text="报名截止：" />
 
@@ -215,6 +224,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/ok"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="身高不限" />
@@ -222,6 +232,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/ok"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="身高不限" />
@@ -229,6 +240,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/ok"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="身高不限" />
@@ -236,6 +248,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/ok"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="身高不限" />
@@ -243,7 +256,7 @@
         <LinearLayout
             android:id="@+id/describe"
             android:orientation="vertical"
-            android:background="@drawable/write_background"
+            android:background="@drawable/write_round_background"
             android:padding="@dimen/dp_10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -262,7 +275,7 @@
         </LinearLayout>
         <RelativeLayout
             android:padding="@dimen/dp_10"
-            android:background="@drawable/write_background"
+            android:background="@drawable/write_round_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
@@ -273,6 +286,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <LinearLayout
+                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
@@ -297,7 +311,7 @@
                         android:layout_height="wrap_content" />
                 </RelativeLayout>
                 <ImageView
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/right"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -313,6 +327,7 @@
             android:gravity="center"
             android:padding="@dimen/dp_10"
             android:textColor="@color/blue_theme"
+            android:drawableStart="@mipmap/service"
             android:textSize="@dimen/sp_18"
             android:text="@string/contact"
             android:layout_width="wrap_content"

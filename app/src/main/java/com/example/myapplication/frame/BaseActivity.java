@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.example.myapplication.customs.LoadingDialogWithContent;
+import com.example.myapplication.local_utils.statusbar.StatusBarCompat;
 
 
 /**
@@ -27,6 +28,7 @@ public class BaseActivity extends AppCompatActivity {
         mApplication = (ApplicationJob) getApplication();
         Log.e("我是华丽丽的类名-----", this.getClass().getSimpleName());
         mAppColor = ContextCompat.getColor(this, R.color.app_theme_color);
+        StatusBarCompat.setStatusBarColor(this, mAppColor);
         mDialog = new LoadingDialogWithContent(this,getString(R.string.loading));
     }
 

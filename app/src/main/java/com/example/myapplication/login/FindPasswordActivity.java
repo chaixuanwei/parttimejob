@@ -4,8 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.myapplication.R;
+import com.example.myapplication.frame.BaseActivity;
 
-public class FindPasswordActivity extends AppCompatActivity {
+public class FindPasswordActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

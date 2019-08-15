@@ -7,12 +7,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.example.myapplication.MainActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.config.Config;
 import com.example.myapplication.frame.BaseActivity;
 import com.example.myapplication.local_utils.SharedPrefrenceUtils;
-import com.example.myapplication.local_utils.statusbar.StatusBarCompat;
+import com.example.myapplication.login.LoginActivity;
 
 public class SplashActivity extends BaseActivity {
 
@@ -30,13 +29,12 @@ public class SplashActivity extends BaseActivity {
         }else {
             requestWindowFeature(Window.FEATURE_NO_TITLE);
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            StatusBarCompat.setStatusBarColor(this, mAppColor);
             setContentView(R.layout.activity_splash);
             mSplashThree = findViewById(R.id.splash_three);
             mSplashThree.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                     startActivity(intent);
                     SplashActivity.this.finish();
                 }

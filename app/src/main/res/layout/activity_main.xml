@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -23,6 +23,7 @@
         android:id="@+id/bottom_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/dp_5"
         app:changeDrawable="true"
         app:changeTextColor="true"
         app:textSelectedColor="@color/app_theme_color"
@@ -33,14 +34,14 @@
         app:textSecond="@string/issue"
         app:textThird="@string/message"
         app:bottomNum="4"
-        app:imageUnSelectedFirst="@drawable/leak_canary_icon"
-        app:imageUnSelectedSecond="@drawable/leak_canary_icon"
-        app:imageUnSelectedThird="@drawable/leak_canary_icon"
-        app:imageUnSelectedFourth="@drawable/leak_canary_icon"
-        app:imageSelectedFirst="@drawable/leak_canary_icon"
-        app:imageSelectedSecond="@drawable/leak_canary_icon"
-        app:imageSelectedThird="@drawable/leak_canary_icon"
-        app:imageSelectedFourth="@drawable/leak_canary_icon"
+        app:imageUnSelectedFirst="@mipmap/unselect_home"
+        app:imageUnSelectedSecond="@mipmap/unselect_issus"
+        app:imageUnSelectedThird="@mipmap/unselect_message"
+        app:imageUnSelectedFourth="@mipmap/unselect_me"
+        app:imageSelectedFirst="@mipmap/select_home"
+        app:imageSelectedSecond="@mipmap/select_issus"
+        app:imageSelectedThird="@mipmap/select_message"
+        app:imageSelectedFourth="@mipmap/select_me"
         android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

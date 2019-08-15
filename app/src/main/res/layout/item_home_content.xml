@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp_10"
+    android:background="@drawable/write_round_background"
+    android:orientation="vertical"
+    android:padding="@dimen/dp_10">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/item_home_top"
+            android:text="顶"
+            android:gravity="center"
+            android:layout_marginRight="@dimen/dp_8"
+            android:background="@drawable/blue_background"
+            android:textColor="@color/write"
+            android:textSize="@dimen/sp_10"
+            android:layout_width="@dimen/dp_15"
+            android:layout_height="@dimen/dp_15" />
+
+        <TextView
+            android:id="@+id/item_home_jackaroo"
+            android:text="实"
+            android:gravity="center"
+            android:layout_marginRight="@dimen/dp_8"
+            android:background="@drawable/green_round"
+            android:textColor="@color/write"
+            android:textSize="@dimen/sp_10"
+            android:layout_width="@dimen/dp_15"
+            android:layout_height="@dimen/dp_15" />
+
+        <TextView
+            android:id="@+id/item_home_hot"
+            android:text="暑"
+            android:gravity="center"
+            android:layout_marginRight="@dimen/dp_8"
+            android:background="@drawable/yellow_round"
+            android:textColor="@color/write"
+            android:textSize="@dimen/sp_10"
+            android:layout_width="@dimen/dp_15"
+            android:layout_height="@dimen/dp_15" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="@string/warm_prompt_two"
+            android:textColor="@color/black_theme"
+            android:textSize="@dimen/sp_15" />
+
+        <TextView
+            android:id="@+id/item_home_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3200"
+            android:textColor="@color/red_theme"
+            android:textSize="@dimen/sp_18" />
+
+        <TextView
+            android:id="@+id/item_home_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RMB/日结"
+            android:textSize="@dimen/sp_9" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/dp_10">
+
+        <TextView
+            android:id="@+id/item_home_person"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_12"
+            android:text="1/20" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/item_home_job_place"
+            android:lines="1"
+            android:ellipsize="end"
+            android:paddingLeft="@dimen/dp_10"
+            android:drawablePadding="@dimen/dp_10"
+            android:drawableLeft="@mipmap/place"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/sp_12"
+            android:layout_height="wrap_content"
+            android:text="@string/warm_prompt_two" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/item_interview"
+        android:lines="1"
+        android:ellipsize="end"
+        android:textSize="@dimen/sp_12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/warm_prompt_two" />
+
+    <TextView
+        android:id="@+id/item_home_job_time"
+        android:lines="1"
+        android:textSize="@dimen/sp_12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/warm_prompt_two" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/dp_5">
+
+        <TextView
+            android:id="@+id/item_home_job_date"
+            android:lines="1"
+            android:ellipsize="end"
+            android:drawableLeft="@mipmap/time"
+            android:drawablePadding="@dimen/dp_10"
+            android:textSize="@dimen/sp_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/warm_prompt_two" />
+
+        <TextView
+            android:id="@+id/item_home_atonce"
+            android:textSize="@dimen/sp_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/atonce"
+            android:textColor="@color/app_theme_color" />
+    </LinearLayout>
+
+
+</LinearLayout>

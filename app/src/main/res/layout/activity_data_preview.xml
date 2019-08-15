@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".me.activity.DataPreviewActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/message_tbr"
+        android:minHeight="?android:attr/actionBarSize"
+        android:background="@color/app_theme_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/back"
+                android:src="@drawable/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_centerInParent="true"
+                android:text="数据预览"
+                android:textStyle="bold"
+                android:textColor="@color/write"
+                android:textSize="@dimen/sp_18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+    <LinearLayout
+        android:padding="@dimen/dp_11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/write_squre_background"
+            android:padding="@dimen/dp_10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@mipmap/task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="发布平台任务"
+                android:textSize="@dimen/sp_10"
+                android:layout_margin="@dimen/dp_7"
+                android:lines="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/task_number"
+                android:textSize="@dimen/sp_12"
+                android:text="222"
+                android:textColor="@color/app_theme_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/write_squre_background"
+            android:padding="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@mipmap/accept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="发布平台任务"
+                android:textSize="@dimen/sp_10"
+                android:layout_margin="@dimen/dp_7"
+                android:lines="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/accept"
+                android:textSize="@dimen/sp_12"
+                android:textColor="@color/app_theme_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/write_squre_background"
+            android:padding="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@mipmap/withdraw_depoist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="发布平台任务"
+                android:textSize="@dimen/sp_10"
+                android:layout_margin="@dimen/dp_7"
+                android:lines="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/withdraw_depoist"
+                android:textSize="@dimen/sp_12"
+                android:textColor="@color/app_theme_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/write_squre_background"
+            android:padding="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@mipmap/consume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="发布平台任务"
+                android:textSize="@dimen/sp_10"
+                android:layout_margin="@dimen/dp_7"
+                android:lines="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/consume"
+                android:textSize="@dimen/sp_12"
+                android:textColor="@color/app_theme_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

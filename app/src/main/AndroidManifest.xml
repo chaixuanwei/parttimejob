@@ -10,10 +10,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/NoAppTheme">
-        <activity android:name=".home.DetailActivity"></activity>
-        <activity android:name=".me.FeedbackActivity" />
-        <activity android:name=".me.CompaintActivity"/>
-        <activity android:name=".login.BindActivity"/>
+        <activity android:name=".me.activity.DataPreviewActivity"></activity>
+        <activity android:name=".me.activity.WaitEnrollActivity" />
+        <activity android:name=".home.activity.DetailActivity" />
+        <activity android:name=".me.activity.FeedbackActivity" />
+        <activity android:name=".me.activity.CompaintActivity" />
+        <activity android:name=".login.BindActivity" />
         <activity android:name=".login.FindPasswordActivity" />
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".login.RegisterActivity" />
@@ -22,18 +24,15 @@
             android:screenOrientation="portrait"
             android:theme="@style/CityPicker.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".me.AmendActivity" />
-        <activity
-            android:name=".activity.SplashActivity">
+        <activity android:name=".me.activity.AmendActivity" />
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity" />
+        <activity android:name=".activity.MainActivity" />
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".me.CompaintActivity">
+    tools:context=".me.activity.CompaintActivity">
     <android.support.v7.widget.Toolbar
         android:id="@+id/message_tbr"
         android:minHeight="?android:attr/actionBarSize"

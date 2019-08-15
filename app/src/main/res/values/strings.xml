@@ -29,6 +29,9 @@
     <string name="feedback">意见反馈</string>
     <string name="amend">完善信息</string>
     <string name="atonce">立即报名</string>
+    <string name="atonce_appraise">立即评价</string>
+    <string name="newjob">最新兼职信息</string>
+    <string name="more">更多</string>
     <string name="contact">联系我们</string>
     <string name="warm_prompt_one">1.请填写有效手机号，您可通过手机号进行帐号登录。</string>
     <string name="warm_prompt_two">2.我们会对用户的所有资料进行严格保密。</string>
