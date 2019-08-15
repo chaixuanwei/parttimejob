@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".me.activity.IdBindActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/id_bind_tbr"
+        android:background="@color/app_theme_color"
+        android:minHeight="?android:attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@drawable/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_centerInParent="true"
+                android:text="账号绑定"
+                android:textColor="@color/write"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp_18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/now_ll"
+        android:layout_below="@id/id_bind_tbr"
+        android:padding="@dimen/dp_15"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="当前登录方式"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:id="@+id/now_login"
+            android:layout_gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/now_img_photo"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/dp_16"
+                android:src="@mipmap/bind_zhifubao"
+                android:layout_marginTop="@dimen/dp_7"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_width="@dimen/dp_27"
+                android:layout_height="@dimen/dp_27" />
+            <TextView
+                android:id="@+id/now_txt_name"
+                android:layout_toRightOf="@id/now_img_photo"
+                android:textSize="@dimen/sp_15"
+                android:textColor="@color/black_theme"
+                android:text="支付宝"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/now_txt_id"
+                android:layout_toRightOf="@id/now_img_photo"
+                android:layout_below="@id/now_txt_name"
+                android:textSize="@dimen/sp_15"
+                android:textColor="@color/grey_second"
+                android:text="123456789"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:background="@drawable/blue_oval_frame"
+                android:layout_marginTop="@dimen/dp_5"
+                android:text="已绑定"
+                android:padding="@dimen/dp_7"
+                android:textSize="@dimen/sp_14"
+                android:layout_gravity="center"
+                android:layout_alignParentRight="true"
+                android:layout_width="@dimen/dp_65"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <TextView
+        android:background="@color/grey_second"
+        android:id="@+id/grey_line"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_below="@id/now_ll"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1" />
+
+    <LinearLayout
+        android:layout_below="@id/now_ll"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/grey_second"
+            android:text="以下账号绑定成功后可用于登录"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginRight="@dimen/dp_16"
+                android:src="@mipmap/bind_weixin"
+                android:layout_gravity="center"
+                android:layout_width="@dimen/dp_27"
+                android:layout_height="@dimen/dp_27" />
+            <TextView
+                android:layout_weight="1"
+                android:text="微信"
+                android:layout_gravity="center"
+                android:textSize="@dimen/sp_15"
+                android:textColor="@color/black_theme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:background="@drawable/blue_oval_frame"
+                android:layout_gravity="center"
+                android:text="绑定"
+                android:textSize="@dimen/sp_14"
+                android:gravity="center"
+                android:padding="@dimen/dp_7"
+                android:layout_width="@dimen/dp_65"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginRight="@dimen/dp_16"
+                android:layout_gravity="center"
+                android:src="@mipmap/bind_weibo"
+                android:layout_width="@dimen/dp_27"
+                android:layout_height="@dimen/dp_27" />
+            <TextView
+                android:layout_weight="1"
+                android:text="微博"
+                android:textSize="@dimen/sp_15"
+                android:layout_gravity="center"
+                android:textColor="@color/black_theme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:background="@drawable/blue_oval_frame"
+                android:text="绑定"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="@dimen/sp_14"
+                android:padding="@dimen/dp_7"
+                android:layout_width="@dimen/dp_65"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_marginRight="@dimen/dp_16"
+                android:src="@mipmap/bind_zhifubao"
+                android:layout_gravity="center"
+                android:layout_width="@dimen/dp_27"
+                android:layout_height="@dimen/dp_27" />
+            <TextView
+                android:layout_weight="1"
+                android:text="支付宝"
+                android:textSize="@dimen/sp_15"
+                android:textColor="@color/black_theme"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:background="@drawable/blue_oval_frame"
+                android:text="绑定"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:padding="@dimen/dp_7"
+                android:textSize="@dimen/sp_14"
+                android:layout_width="@dimen/dp_65"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp_100"
+        android:paddingLeft="@dimen/dp_20"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="1.每个手机/微信号不可重复绑定"
+            android:textSize="@dimen/sp_14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="2.每个账号只能绑定一次，绑定成功后不可解绑"
+            android:textSize="@dimen/sp_14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</RelativeLayout>

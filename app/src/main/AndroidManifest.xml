@@ -10,8 +10,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/NoAppTheme">
-        <activity android:name=".me.activity.DataPreviewActivity"></activity>
-        <activity android:name=".me.activity.WaitEnrollActivity" />
+        <activity android:name=".me.activity.MyIssusActivity"></activity>
+        <activity android:name=".me.activity.MyApproveActivity" />
+        <activity android:name=".me.activity.MyWalletActivity" />
+        <activity android:name=".me.activity.IdBindActivity" />
+        <activity android:name=".me.activity.DataPreviewActivity" />
+        <activity android:name=".me.activity.WaitAppraiseActivity" />
         <activity android:name=".home.activity.DetailActivity" />
         <activity android:name=".me.activity.FeedbackActivity" />
         <activity android:name=".me.activity.CompaintActivity" />

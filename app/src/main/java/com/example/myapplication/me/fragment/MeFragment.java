@@ -11,9 +11,13 @@ import android.widget.TextView;
 import com.example.myapplication.R;
 import com.example.myapplication.frame.BaseMvpFragment;
 import com.example.myapplication.frame.CommonPresenter;
+import com.example.myapplication.me.activity.IdBindActivity;
+import com.example.myapplication.me.activity.MyApproveActivity;
+import com.example.myapplication.me.activity.MyIssusActivity;
+import com.example.myapplication.me.activity.MyWalletActivity;
 import com.example.myapplication.model.MeModel;
 import com.example.myapplication.me.activity.AmendActivity;
-import com.example.myapplication.me.activity.WaitEnrollActivity;
+import com.example.myapplication.me.activity.WaitAppraiseActivity;
 import com.example.myapplication.view.RoundImage;
 
 import butterknife.BindView;
@@ -128,21 +132,25 @@ public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
             case R.id.comment_name:
                 break;
             case R.id.waitlist:
-                startActivity(new Intent(getActivity(), WaitEnrollActivity.class));
                 break;
             case R.id.work:
                 break;
             case R.id.salary:
                 break;
             case R.id.waitappraise:
+                startActivity(new Intent(getActivity(), WaitAppraiseActivity.class));
                 break;
             case R.id.wallet:
+                startActivity(new Intent(getActivity(), MyWalletActivity.class));
                 break;
             case R.id.approve:
+                startActivity(new Intent(getActivity(), MyApproveActivity.class));
                 break;
             case R.id.me_issus:
+                startActivity(new Intent(getActivity(), MyIssusActivity.class));
                 break;
             case R.id.bind:
+                startActivity(new Intent(getActivity(), IdBindActivity.class));
                 break;
             case R.id.feedback:
                 break;

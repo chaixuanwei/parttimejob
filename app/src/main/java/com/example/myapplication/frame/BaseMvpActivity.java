@@ -42,7 +42,9 @@ public abstract class BaseMvpActivity<P extends BasePresenter, M> extends BaseAc
     protected void onDestroy() {
         super.onDestroy();
         mBind.unbind();
-        mPresenter.detach();
+        if (mPresenter != null) {
+            mPresenter.detach();
+        }
     }
 
     public void netErrorToast(Throwable e) {

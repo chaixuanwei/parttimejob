@@ -4,12 +4,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.myapplication.R;
+import com.example.myapplication.frame.BaseActivity;
 
-public class WaitEnrollActivity extends AppCompatActivity {
+public class IdBindActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wait_enroll);
+        setContentView(R.layout.activity_id_bind);
     }
 }
