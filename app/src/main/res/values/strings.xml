@@ -8,6 +8,8 @@
     <string name="issue">发布</string>
     <string name="message">消息</string>
     <string name="message_centre">消息中心</string>
+    <string name="people">实名认证</string>
+    <string name="frim">企业认证</string>
     <string name="me">我的</string>
     <string name="name">姓名</string>
     <string name="six">性别</string>
