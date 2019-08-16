@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="@dimen/dp_15"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_weight="1"
+        android:text="今日"
+        android:id="@+id/item_day"
+        android:textSize="@dimen/sp_12"
+        android:textColor="@color/grey_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/item_num"
+        android:text="支出¥26548.00"
+        android:textSize="@dimen/sp_12"
+        android:textColor="@color/grey_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>

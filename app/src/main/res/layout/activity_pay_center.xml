@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".issus.activity.PayCenterActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/pay_center_tbr"
+        android:minHeight="?android:attr/actionBarSize"
+        android:background="@color/app_theme_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/back"
+                android:src="@drawable/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_centerInParent="true"
+                android:text="@string/paycenter"
+                android:textColor="@color/write"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp_18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:gravity="center"
+        android:background="@drawable/write_squre_background"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:paddingTop="@dimen/dp_18"
+            android:paddingBottom="@dimen/dp_18"
+            android:text="付款详情"
+            android:textSize="@dimen/sp_15"
+            android:textColor="@color/black_theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:background="@color/grey_second"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1" />
+        <TextView
+            android:text="付款金额"
+            android:paddingTop="@dimen/dp_24"
+            android:paddingBottom="@dimen/dp_20"
+            android:textColor="@color/grey_second"
+            android:textSize="@dimen/sp_15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="@dimen/dp_30"
+            android:textColor="@color/app_theme_color"
+            android:text="¥128.00"
+            android:paddingBottom="@dimen/dp_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:background="@color/grey_second"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_52">
+            <TextView
+                android:layout_centerVertical="true"
+                android:text="支付宝账号"
+                android:layout_marginLeft="@dimen/dp_12"
+                android:textSize="@dimen/sp_15"
+                android:textColor="@color/black_theme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/sp_15"
+                android:paddingRight="@dimen/dp_10"
+                android:textColor="@color/grey_second"
+                android:text="123465876@qq.com"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <TextView
+            android:background="@color/grey_second"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_52">
+            <TextView
+                android:layout_centerVertical="true"
+                android:text="支付方式"
+                android:textSize="@dimen/sp_15"
+                android:layout_marginLeft="@dimen/dp_12"
+                android:textColor="@color/black_theme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/sp_15"
+                android:textColor="@color/grey_second"
+                android:text="账户余额"
+                android:drawableRight="@mipmap/right"
+                android:paddingRight="@dimen/dp_10"
+                android:drawablePadding="@dimen/dp_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <TextView
+            android:background="@color/grey_second"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1" />
+    </LinearLayout>
+    <TextView
+        android:gravity="center_horizontal"
+        android:id="@+id/pay"
+        android:text="确认支付"
+        android:textSize="@dimen/sp_18"
+        android:textColor="@color/app_theme_color"
+        android:padding="@dimen/dp_13"
+        android:layout_margin="@dimen/dp_20"
+        android:background="@drawable/blue_round_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

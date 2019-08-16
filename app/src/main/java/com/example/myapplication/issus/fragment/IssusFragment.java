@@ -1,6 +1,7 @@
 package com.example.myapplication.issus.fragment;
 
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.example.myapplication.R;
 import com.example.myapplication.frame.BaseMvpFragment;
 import com.example.myapplication.frame.CommonPresenter;
+import com.example.myapplication.issus.activity.PayCenterActivity;
 import com.example.myapplication.model.IssusModel;
 
 import butterknife.BindView;
@@ -141,6 +143,8 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
             case R.id.gather_place:
                 break;
             case R.id.bt_issus_login:
+                Intent mIntent = new Intent(getActivity(), PayCenterActivity.class);
+                startActivity(mIntent);
                 break;
         }
     }

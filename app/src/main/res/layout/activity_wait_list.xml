@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".me.activity.WaitAppraiseActivity">
+    tools:context=".me.activity.WaitListActivity">
     <android.support.v7.widget.Toolbar
-        android:id="@+id/message_tbr"
         android:minHeight="?android:attr/actionBarSize"
         android:background="@color/app_theme_color"
         android:layout_width="match_parent"
@@ -22,17 +21,20 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:layout_centerInParent="true"
-                android:text="待评价"
+                android:text="待录取"
                 android:textStyle="bold"
+                android:textColor="@color/write"
                 android:textSize="@dimen/sp_18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
     <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/wait_list_srl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/wait_list_rv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </android.support.v4.widget.SwipeRefreshLayout>

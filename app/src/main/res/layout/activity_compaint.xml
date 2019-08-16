@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context=".me.activity.CompaintActivity">
     <android.support.v7.widget.Toolbar
-        android:id="@+id/message_tbr"
         android:minHeight="?android:attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -15,7 +14,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
-                android:src="@drawable/leak_canary_icon"
+                android:id="@+id/back"
+                android:src="@drawable/back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
@@ -71,7 +71,7 @@
         android:layout_height="wrap_content" />
     <TextView
         android:gravity="center_horizontal"
-        android:id="@+id/bt_login"
+        android:id="@+id/compaint"
         android:text="提交投诉"
         android:textColor="@color/app_theme_color"
         android:padding="@dimen/dp_15"

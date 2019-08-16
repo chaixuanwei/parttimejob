@@ -1,6 +1,7 @@
 package com.example.myapplication.home.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.frame.BaseAdapter;
+import com.example.myapplication.home.activity.DetailActivity;
 
 public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
@@ -54,6 +56,13 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             ViewText mViewText = (ViewText) pViewHolder;
         } else if (getItemViewType(pI) == HOME_CONTENT) {
             ViewContent mViewContent = (ViewContent) pViewHolder;
+            mViewContent.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent mIntent = new Intent(mContext, DetailActivity.class);
+                    mContext.startActivity(mIntent);
+                }
+            });
         }
     }
 

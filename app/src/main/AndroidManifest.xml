@@ -10,7 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/NoAppTheme">
-        <activity android:name=".me.activity.MyIssusActivity"></activity>
+        <activity android:name=".me.activity.WaitListActivity"></activity>
+        <activity android:name=".me.activity.WorkingActivity" />
+        <activity android:name=".me.activity.FinancialDetailsActivity" />
+        <activity android:name=".me.activity.BalanceDrawalActivity" />
+        <activity android:name=".me.activity.SubmitPayActivity" />
+        <activity android:name=".issus.activity.PayCenterActivity" />
+        <activity android:name=".me.activity.MyIssusActivity" />
         <activity android:name=".me.activity.MyApproveActivity" />
         <activity android:name=".me.activity.MyWalletActivity" />
         <activity android:name=".me.activity.IdBindActivity" />

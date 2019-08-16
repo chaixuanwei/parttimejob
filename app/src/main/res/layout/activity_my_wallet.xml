@@ -35,6 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
+            android:id="@+id/balancedrawal_ll"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -58,6 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_1" />
         <LinearLayout
+            android:id="@+id/financialdetails_ll"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -98,6 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/creditline_txt"
                 android:text="80%"
                 android:textColor="@color/black_theme"
                 android:textSize="@dimen/sp_14"
@@ -109,6 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_1" />
         <LinearLayout
+            android:id="@+id/datastatistics_ll"
             android:gravity="center_vertical"
             android:paddingTop="@dimen/dp_10"
             android:paddingBottom="@dimen/dp_10"

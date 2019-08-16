@@ -11,10 +11,13 @@ import android.widget.TextView;
 import com.example.myapplication.R;
 import com.example.myapplication.frame.BaseMvpFragment;
 import com.example.myapplication.frame.CommonPresenter;
+import com.example.myapplication.me.activity.FeedbackActivity;
 import com.example.myapplication.me.activity.IdBindActivity;
 import com.example.myapplication.me.activity.MyApproveActivity;
 import com.example.myapplication.me.activity.MyIssusActivity;
 import com.example.myapplication.me.activity.MyWalletActivity;
+import com.example.myapplication.me.activity.WaitListActivity;
+import com.example.myapplication.me.activity.WorkingActivity;
 import com.example.myapplication.model.MeModel;
 import com.example.myapplication.me.activity.AmendActivity;
 import com.example.myapplication.me.activity.WaitAppraiseActivity;
@@ -107,33 +110,19 @@ public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
 
     }
 
-    @OnClick({R.id.head, R.id.name, R.id.signature, R.id.me_amend, R.id.grade, R.id.grade_name, R.id.credte_line, R.id.credte_line_name, R.id.comment, R.id.comment_name, R.id.waitlist, R.id.work, R.id.salary, R.id.waitappraise, R.id.wallet, R.id.approve, R.id.me_issus, R.id.bind, R.id.feedback})
+    @OnClick({R.id.head, R.id.me_amend, R.id.waitlist, R.id.work, R.id.salary, R.id.waitappraise, R.id.wallet, R.id.approve, R.id.me_issus, R.id.bind, R.id.feedback})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.head:
                 break;
-            case R.id.name:
-                break;
-            case R.id.signature:
-                break;
             case R.id.me_amend:
                 startActivity(new Intent(getActivity(), AmendActivity.class));
                 break;
-            case R.id.grade:
-                break;
-            case R.id.grade_name:
-                break;
-            case R.id.credte_line:
-                break;
-            case R.id.credte_line_name:
-                break;
-            case R.id.comment:
-                break;
-            case R.id.comment_name:
-                break;
             case R.id.waitlist:
+                startActivity(new Intent(getActivity(), WaitListActivity.class));
                 break;
             case R.id.work:
+                startActivity(new Intent(getActivity(), WorkingActivity.class));
                 break;
             case R.id.salary:
                 break;
@@ -153,6 +142,7 @@ public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
                 startActivity(new Intent(getActivity(), IdBindActivity.class));
                 break;
             case R.id.feedback:
+                startActivity(new Intent(getActivity(), FeedbackActivity.class));
                 break;
         }
     }

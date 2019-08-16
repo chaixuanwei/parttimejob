@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.widget.ImageView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.frame.BaseMvpActivity;
@@ -11,8 +12,6 @@ import com.example.myapplication.frame.CommonPresenter;
 import com.example.myapplication.me.fragment.OrderFragment;
 import com.example.myapplication.me.fragment.YetOrderFragment;
 import com.example.myapplication.message.adapter.MessageVpAdapter;
-import com.example.myapplication.message.fragment.ChatRecordFragment;
-import com.example.myapplication.message.fragment.SystemMessageFragment;
 import com.example.myapplication.model.MeModel;
 
 import java.util.ArrayList;
@@ -20,6 +19,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MyIssusActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
 
@@ -29,6 +29,8 @@ public class MyIssusActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
     ViewPager myissusVp;
     List<String> mTitleList = new ArrayList<>();
     List<Fragment> mFragmentList = new ArrayList<>();
+    @BindView(R.id.back)
+    ImageView back;
     private MessageVpAdapter mAdapter;
 
     @Override
@@ -74,10 +76,8 @@ public class MyIssusActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+    @OnClick(R.id.back)
+    public void onClick() {
+        finish();
     }
 }

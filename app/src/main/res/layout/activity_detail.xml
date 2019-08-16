@@ -17,9 +17,10 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/leak_canary_icon" />
+                android:src="@drawable/back" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -337,7 +338,7 @@
             android:gravity="center"
             android:padding="@dimen/dp_10"
             android:textSize="@dimen/sp_18"
-            android:background="@drawable/blue_background"
+            android:background="@drawable/blue_square_background"
             android:text="@string/atonce"
             android:textColor="@color/write"
             android:layout_width="wrap_content"

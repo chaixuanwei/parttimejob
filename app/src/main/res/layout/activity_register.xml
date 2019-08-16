@@ -8,8 +8,8 @@
     android:padding="@dimen/dp_10"
     tools:context=".login.RegisterActivity">
     <android.support.v7.widget.Toolbar
-        android:id="@+id/message_tbr"
         android:minHeight="?android:attr/actionBarSize"
+        android:background="@color/app_theme_color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RelativeLayout
