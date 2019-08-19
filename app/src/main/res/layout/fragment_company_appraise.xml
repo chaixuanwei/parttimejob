@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".home.fragment.CompanyAppraiseFragment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/company_appraise_ll"
+            android:background="@drawable/write_squre_background"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="工资评价"
+                    android:layout_gravity="center"
+                    android:drawableLeft="@mipmap/company_appraise"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:textSize="@dimen/sp_14"
+                    android:textColor="@color/black_theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ProgressBar
+                    android:id="@+id/progress_appraise"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:max="10"
+                    android:progress="10"
+                    style="@style/ProgressBar."
+                    android:layout_marginLeft="@dimen/dp_25"
+                    android:layout_width="@dimen/dp_198"
+                    android:layout_height="@dimen/dp_5" />
+                <TextView
+                    android:id="@+id/num_appraise"
+                    android:text="4.0"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/sp_14"
+                    android:layout_marginLeft="@dimen/dp_15"
+                    android:textColor="@color/black_theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="服务评价"
+                    android:layout_gravity="center"
+                    android:drawableLeft="@mipmap/company_service"
+                    android:drawablePadding="@dimen/dp_12"
+                    android:textSize="@dimen/sp_14"
+                    android:textColor="@color/black_theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ProgressBar
+                    android:id="@+id/progress_service"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:max="10"
+                    android:progress="6"
+                    style="@style/ProgressBar."
+                    android:layout_marginLeft="@dimen/dp_25"
+                    android:layout_width="@dimen/dp_198"
+                    android:layout_height="@dimen/dp_5" />
+                <TextView
+                    android:id="@+id/num_service"
+                    android:text="4.0"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/sp_14"
+                    android:layout_marginLeft="@dimen/dp_15"
+                    android:textColor="@color/black_theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="岗位评价"
+                    android:layout_gravity="center"
+                    android:drawableLeft="@mipmap/company_efficiency"
+                    android:drawablePadding="@dimen/dp_12"
+                    android:textSize="@dimen/sp_14"
+                    android:textColor="@color/black_theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ProgressBar
+                    android:id="@+id/progress_efficiency"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:max="10"
+                    android:progress="8"
+                    style="@style/ProgressBar."
+                    android:background="@drawable/write_round_background"
+                    android:layout_marginLeft="@dimen/dp_25"
+                    android:layout_width="@dimen/dp_198"
+                    android:layout_height="@dimen/dp_5" />
+                <TextView
+                    android:id="@+id/num_efficiency"
+                    android:text="4.0"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/sp_14"
+                    android:layout_marginLeft="@dimen/dp_15"
+                    android:textColor="@color/black_theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:layout_below="@id/company_appraise_ll"
+            android:id="@+id/company_appraise_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+    </RelativeLayout>
+</ScrollView>

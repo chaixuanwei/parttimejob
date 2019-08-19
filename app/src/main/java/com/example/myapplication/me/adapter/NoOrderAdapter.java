@@ -31,7 +31,7 @@ public class NoOrderAdapter extends RecyclerView.Adapter<NoOrderAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return 1;
+        return 10;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

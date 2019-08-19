@@ -21,4 +21,15 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:backgroundDimEnabled">false</item>
     </style>
+    <style name="RatingBar." parent="Widget.AppCompat.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratingbar</item>
+        <item name="android:minHeight">@dimen/dp_16</item>
+        <item name="android:maxHeight">@dimen/dp_16</item>
+    </style>
+    <style name="BigRatingBar" parent="Widget.AppCompat.RatingBar">
+        <item name="android:progressDrawable">@drawable/bigratingbar</item>
+    </style>
+    <style name="ProgressBar." parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_yes</item>
+    </style>
 </resources>

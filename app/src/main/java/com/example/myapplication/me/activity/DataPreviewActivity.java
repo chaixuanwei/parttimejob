@@ -8,6 +8,10 @@ import com.example.myapplication.R;
 import com.example.myapplication.frame.BaseMvpActivity;
 import com.example.myapplication.frame.CommonPresenter;
 import com.example.myapplication.model.MeModel;
+import com.example.myapplication.view.BarChartView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +29,8 @@ public class DataPreviewActivity extends BaseMvpActivity<CommonPresenter, MeMode
     TextView withdrawDepoist;
     @BindView(R.id.consume)
     TextView consume;
+    @BindView(R.id.barChartView)
+    BarChartView barChartView;
 
     @Override
     public int getLayoutId() {
@@ -33,7 +39,25 @@ public class DataPreviewActivity extends BaseMvpActivity<CommonPresenter, MeMode
 
     @Override
     public void initView() {
-
+        List<Integer> datas = new ArrayList<>();
+        datas.add(1600);
+        datas.add(1900);
+        datas.add(2000);
+        datas.add(2300);
+        datas.add(2700);
+        List<String> xList = new ArrayList<>();
+        xList.add("一月");
+        xList.add("二月");
+        xList.add("三月");
+        xList.add("四月");
+        xList.add("五月");
+        List<Integer> yList = new ArrayList<>();
+        yList.add(1000);
+        yList.add(1500);
+        yList.add(2000);
+        yList.add(2500);
+        yList.add(3000);
+        barChartView.updateValueData(datas,xList,yList);
     }
 
     @Override
@@ -64,5 +88,12 @@ public class DataPreviewActivity extends BaseMvpActivity<CommonPresenter, MeMode
     @OnClick(R.id.back)
     public void onClick() {
         finish();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

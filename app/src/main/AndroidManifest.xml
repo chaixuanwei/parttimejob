@@ -10,7 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/NoAppTheme">
-        <activity android:name=".me.activity.FirmActivity"></activity>
+        <activity android:name=".me.activity.FeedbackSuccessActivity"></activity>
+        <activity android:name=".me.activity.AtonceActivity" />
+        <activity android:name=".home.activity.CompanyActivity" />
+        <activity android:name=".me.activity.FirmActivity" />
         <activity android:name=".me.activity.PeopleActivity" />
         <activity android:name=".me.activity.WaitListActivity" />
         <activity android:name=".me.activity.WorkingActivity" />

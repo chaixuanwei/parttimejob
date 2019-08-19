@@ -176,13 +176,13 @@ public class BarChartView extends View {
                 Rect rectText = new Rect();
                 mPaintText.getTextBounds(mData.get(j) + "", 0, (mData.get(j) + "").length(), rectText);
                 //绘制柱状条上的值
-                canvas.drawText(mData.get(j) + "", startX + itemSpace * (j + 1) + itemWidth * j + itemWidth / 2 - rectText.width() / 2, (float) (startY - keduTextSpace - (mData.get(j) * (keduSpace * 1.0 / valueSpace))), mPaintText);
+                canvas.drawText(mData.get(j) + "", startX + itemSpace * (j + 1) + itemWidth * j + itemWidth / 2 - rectText.width() / 2, (float) (startY - keduTextSpace - ((mData.get(j)-1000) * (keduSpace * 1.0 / valueSpace))), mPaintText);
             }
             //绘制柱状条
             mPaintBar.setColor(colors[j]);
             //(mData.get(j) * (keduSpace * 1.0 / valueSpace))：为每个柱状条所占的高度值px
             int initx = startX + itemSpace * (j + 1) + j * itemWidth;
-            canvas.drawRect(initx, (float) (startY - (mData.get(j) * (keduSpace * 1.0 / valueSpace))), initx + itemWidth, startY, mPaintBar);
+            canvas.drawRect(initx, (float) (startY - ((mData.get(j)-1000) * (keduSpace * 1.0 / valueSpace))), initx + itemWidth, startY, mPaintBar);
         }
     }
 

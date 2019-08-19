@@ -36,12 +36,12 @@ public class ChatRecordFragment extends BaseMvpFragment<CommonPresenter, Message
 
     @Override
     public CommonPresenter getPresenter() {
-        return null;
+        return new CommonPresenter();
     }
 
     @Override
     public MessageModel getModel() {
-        return null;
+        return new MessageModel();
     }
 
     @Override

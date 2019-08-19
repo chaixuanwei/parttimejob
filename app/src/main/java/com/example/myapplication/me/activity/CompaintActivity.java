@@ -38,12 +38,12 @@ public class CompaintActivity extends BaseMvpActivity<CommonPresenter, MeModel> 
 
     @Override
     public CommonPresenter getPresenter() {
-        return null;
+        return new CommonPresenter();
     }
 
     @Override
     public MeModel getModel() {
-        return null;
+        return new MeModel();
     }
 
     @Override

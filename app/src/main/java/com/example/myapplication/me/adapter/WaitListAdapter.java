@@ -33,7 +33,7 @@ public class WaitListAdapter extends RecyclerView.Adapter<WaitListAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return 1;
+        return 10;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

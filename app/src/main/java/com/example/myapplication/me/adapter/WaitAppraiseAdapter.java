@@ -1,6 +1,7 @@
 package com.example.myapplication.me.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.me.activity.AtonceActivity;
 
 public class WaitAppraiseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private int WAITAPPRAISE = 0;
@@ -41,6 +43,13 @@ public class WaitAppraiseAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         } else {
             WaitHolder mWaitHolder = (WaitHolder) pViewHolder;
             mWaitHolder.mAppraiseWaitProjectClick.setTextColor(mContext.getResources().getColor(R.color.app_theme_color));
+            mWaitHolder.mAppraiseWaitProjectClick.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent mIntent = new Intent(mContext, AtonceActivity.class);
+                    mContext.startActivity(mIntent);
+                }
+            });
         }
     }
 
@@ -55,7 +64,7 @@ public class WaitAppraiseAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public int getItemCount() {
-        return 2;
+        return 10;
     }
 
     public class PastHolder extends RecyclerView.ViewHolder {

@@ -38,7 +38,7 @@
             android:text="暑"
             android:gravity="center"
             android:layout_marginRight="@dimen/dp_8"
-            android:background="@drawable/yellow_round"
+            android:background="@drawable/yellow_gradual_round"
             android:textColor="@color/write"
             android:textSize="@dimen/sp_10"
             android:layout_width="@dimen/dp_15"

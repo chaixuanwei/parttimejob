@@ -1,5 +1,6 @@
 package com.example.myapplication.me.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -98,6 +99,8 @@ public class FeedbackActivity extends BaseMvpActivity<CommonPresenter, MeModel> 
             case R.id.feedback_other:
                 break;
             case R.id.feedback_bt_login:
+                Intent mIntent = new Intent(this, FeedbackSuccessActivity.class);
+                startActivity(mIntent);
                 break;
         }
     }

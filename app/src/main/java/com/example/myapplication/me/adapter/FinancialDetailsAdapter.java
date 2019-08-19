@@ -44,7 +44,7 @@ public class FinancialDetailsAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 10;
     }
 
     @Override

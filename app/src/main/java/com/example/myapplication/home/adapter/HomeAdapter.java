@@ -81,7 +81,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 10;
     }
 
     class ViewBanner extends BaseAdapter.ViewHolder {
