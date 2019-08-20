@@ -1,5 +1,6 @@
 package com.example.myapplication.me.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -153,6 +154,9 @@ public class AtonceActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
                 }
                 break;
             case R.id.submit:
+                Intent mFeedbackSuccessIntent = new Intent(this, FeedbackSuccessActivity.class);
+                startActivity(mFeedbackSuccessIntent);
+                finish();
                 break;
         }
     }

@@ -1,6 +1,8 @@
 package com.example.myapplication.me.adapter;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.me.activity.IssusActivity;
 
 public class NoOrderAdapter extends RecyclerView.Adapter<NoOrderAdapter.ViewHolder> {
     Context mContext;
@@ -26,7 +29,14 @@ public class NoOrderAdapter extends RecyclerView.Adapter<NoOrderAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder pViewHolder, int pI) {
-
+        ViewHolder mViewHolder = pViewHolder;
+        mViewHolder.mItemOrderJobLook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mIssusIntent = new Intent(mContext, IssusActivity.class);
+                mContext.startActivity(mIssusIntent);
+            }
+        });
     }
 
     @Override

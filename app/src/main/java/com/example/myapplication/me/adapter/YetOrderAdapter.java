@@ -1,6 +1,7 @@
 package com.example.myapplication.me.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.me.activity.ApplyPeopleActivity;
+import com.example.myapplication.me.activity.InspectActivity;
 
 public class YetOrderAdapter extends RecyclerView.Adapter<YetOrderAdapter.ViewHolder> {
 
@@ -27,7 +30,21 @@ public class YetOrderAdapter extends RecyclerView.Adapter<YetOrderAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder pViewHolder, int pI) {
-
+        ViewHolder mViewHolder = pViewHolder;
+        mViewHolder.mItemYetOrderJobLook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mApplyPeopleIntent = new Intent(mContext, ApplyPeopleActivity.class);
+                mContext.startActivity(mApplyPeopleIntent);
+            }
+        });
+        mViewHolder.mItemYetOrderJobProgress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mInspectIntent = new Intent(mContext, InspectActivity.class);
+                mContext.startActivity(mInspectIntent);
+            }
+        });
     }
 
     @Override

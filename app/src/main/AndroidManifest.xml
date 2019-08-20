@@ -10,7 +10,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/NoAppTheme">
-        <activity android:name=".me.activity.FeedbackSuccessActivity"></activity>
+        <activity android:name=".activity.IntroduceActivity"></activity>
+        <activity android:name=".me.activity.SalaryActivity" />
+        <activity android:name=".me.activity.IssusActivity" />
+        <activity android:name=".me.activity.InsightsUserActivity" />
+        <activity android:name=".me.activity.ProjectReviewActivity" />
+        <activity android:name=".me.activity.InspectActivity" />
+        <activity android:name=".me.activity.ApplyPeopleActivity" />
+        <activity android:name=".me.activity.FeedbackSuccessActivity" />
         <activity android:name=".me.activity.AtonceActivity" />
         <activity android:name=".home.activity.CompanyActivity" />
         <activity android:name=".me.activity.FirmActivity" />

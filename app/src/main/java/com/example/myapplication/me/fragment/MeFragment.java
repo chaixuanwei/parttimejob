@@ -16,6 +16,7 @@ import com.example.myapplication.me.activity.IdBindActivity;
 import com.example.myapplication.me.activity.MyApproveActivity;
 import com.example.myapplication.me.activity.MyIssusActivity;
 import com.example.myapplication.me.activity.MyWalletActivity;
+import com.example.myapplication.me.activity.SalaryActivity;
 import com.example.myapplication.me.activity.WaitListActivity;
 import com.example.myapplication.me.activity.WorkingActivity;
 import com.example.myapplication.model.MeModel;
@@ -116,33 +117,44 @@ public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
             case R.id.head:
                 break;
             case R.id.me_amend:
-                startActivity(new Intent(getActivity(), AmendActivity.class));
+                Intent mAmendIntent = new Intent(getActivity(), AmendActivity.class);
+                startActivity(mAmendIntent);
                 break;
             case R.id.waitlist:
-                startActivity(new Intent(getActivity(), WaitListActivity.class));
+                Intent mWaitListIntent = new Intent(getActivity(), WaitListActivity.class);
+                startActivity(mWaitListIntent);
                 break;
             case R.id.work:
-                startActivity(new Intent(getActivity(), WorkingActivity.class));
+                Intent mWorkingIntent = new Intent(getActivity(), WorkingActivity.class);
+                startActivity(mWorkingIntent);
                 break;
             case R.id.salary:
+                Intent mSalaryIntent = new Intent(getActivity(), SalaryActivity.class);
+                startActivity(mSalaryIntent);
                 break;
             case R.id.waitappraise:
-                startActivity(new Intent(getActivity(), WaitAppraiseActivity.class));
+                Intent mWaitAppraiseIntent = new Intent(getActivity(), WaitAppraiseActivity.class);
+                startActivity(mWaitAppraiseIntent);
                 break;
             case R.id.wallet:
-                startActivity(new Intent(getActivity(), MyWalletActivity.class));
+                Intent mMyWalletIntent = new Intent(getActivity(), MyWalletActivity.class);
+                startActivity(mMyWalletIntent);
                 break;
             case R.id.approve:
-                startActivity(new Intent(getActivity(), MyApproveActivity.class));
+                Intent mMyApproveIntent = new Intent(getActivity(), MyApproveActivity.class);
+                startActivity(mMyApproveIntent);
                 break;
             case R.id.me_issus:
-                startActivity(new Intent(getActivity(), MyIssusActivity.class));
+                Intent mMyIssusIntent = new Intent(getActivity(), MyIssusActivity.class);
+                startActivity(mMyIssusIntent);
                 break;
             case R.id.bind:
-                startActivity(new Intent(getActivity(), IdBindActivity.class));
+                Intent mIdBindIntent = new Intent(getActivity(), IdBindActivity.class);
+                startActivity(mIdBindIntent);
                 break;
             case R.id.feedback:
-                startActivity(new Intent(getActivity(), FeedbackActivity.class));
+                Intent mFeedbackIntent = new Intent(getActivity(), FeedbackActivity.class);
+                startActivity(mFeedbackIntent);
                 break;
         }
     }

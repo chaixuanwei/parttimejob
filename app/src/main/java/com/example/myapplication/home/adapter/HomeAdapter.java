@@ -17,10 +17,9 @@ import com.example.myapplication.home.activity.DetailActivity;
 
 public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
-    private int HOME_BANNER = 0;
-    private int HOME_OPTION = 1;
-    private int HOME_TEXT = 2;
-    private int HOME_CONTENT = 3;
+    private int HOME_OPTION = 0;
+    private int HOME_TEXT = 1;
+    private int HOME_CONTENT = 2;
 
     public HomeAdapter(Context pContext) {
         mContext = pContext;
@@ -30,10 +29,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup pViewGroup, int pI) {
         RecyclerView.ViewHolder viewHolder = null;
-        if (pI == HOME_BANNER) {
-            View mInflate = LayoutInflater.from(mContext).inflate(R.layout.item_home_banner, pViewGroup,false);
-            viewHolder = new ViewBanner(mInflate);
-        } else if (pI == HOME_OPTION) {
+        if (pI == HOME_OPTION) {
             View mInflate = LayoutInflater.from(mContext).inflate(R.layout.item_home_option, pViewGroup,false);
             viewHolder = new ViewOption(mInflate);
         } else if (pI == HOME_TEXT) {
@@ -48,9 +44,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder pViewHolder, int pI) {
-        if (getItemViewType(pI) == HOME_BANNER) {
-            ViewBanner mViewBanner = (ViewBanner) pViewHolder;
-        } else if (getItemViewType(pI) == HOME_OPTION) {
+        if (getItemViewType(pI) == HOME_OPTION) {
             ViewOption mViewOption = (ViewOption) pViewHolder;
         } else if (getItemViewType(pI) == HOME_TEXT) {
             ViewText mViewText = (ViewText) pViewHolder;
@@ -68,9 +62,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        if (position == HOME_BANNER) {
-            return HOME_BANNER;
-        } else if (position == HOME_OPTION) {
+        if (position == HOME_OPTION) {
             return HOME_OPTION;
         } else if (position == HOME_TEXT) {
             return HOME_TEXT;
@@ -82,12 +74,6 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public int getItemCount() {
         return 10;
-    }
-
-    class ViewBanner extends BaseAdapter.ViewHolder {
-        public ViewBanner(View itemView) {
-            super(itemView);
-        }
     }
 
     class ViewOption extends BaseAdapter.ViewHolder {

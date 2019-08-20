@@ -49,12 +49,12 @@ public class FinancialDetailsAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public int getItemViewType(int position) {
-        if (position == WITHDRAW) {
-            return WITHDRAW;
+        if (position == DAY) {
+            return DAY;
         } else if (position == SERVICE_CHARGE){
             return SERVICE_CHARGE;
         } else {
-            return DAY;
+            return WITHDRAW;
         }
     }
 

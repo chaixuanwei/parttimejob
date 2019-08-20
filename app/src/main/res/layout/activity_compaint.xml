@@ -7,7 +7,9 @@
     android:orientation="vertical"
     tools:context=".me.activity.CompaintActivity">
     <android.support.v7.widget.Toolbar
+        android:paddingTop="@dimen/dp_30"
         android:minHeight="?android:attr/actionBarSize"
+        android:background="@drawable/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RelativeLayout

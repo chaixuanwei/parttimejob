@@ -23,22 +23,22 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mIsFirst = SharedPrefrenceUtils.getBoolean(this, Config.ISFIRST, true);
         if (mIsFirst)SharedPrefrenceUtils.saveBoolean(this,Config.ISFIRST,false);
-        if (!mIsFirst) {
-            startActivity(new Intent(SplashActivity.this, MainActivity.class));
-            SplashActivity.this.finish();
-        }else {
-            requestWindowFeature(Window.FEATURE_NO_TITLE);
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            setContentView(R.layout.activity_splash);
-            mSplashThree = findViewById(R.id.splash_three);
-            mSplashThree.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_splash);
+        mSplashThree = findViewById(R.id.splash_three);
+        mSplashThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!mIsFirst) {
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                    SplashActivity.this.finish();
+                }else {
+                    Intent intent = new Intent(SplashActivity.this, IntroduceActivity.class);
                     startActivity(intent);
                     SplashActivity.this.finish();
                 }
-            });
-        }
+            }
+        });
     }
 }

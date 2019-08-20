@@ -6,9 +6,9 @@
     tools:context=".me.fragment.MeFragment">
 
     <RelativeLayout
-        android:background="@color/blue_theme"
+        android:background="@drawable/me_background"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_200">
+        android:layout_height="@dimen/dp_250">
         <RelativeLayout
             android:id="@+id/my_name"
             android:padding="@dimen/dp_10"
@@ -144,7 +144,7 @@
     <LinearLayout
         android:id="@+id/situation_ll"
         android:orientation="horizontal"
-        android:background="@drawable/write_round_background"
+        android:background="@drawable/shadow"
         android:layout_marginTop="@dimen/dp_185"
         android:layout_marginRight="@dimen/dp_10"
         android:layout_marginLeft="@dimen/dp_10"

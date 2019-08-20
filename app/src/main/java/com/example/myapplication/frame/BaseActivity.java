@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
@@ -28,7 +29,7 @@ public class BaseActivity extends AppCompatActivity {
         mApplication = (ApplicationJob) getApplication();
         Log.e("我是华丽丽的类名-----", this.getClass().getSimpleName());
         mAppColor = ContextCompat.getColor(this, R.color.app_theme_color);
-        StatusBarCompat.setStatusBarColor(this, mAppColor);
+        StatusBarCompat.setTranslucent(getWindow(),true);
         mDialog = new LoadingDialogWithContent(this,getString(R.string.loading));
     }
 

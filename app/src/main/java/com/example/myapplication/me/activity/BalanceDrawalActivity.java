@@ -3,6 +3,7 @@ package com.example.myapplication.me.activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
@@ -20,6 +21,8 @@ public class BalanceDrawalActivity extends BaseMvpActivity<CommonPresenter, MeMo
     ImageView back;
     @BindView(R.id.pay)
     TextView pay;
+    @BindView(R.id.balancedrawal_sp)
+    Spinner balancedrawalSp;
 
     @Override
     public int getLayoutId() {
@@ -66,5 +69,12 @@ public class BalanceDrawalActivity extends BaseMvpActivity<CommonPresenter, MeMo
             case R.id.pay:
                 break;
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

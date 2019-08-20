@@ -32,7 +32,6 @@ public class MainActivity extends BaseMvpActivity<CommonPresenter, HomeModel> im
     @Override
     public void initView() {
         mBottomView = findViewById(R.id.bottom_view);
-        StatusBarCompat.setStatusBarColor(this,mAppColor);
         mBottomView.setBottomBg(Color.WHITE);
         mBottomView.setBottomTextSize(this, 10f);
         mBottomView.setOnBottomClickListener(this);

@@ -7,7 +7,8 @@
     android:orientation="vertical"
     tools:context=".me.activity.MyApproveActivity">
     <android.support.v7.widget.Toolbar
-        android:background="@color/app_theme_color"
+        android:paddingTop="@dimen/dp_30"
+        android:background="@drawable/toolbar"
         android:minHeight="?android:attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

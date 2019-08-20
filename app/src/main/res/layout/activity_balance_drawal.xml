@@ -7,8 +7,9 @@
     android:orientation="vertical"
     tools:context=".me.activity.BalanceDrawalActivity">
     <android.support.v7.widget.Toolbar
+        android:paddingTop="@dimen/dp_30"
         android:minHeight="?android:attr/actionBarSize"
-        android:background="@color/app_theme_color"
+        android:background="@drawable/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RelativeLayout
@@ -31,6 +32,7 @@
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
     <Spinner
+        android:id="@+id/balancedrawal_sp"
         android:textSize="@dimen/sp_13"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_64"

@@ -1,18 +1,15 @@
 package com.example.myapplication.me.activity;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.frame.BaseMvpActivity;
 import com.example.myapplication.frame.CommonPresenter;
-import com.example.myapplication.local_utils.statusbar.StatusBarCompat;
 import com.example.myapplication.model.MeModel;
 import com.example.myapplication.view.RoundImage;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class AmendActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
@@ -29,7 +26,7 @@ public class AmendActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
 
     @Override
     public void initView() {
-        StatusBarCompat.setStatusBarColor(this, mAppColor);
+
     }
 
     @Override

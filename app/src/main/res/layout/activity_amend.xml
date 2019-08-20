@@ -6,8 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".me.activity.AmendActivity">
     <android.support.v7.widget.Toolbar
+        android:paddingTop="@dimen/dp_30"
         android:id="@+id/message_tbr"
-        android:background="@color/app_theme_color"
+        android:background="@drawable/toolbar"
         android:minHeight="?android:attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

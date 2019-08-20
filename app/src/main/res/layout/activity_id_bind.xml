@@ -7,8 +7,9 @@
     android:orientation="vertical"
     tools:context=".me.activity.IdBindActivity">
     <android.support.v7.widget.Toolbar
+        android:paddingTop="@dimen/dp_30"
         android:id="@+id/id_bind_tbr"
-        android:background="@color/app_theme_color"
+        android:background="@drawable/toolbar"
         android:minHeight="?android:attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

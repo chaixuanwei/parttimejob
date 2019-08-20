@@ -8,9 +8,10 @@
     tools:context=".issus.activity.PayCenterActivity">
 
     <android.support.v7.widget.Toolbar
+        android:paddingTop="@dimen/dp_30"
         android:id="@+id/pay_center_tbr"
         android:minHeight="?android:attr/actionBarSize"
-        android:background="@color/app_theme_color"
+        android:background="@drawable/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RelativeLayout

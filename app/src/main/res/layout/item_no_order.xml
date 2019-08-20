@@ -42,7 +42,7 @@
         android:layout_gravity="right"
         android:id="@+id/item_order_job_look"
         android:layout_marginTop="@dimen/dp_11"
-        android:text="查看报名"
+        android:text="编辑信息"
         android:textSize="@dimen/sp_14"
         android:textColor="@color/app_theme_color"
         android:paddingRight="@dimen/dp_10"
