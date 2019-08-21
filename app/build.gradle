@@ -51,4 +51,5 @@ dependencies {
     implementation "com.scwang.smartrefresh:SmartRefreshLayout:$smartRefresh"
     implementation "com.scwang.smartrefresh:SmartRefreshHeader:$smartRefresh"
     implementation project(':citypicker')
+    api 'com.blankj:utilcode:+'
 }

@@ -1,6 +1,7 @@
 package com.example.myapplication.me.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -9,6 +10,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.config.Config;
 import com.example.myapplication.frame.BaseMvpActivity;
 import com.example.myapplication.frame.CommonPresenter;
 import com.example.myapplication.model.MeModel;
@@ -155,6 +157,7 @@ public class AtonceActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
                 break;
             case R.id.submit:
                 Intent mFeedbackSuccessIntent = new Intent(this, FeedbackSuccessActivity.class);
+                mFeedbackSuccessIntent.putExtra(Config.SUCCESS, Config.FEEDBACK);
                 startActivity(mFeedbackSuccessIntent);
                 finish();
                 break;

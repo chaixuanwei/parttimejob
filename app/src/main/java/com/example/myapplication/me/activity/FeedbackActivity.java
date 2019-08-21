@@ -11,6 +11,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.config.Config;
 import com.example.myapplication.frame.BaseMvpActivity;
 import com.example.myapplication.frame.CommonPresenter;
 import com.example.myapplication.model.MeModel;
@@ -99,8 +100,9 @@ public class FeedbackActivity extends BaseMvpActivity<CommonPresenter, MeModel> 
             case R.id.feedback_other:
                 break;
             case R.id.feedback_bt_login:
-                Intent mIntent = new Intent(this, FeedbackSuccessActivity.class);
-                startActivity(mIntent);
+                Intent mFeedbackSuccessIntent = new Intent(this, FeedbackSuccessActivity.class);
+                mFeedbackSuccessIntent.putExtra(Config.SUCCESS,Config.FEEDBACK);
+                startActivity(mFeedbackSuccessIntent);
                 break;
         }
     }

@@ -3,6 +3,7 @@ package com.example.myapplication.me.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,6 +26,8 @@ public class MyWalletActivity extends BaseMvpActivity<CommonPresenter, MeModel> 
     TextView creditlineTxt;
     @BindView(R.id.datastatistics_ll)
     LinearLayout datastatisticsLl;
+    @BindView(R.id.back)
+    ImageView back;
 
     @Override
     public int getLayoutId() {
@@ -65,14 +68,18 @@ public class MyWalletActivity extends BaseMvpActivity<CommonPresenter, MeModel> 
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.balancedrawal_ll:
-                startActivity(new Intent(this,BalanceDrawalActivity.class));
+                startActivity(new Intent(this, BalanceDrawalActivity.class));
                 break;
             case R.id.financialdetails_ll:
-                startActivity(new Intent(this,FinancialDetailsActivity.class));
+                startActivity(new Intent(this, FinancialDetailsActivity.class));
                 break;
             case R.id.datastatistics_ll:
-                startActivity(new Intent(this,DataPreviewActivity.class));
+                startActivity(new Intent(this, DataPreviewActivity.class));
                 break;
         }
+    }
+    @OnClick(R.id.back)
+    public void onClick() {
+        finish();
     }
 }

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/grey_background"
+    android:orientation="vertical"
+    tools:context=".me.activity.BindbankcardActivity">
+    <android.support.v7.widget.Toolbar
+        android:paddingTop="@dimen/dp_30"
+        android:minHeight="?android:attr/actionBarSize"
+        android:background="@drawable/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/back"
+                android:padding="@dimen/dp_10"
+                android:src="@drawable/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_centerInParent="true"
+                android:text="绑定银行卡"
+                android:textColor="@color/write"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp_18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+    <TextView
+        android:padding="@dimen/dp_18"
+        android:text="请输入新的银行卡信息"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:paddingLeft="@dimen/dp_20"
+        android:paddingTop="@dimen/dp_15"
+        android:paddingBottom="@dimen/dp_10"
+        android:background="@drawable/grey_square_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="姓名"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/et_name"
+            android:background="@null"
+            android:inputType="textPersonName"
+            android:hint="请输入姓名"
+            android:layout_marginLeft="@dimen/dp_100"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:paddingLeft="@dimen/dp_20"
+        android:paddingTop="@dimen/dp_15"
+        android:paddingBottom="@dimen/dp_10"
+        android:background="@drawable/grey_square_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="身份证号"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/et_idnumber"
+            android:background="@null"
+            android:maxLength="18"
+            android:hint="请输入身份证号"
+            android:layout_marginLeft="@dimen/dp_100"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:paddingLeft="@dimen/dp_20"
+        android:paddingTop="@dimen/dp_15"
+        android:paddingBottom="@dimen/dp_10"
+        android:background="@drawable/grey_square_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="卡号"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/et_idcard"
+            android:background="@null"
+            android:inputType="number"
+            android:maxLength="19"
+            android:hint="请输入卡号"
+            android:layout_marginLeft="@dimen/dp_100"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:paddingLeft="@dimen/dp_20"
+        android:paddingTop="@dimen/dp_15"
+        android:paddingBottom="@dimen/dp_10"
+        android:background="@drawable/grey_square_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="手机号"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/et_photo"
+            android:background="@null"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:hint="请输入手机号"
+            android:layout_marginLeft="@dimen/dp_100"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <RadioButton
+        android:id="@+id/rb_agree"
+        android:layout_marginTop="@dimen/dp_15"
+        android:layout_marginLeft="@dimen/dp_25"
+        android:button="@drawable/pay_radiobutton"
+        android:text="我同意《用户协议》"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:gravity="center_horizontal"
+        android:id="@+id/sure_bind"
+        android:text="确认绑定"
+        android:textColor="@color/app_theme_color"
+        android:layout_marginRight="@dimen/dp_15"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:padding="@dimen/dp_15"
+        android:layout_marginTop="@dimen/dp_50"
+        android:background="@drawable/blue_round_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

@@ -43,12 +43,13 @@
                 android:text="@string/phone"
                 android:textColor="@color/black_theme"
                 android:textStyle="bold"
-                android:textSize="@dimen/sp_18"
+                android:textSize="@dimen/sp_15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <EditText
                 android:id="@+id/phone"
                 android:layout_weight="1"
+                android:textSize="@dimen/sp_15"
                 android:hint="请输入手机号"
                 android:paddingLeft="@dimen/dp_5"
                 android:background="@null"
@@ -57,6 +58,7 @@
             <TextView
                 android:id="@+id/getcord"
                 android:text="@string/getcode"
+                android:textSize="@dimen/sp_15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -73,7 +75,7 @@
                 android:text="@string/code"
                 android:textColor="@color/black_theme"
                 android:textStyle="bold"
-                android:textSize="@dimen/sp_18"
+                android:textSize="@dimen/sp_15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <EditText
@@ -81,6 +83,7 @@
                 android:paddingLeft="@dimen/dp_5"
                 android:layout_weight="1"
                 android:hint="请输入短信验证码"
+                android:textSize="@dimen/sp_15"
                 android:background="@null"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -106,6 +109,7 @@
             android:layout_marginTop="@dimen/dp_10"
             android:layout_marginBottom="@dimen/dp_10"
             android:drawableLeft="@mipmap/reminder"
+            android:textSize="@dimen/sp_12"
             android:drawablePadding="@dimen/dp_5"
             android:text="温馨提示："
             android:textColor="@color/blue_theme"
@@ -114,11 +118,13 @@
         <TextView
             android:text="@string/warm_prompt_one"
             android:layout_marginBottom="@dimen/dp_5"
+            android:textSize="@dimen/sp_12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:text="@string/warm_prompt_two"
             android:layout_width="match_parent"
+            android:textSize="@dimen/sp_12"
             android:layout_height="wrap_content" />
         <RelativeLayout
             android:layout_marginTop="@dimen/dp_50"
@@ -127,14 +133,14 @@
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/none"
-                android:textSize="@dimen/sp_18"
+                android:textSize="@dimen/sp_15"
                 android:text="你还没有账号？"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/register"
                 android:layout_toRightOf="@id/none"
-                android:textSize="@dimen/sp_18"
+                android:textSize="@dimen/sp_15"
                 android:text="注册"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

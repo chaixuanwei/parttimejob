@@ -5,8 +5,56 @@
     android:layout_height="match_parent"
     tools:context=".home.activity.DetailActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:paddingTop="@dimen/dp_30"
+        android:id="@+id/detail_tbr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/toolbar"
+        android:minHeight="?android:attr/actionBarSize">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/back"
+                android:padding="@dimen/dp_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="兼职详情"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/collect"
+                android:src="@mipmap/collect"
+                android:paddingTop="@dimen/dp_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/complain" />
+
+            <ImageView
+                android:id="@+id/complain"
+                android:src="@mipmap/report"
+                android:padding="@dimen/dp_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_10" />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
     <ScrollView
         android:layout_above="@id/detail_ll"
+        android:layout_below="@id/detail_tbr"
         android:id="@+id/detail_sv"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -14,57 +62,10 @@
            android:orientation="vertical"
            android:layout_width="match_parent"
            android:layout_height="wrap_content">
-           <android.support.v7.widget.Toolbar
-               android:paddingTop="@dimen/dp_30"
-               android:id="@+id/detail_tbr"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:background="@drawable/toolbar"
-               android:minHeight="?android:attr/actionBarSize">
-
-               <RelativeLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content">
-
-                   <ImageView
-                       android:id="@+id/back"
-                       android:padding="@dimen/dp_10"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:src="@drawable/back" />
-
-                   <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_centerInParent="true"
-                       android:text="兼职详情"
-                       android:textSize="@dimen/sp_18"
-                       android:textStyle="bold" />
-
-                   <ImageView
-                       android:id="@+id/collect"
-                       android:src="@mipmap/collect"
-                       android:paddingTop="@dimen/dp_10"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_toLeftOf="@id/complain" />
-
-                   <ImageView
-                       android:id="@+id/complain"
-                       android:src="@mipmap/report"
-                       android:padding="@dimen/dp_10"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_alignParentRight="true"
-                       android:layout_marginLeft="@dimen/dp_10"
-                       android:layout_marginRight="@dimen/dp_10" />
-               </RelativeLayout>
-           </android.support.v7.widget.Toolbar>
 
            <LinearLayout
                android:orientation="vertical"
                android:padding="@dimen/dp_10"
-               android:layout_below="@id/detail_tbr"
                android:layout_width="match_parent"
                android:layout_height="wrap_content">
                <LinearLayout
@@ -389,6 +390,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/detail_call"
             android:layout_weight="1"
             android:background="@drawable/black_square_frame"
             android:gravity="center"
@@ -400,6 +402,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/detail_apply"
             android:layout_weight="1"
             android:gravity="center"
             android:padding="@dimen/dp_10"

@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/NoAppTheme">
-        <activity android:name=".activity.IntroduceActivity"></activity>
+        <activity android:name=".me.activity.BindbankcardActivity"></activity>
+        <activity android:name=".activity.IntroduceActivity" />
         <activity android:name=".me.activity.SalaryActivity" />
         <activity android:name=".me.activity.IssusActivity" />
         <activity android:name=".me.activity.InsightsUserActivity" />
