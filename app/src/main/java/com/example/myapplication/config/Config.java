@@ -11,6 +11,10 @@ public class Config {
     public static final String APPLY = "baoming";
     public static final String FEEDBACK = "feedback";
     public static final String SUCCESS = "success";
+    public static final String BITMAP = "bitmap";
+    public static final String SIGNA = "signa";
     public static final int BINDBACK = 100;
     public static final int FINISH = 101;
+    public static final int PHOTO = 2;
+    public static final int MOREPHOTO = 3;
 }

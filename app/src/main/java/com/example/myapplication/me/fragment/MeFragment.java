@@ -1,16 +1,29 @@
 package com.example.myapplication.me.fragment;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.config.Config;
 import com.example.myapplication.frame.BaseMvpFragment;
 import com.example.myapplication.frame.CommonPresenter;
+import com.example.myapplication.local_utils.PhotoUtils;
+import com.example.myapplication.local_utils.SharedPrefrenceUtils;
 import com.example.myapplication.me.activity.FeedbackActivity;
 import com.example.myapplication.me.activity.IdBindActivity;
 import com.example.myapplication.me.activity.MyApproveActivity;
@@ -23,6 +36,12 @@ import com.example.myapplication.model.MeModel;
 import com.example.myapplication.me.activity.AmendActivity;
 import com.example.myapplication.me.activity.WaitAppraiseActivity;
 import com.example.myapplication.view.RoundImage;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -83,12 +102,39 @@ public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
 
     @Override
     public void initView() {
-
+        String mSigna = SharedPrefrenceUtils.getString(getActivity(), Config.SIGNA);
+        if (null != mSigna) {
+            signature.setText(mSigna);
+        }
     }
 
     @Override
     public void initData() {
+        signature.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                SharedPrefrenceUtils.saveString(getActivity(),Config.SIGNA,s.toString().trim());
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        Bitmap mBitmap = SharedPrefrenceUtils.getBitmap(getActivity(), Config.BITMAP, null);
+        if (null != mBitmap) {
+            head.setImageBitmap(mBitmap);
+        }
+        super.onResume();
     }
 
     @Override
@@ -111,11 +157,9 @@ public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
 
     }
 
-    @OnClick({R.id.head, R.id.me_amend, R.id.waitlist, R.id.work, R.id.salary, R.id.waitappraise, R.id.wallet, R.id.approve, R.id.me_issus, R.id.bind, R.id.feedback})
+    @OnClick({R.id.me_amend, R.id.waitlist, R.id.work, R.id.salary, R.id.waitappraise, R.id.wallet, R.id.approve, R.id.me_issus, R.id.bind, R.id.feedback})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.head:
-                break;
             case R.id.me_amend:
                 Intent mAmendIntent = new Intent(getActivity(), AmendActivity.class);
                 startActivity(mAmendIntent);

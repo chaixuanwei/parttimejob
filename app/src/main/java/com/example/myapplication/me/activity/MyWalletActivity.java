@@ -1,6 +1,7 @@
 package com.example.myapplication.me.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -8,9 +9,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.config.Config;
 import com.example.myapplication.frame.BaseMvpActivity;
 import com.example.myapplication.frame.CommonPresenter;
+import com.example.myapplication.local_utils.SharedPrefrenceUtils;
 import com.example.myapplication.model.MeModel;
+import com.example.myapplication.view.RoundImage;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,6 +32,8 @@ public class MyWalletActivity extends BaseMvpActivity<CommonPresenter, MeModel> 
     LinearLayout datastatisticsLl;
     @BindView(R.id.back)
     ImageView back;
+    @BindView(R.id.my_photo)
+    RoundImage myPhoto;
 
     @Override
     public int getLayoutId() {
@@ -36,7 +42,10 @@ public class MyWalletActivity extends BaseMvpActivity<CommonPresenter, MeModel> 
 
     @Override
     public void initView() {
-
+        Bitmap mBitmap = SharedPrefrenceUtils.getBitmap(this, Config.BITMAP, null);
+        if (null != mBitmap) {
+            myPhoto.setImageBitmap(mBitmap);
+        }
     }
 
     @Override
@@ -78,8 +87,16 @@ public class MyWalletActivity extends BaseMvpActivity<CommonPresenter, MeModel> 
                 break;
         }
     }
+
     @OnClick(R.id.back)
     public void onClick() {
         finish();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

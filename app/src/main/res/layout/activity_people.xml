@@ -1,248 +1,254 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".me.activity.PeopleActivity">
-    <LinearLayout
-        android:orientation="vertical"
+
+    <android.support.v7.widget.Toolbar
+        android:paddingTop="@dimen/dp_30"
+        android:minHeight="?android:attr/actionBarSize"
+        android:background="@drawable/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/back"
+                android:src="@drawable/back"
+                android:padding="@dimen/dp_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_centerInParent="true"
+                android:text="@string/people"
+                android:textColor="@color/write"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp_18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <android.support.v7.widget.Toolbar
-            android:paddingTop="@dimen/dp_30"
-            android:minHeight="?android:attr/actionBarSize"
-            android:background="@drawable/toolbar"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RelativeLayout
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_margin="@dimen/dp_10"
+                android:padding="@dimen/dp_10"
+                android:background="@drawable/write_round_background"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <ImageView
-                    android:id="@+id/back"
-                    android:src="@drawable/back"
-                    android:padding="@dimen/dp_10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
                 <TextView
-                    android:layout_centerInParent="true"
-                    android:text="@string/people"
-                    android:textColor="@color/write"
-                    android:textStyle="bold"
+                    android:text="基本信息"
                     android:textSize="@dimen/sp_18"
+                    android:textColor="@color/app_theme_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-            </RelativeLayout>
-        </android.support.v7.widget.Toolbar>
-        <LinearLayout
-            android:layout_margin="@dimen/dp_10"
-            android:padding="@dimen/dp_10"
-            android:background="@drawable/write_round_background"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="基本信息"
-                android:textSize="@dimen/sp_18"
-                android:textColor="@color/app_theme_color"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <View
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_marginBottom="@dimen/dp_25"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_2"
-                android:background="@drawable/dash_line"
-                android:layerType="software"/>
-            <TextView
-                android:text="公司规模"
-                android:drawableRight="@mipmap/right"
-                android:paddingRight="@dimen/dp_5"
-                android:textSize="@dimen/sp_14"
-                android:textColor="@color/grey_second"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <View
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_marginBottom="@dimen/dp_25"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_2"
-                android:background="@drawable/dash_line"
-                android:layerType="software"/>
-            <TextView
-                android:text="所属行业"
-                android:drawableRight="@mipmap/right"
-                android:paddingRight="@dimen/dp_5"
-                android:textSize="@dimen/sp_14"
-                android:textColor="@color/grey_second"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <View
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_marginBottom="@dimen/dp_25"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_2"
-                android:background="@drawable/dash_line"
-                android:layerType="software"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                <View
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginBottom="@dimen/dp_25"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_2"
+                    android:background="@drawable/dash_line"
+                    android:layerType="software"/>
                 <TextView
-                    android:layout_weight="1"
-                    android:text="联系人"
+                    android:text="公司规模"
+                    android:drawableRight="@mipmap/right"
                     android:paddingRight="@dimen/dp_5"
                     android:textSize="@dimen/sp_14"
                     android:textColor="@color/grey_second"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+                <View
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginBottom="@dimen/dp_25"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_2"
+                    android:background="@drawable/dash_line"
+                    android:layerType="software"/>
                 <TextView
-                    android:textSize="@dimen/sp_14"
-                    android:textColor="@color/black_theme"
-                    android:text="小包子"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-            <View
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_marginBottom="@dimen/dp_25"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_2"
-                android:background="@drawable/dash_line"
-                android:layerType="software"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_weight="1"
-                    android:text="联系人电话"
+                    android:text="所属行业"
+                    android:drawableRight="@mipmap/right"
                     android:paddingRight="@dimen/dp_5"
                     android:textSize="@dimen/sp_14"
                     android:textColor="@color/grey_second"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-                <TextView
-                    android:textSize="@dimen/sp_14"
-                    android:textColor="@color/black_theme"
-                    android:text="小包子"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                <View
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginBottom="@dimen/dp_25"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_2"
+                    android:background="@drawable/dash_line"
+                    android:layerType="software"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_weight="1"
+                        android:text="联系人"
+                        android:paddingRight="@dimen/dp_5"
+                        android:textSize="@dimen/sp_14"
+                        android:textColor="@color/grey_second"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textSize="@dimen/sp_14"
+                        android:textColor="@color/black_theme"
+                        android:text="小包子"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <View
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginBottom="@dimen/dp_25"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_2"
+                    android:background="@drawable/dash_line"
+                    android:layerType="software"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_weight="1"
+                        android:text="联系人电话"
+                        android:paddingRight="@dimen/dp_5"
+                        android:textSize="@dimen/sp_14"
+                        android:textColor="@color/grey_second"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textSize="@dimen/sp_14"
+                        android:textColor="@color/black_theme"
+                        android:text="小包子"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <View
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginBottom="@dimen/dp_25"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_2"
+                    android:background="@drawable/dash_line"
+                    android:layerType="software"/>
             </LinearLayout>
-            <View
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_marginBottom="@dimen/dp_25"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_2"
-                android:background="@drawable/dash_line"
-                android:layerType="software"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_margin="@dimen/dp_10"
-            android:padding="@dimen/dp_10"
-            android:orientation="vertical"
-            android:background="@drawable/write_round_background"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="上传身份证照片"
-                android:textSize="@dimen/sp_18"
-                android:textColor="@color/app_theme_color"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <View
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_marginBottom="@dimen/dp_25"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_2"
-                android:background="@drawable/dash_line"
-                android:layerType="software"/>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:id="@+id/positive"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:src="@mipmap/positive"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:textSize="@dimen/sp_12"
-                        android:textColor="@color/black_theme"
-                        android:text="点击上传公司营业执照"
-                        android:layout_marginTop="@dimen/dp_4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/nedative"
-                    android:orientation="vertical"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:src="@mipmap/nedative"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:textSize="@dimen/sp_12"
-                        android:textColor="@color/black_theme"
-                        android:layout_marginTop="@dimen/dp_4"
-                        android:text="点击上传身份证正反面"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-            </RelativeLayout>
             <LinearLayout
-                android:layout_marginTop="@dimen/dp_20"
+                android:layout_margin="@dimen/dp_10"
+                android:padding="@dimen/dp_10"
+                android:orientation="vertical"
+                android:background="@drawable/write_round_background"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:layout_weight="1"
-                    android:drawablePadding="@dimen/dp_5"
-                    android:text="标准拍摄"
-                    android:textSize="@dimen/sp_12"
-                    android:drawableLeft="@mipmap/correct"
+                    android:text="上传身份证照片"
+                    android:textSize="@dimen/sp_18"
+                    android:textColor="@color/app_theme_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <TextView
-                    android:layout_weight="1"
-                    android:drawablePadding="@dimen/dp_5"
-                    android:text="边框缺失"
-                    android:textSize="@dimen/sp_12"
-                    android:drawableLeft="@mipmap/wrong"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:layout_weight="1"
-                    android:drawablePadding="@dimen/dp_5"
-                    android:text="照片模糊"
-                    android:textSize="@dimen/sp_12"
-                    android:drawableLeft="@mipmap/wrong"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:layout_weight="1"
-                    android:drawablePadding="@dimen/dp_5"
-                    android:text="闪光强烈"
-                    android:textSize="@dimen/sp_12"
-                    android:drawableLeft="@mipmap/wrong"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                <View
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginBottom="@dimen/dp_25"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_2"
+                    android:background="@drawable/dash_line"
+                    android:layerType="software"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:id="@+id/positive"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:src="@mipmap/positive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:textSize="@dimen/sp_12"
+                            android:textColor="@color/black_theme"
+                            android:text="点击上传公司营业执照"
+                            android:layout_marginTop="@dimen/dp_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/nedative"
+                        android:orientation="vertical"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:src="@mipmap/nedative"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:textSize="@dimen/sp_12"
+                            android:textColor="@color/black_theme"
+                            android:layout_marginTop="@dimen/dp_4"
+                            android:text="点击上传身份证正反面"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </RelativeLayout>
+                <LinearLayout
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_weight="1"
+                        android:drawablePadding="@dimen/dp_5"
+                        android:text="标准拍摄"
+                        android:textSize="@dimen/sp_12"
+                        android:drawableLeft="@mipmap/correct"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_weight="1"
+                        android:drawablePadding="@dimen/dp_5"
+                        android:text="边框缺失"
+                        android:textSize="@dimen/sp_12"
+                        android:drawableLeft="@mipmap/wrong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_weight="1"
+                        android:drawablePadding="@dimen/dp_5"
+                        android:text="照片模糊"
+                        android:textSize="@dimen/sp_12"
+                        android:drawableLeft="@mipmap/wrong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_weight="1"
+                        android:drawablePadding="@dimen/dp_5"
+                        android:text="闪光强烈"
+                        android:textSize="@dimen/sp_12"
+                        android:drawableLeft="@mipmap/wrong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
             </LinearLayout>
+            <TextView
+                android:id="@+id/bt_issus_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blue_round_frame"
+                android:gravity="center_horizontal"
+                android:textColor="@color/app_theme_color"
+                android:padding="@dimen/dp_15"
+                android:layout_margin="@dimen/dp_10"
+                android:text="提交审核" />
         </LinearLayout>
-        <TextView
-            android:id="@+id/bt_issus_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/blue_round_frame"
-            android:gravity="center_horizontal"
-            android:textColor="@color/app_theme_color"
-            android:padding="@dimen/dp_15"
-            android:layout_margin="@dimen/dp_10"
-            android:text="提交审核" />
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+</LinearLayout>

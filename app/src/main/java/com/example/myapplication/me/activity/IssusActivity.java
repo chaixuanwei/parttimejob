@@ -1,7 +1,10 @@
 package com.example.myapplication.me.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,6 +16,7 @@ import android.widget.TextView;
 import com.example.myapplication.R;
 import com.example.myapplication.frame.BaseMvpActivity;
 import com.example.myapplication.frame.CommonPresenter;
+import com.example.myapplication.issus.activity.PayCenterActivity;
 import com.example.myapplication.model.MeModel;
 
 import butterknife.BindView;
@@ -63,6 +67,7 @@ public class IssusActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
     EditText issusPhone;
     @BindView(R.id.bt_issus_login)
     TextView btIssusLogin;
+    private static final String[] m_arr = {"网络","线下"};
 
     @Override
     public int getLayoutId() {
@@ -76,7 +81,24 @@ public class IssusActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
 
     @Override
     public void initData() {
+        ArrayAdapter<String> ada = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, m_arr);
+        ada.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        issusSpinner.setAdapter(ada);
+        issusSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (m_arr[position].equals("网络")) {
+                    showHidden.setVisibility(View.GONE);
+                } else {
+                    showHidden.setVisibility(View.VISIBLE);
+                }
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     @Override

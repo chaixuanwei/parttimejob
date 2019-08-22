@@ -2,8 +2,12 @@ package com.example.myapplication.local_utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.util.Base64;
+
+import com.example.myapplication.config.Config;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -214,4 +218,52 @@ public class SharedPrefrenceUtils {
         return obj;
     }
 
+    public static boolean putBitmap(Context context, String key, Bitmap bitmap) {
+        SharedPreferences sp = context.getSharedPreferences(Config.BITMAP,
+                Context.MODE_PRIVATE);
+
+        paraCheck(sp, key);
+        if (bitmap == null || bitmap.isRecycled()) {
+            return false;
+        } else {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            String imageBase64 = new String(Base64.encode(baos.toByteArray(),
+                    Base64.DEFAULT));
+            SharedPreferences.Editor e = sp.edit();
+            e.putString(key, imageBase64);
+            return e.commit();
+        }
+    }
+
+    public static Bitmap getBitmap(Context context, String key,
+                                   Bitmap defaultValue) {
+        SharedPreferences sp = context.getSharedPreferences(Config.BITMAP,
+                Context.MODE_PRIVATE);
+
+        paraCheck(sp, key);
+        String imageBase64 = sp.getString(key, "");
+        if (TextUtils.isEmpty(imageBase64)) {
+            return defaultValue;
+        }
+
+        byte[] base64Bytes = Base64.decode(imageBase64.getBytes(),
+                Base64.DEFAULT);
+        ByteArrayInputStream bais = new ByteArrayInputStream(base64Bytes);
+        Bitmap ret = BitmapFactory.decodeStream(bais);
+        if (ret != null) {
+            return ret;
+        } else {
+            return defaultValue;
+        }
+    }
+
+    private static void paraCheck(SharedPreferences sp, String key) {
+        if (sp == null) {
+            throw new IllegalArgumentException();
+        }
+        if (TextUtils.isEmpty(key)) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

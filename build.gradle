@@ -4,7 +4,6 @@ buildscript {
     repositories {
         google()
         jcenter()
-        
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
@@ -26,18 +25,18 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 ext {
-    compileSdkVersion = 27
-    buildToolsVersion = '27.0.3'
+    compileSdkVersion = 28
     targetSdkVersion = compileSdkVersion
-    supportVsersion = '27.1.1'
-    minSdkVersion = 16
-    versionCode = 2
-    versionName = '1.9.9'
+    supportVsersion = '28.0.0'
+    minSdkVersion = 19
+    versionCode = 1
+    versionName = '1.0'
     constraint = '1.1.2'
     retrofit2 = '2.3.0'
     rxjava2 = '2.0.1'
     butterknife = '8.5.1'
     glide = '3.7.0'
+    banner = '1.4.10'
     picasso = '2.5.2'
     tablayout = '2.0.8@aar'
     rxbinding = '2.0.0'

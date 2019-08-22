@@ -42,6 +42,7 @@
             android:layout_height="wrap_content">
             <com.example.myapplication.view.RoundImage
                 android:layout_centerHorizontal="true"
+                android:src="@mipmap/camera"
                 android:id="@+id/headportrait"
                 android:layout_width="@dimen/dp_50"
                 android:layout_height="@dimen/dp_50" />
@@ -166,33 +167,49 @@
             android:background="@color/grey_second"
             android:layout_width="match_parent"
             android:layout_height="1dp" />
-        <LinearLayout
+        <RelativeLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:padding="@dimen/dp_5"
             android:layout_height="wrap_content">
             <TextView
+                android:id="@+id/non"
                 android:text="上传项目（最多上传5张照片）"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-            
-        </LinearLayout>
+            <TextView
+                android:layout_below="@id/non"
+                android:id="@+id/project_photo"
+                android:layout_marginTop="@dimen/dp_10"
+                android:drawableTop="@mipmap/photo"
+                android:gravity="center"
+                android:background="#F2F2F2"
+                android:drawablePadding="@dimen/dp_10"
+                android:paddingLeft="@dimen/dp_15"
+                android:paddingTop="@dimen/dp_15"
+                android:paddingBottom="@dimen/dp_8"
+                android:paddingRight="@dimen/dp_15"
+                android:text="照片"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
         <TextView
             android:background="@color/grey_second"
             android:layout_width="match_parent"
             android:layout_height="1dp" />
         <TextView
             android:text="*注：上传图片大小不超过2M"
-            android:padding="@dimen/dp_5"
-            android:textSize="@dimen/sp_8"
+            android:textSize="@dimen/sp_12"
+            android:layout_marginTop="@dimen/dp_10"
             android:textColor="@color/blue_theme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:text="确认"
+            android:layout_marginTop="@dimen/dp_20"
             android:gravity="center"
             android:background="@drawable/blue_round_frame"
-            android:padding="@dimen/dp_5"
+            android:padding="@dimen/dp_10"
             android:textColor="@color/blue_theme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

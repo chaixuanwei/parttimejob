@@ -83,9 +83,11 @@ public class IntroduceActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.skip:
                 startActivity(mIntent);
+                finish();
                 break;
             case R.id.atonce:
                 startActivity(mIntent);
+                finish();
                 break;
         }
     }

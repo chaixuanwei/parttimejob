@@ -30,6 +30,7 @@
             <LinearLayout
                 android:id="@+id/user_ll"
                 android:layout_toRightOf="@id/head"
+                android:layout_toLeftOf="@id/me_amend"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/dp_13"
                 android:orientation="vertical"
@@ -47,6 +48,8 @@
                     android:id="@+id/signature"
                     android:layout_weight="1"
                     android:hint="个性签名"
+                    android:lines="1"
+                    android:singleLine="true"
                     android:textColorHint="@color/write"
                     android:textColor="@color/write"
                     android:paddingLeft="@dimen/dp_6"

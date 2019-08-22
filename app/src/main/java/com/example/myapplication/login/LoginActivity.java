@@ -78,12 +78,15 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
         switch (view.getId()) {
             case R.id.forget_password:
                 startActivity(new Intent(this,FindPasswordActivity.class));
+                finish();
                 break;
             case R.id.bt_login:
                 startActivity(new Intent(this, MainActivity.class));
+                finish();
                 break;
             case R.id.register:
                 startActivity(new Intent(this,RegisterActivity.class));
+                finish();
                 break;
             case R.id.weibo:
                 break;
