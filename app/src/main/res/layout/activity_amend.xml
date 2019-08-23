@@ -58,6 +58,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/dp_5"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:gravity="center_vertical">
             <TextView
                 android:text="@string/name"
@@ -108,6 +110,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/dp_5"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:gravity="center_vertical">
             <TextView
                 android:text="@string/nickname"
@@ -129,6 +133,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/dp_5"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:gravity="center_vertical">
             <TextView
                 android:text="@string/age"
@@ -150,6 +156,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/dp_5"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:gravity="center_vertical">
             <TextView
                 android:text="@string/site"
@@ -177,21 +185,11 @@
                 android:text="上传项目（最多上传5张照片）"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-            <TextView
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/photo_rv"
                 android:layout_below="@id/non"
-                android:id="@+id/project_photo"
-                android:layout_marginTop="@dimen/dp_10"
-                android:drawableTop="@mipmap/photo"
-                android:gravity="center"
-                android:background="#F2F2F2"
-                android:drawablePadding="@dimen/dp_10"
-                android:paddingLeft="@dimen/dp_15"
-                android:paddingTop="@dimen/dp_15"
-                android:paddingBottom="@dimen/dp_8"
-                android:paddingRight="@dimen/dp_15"
-                android:text="照片"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_90"></android.support.v7.widget.RecyclerView>
         </RelativeLayout>
         <TextView
             android:background="@color/grey_second"

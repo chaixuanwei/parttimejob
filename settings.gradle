@@ -1,1 +1,1 @@
-include ':app', ':citypicker','multi-image-selector'
+include ':app', ':citypicker'

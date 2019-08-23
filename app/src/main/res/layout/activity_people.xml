@@ -176,7 +176,7 @@
                         <TextView
                             android:textSize="@dimen/sp_12"
                             android:textColor="@color/black_theme"
-                            android:text="点击上传公司营业执照"
+                            android:text="点击上传身份证正面"
                             android:layout_marginTop="@dimen/dp_4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -196,7 +196,7 @@
                             android:textSize="@dimen/sp_12"
                             android:textColor="@color/black_theme"
                             android:layout_marginTop="@dimen/dp_4"
-                            android:text="点击上传身份证正反面"
+                            android:text="点击上传身份证反面"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </LinearLayout>

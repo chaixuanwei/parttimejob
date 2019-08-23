@@ -19,8 +19,8 @@
                 android:id="@+id/head"
                 android:src="@drawable/leak_canary_icon"
                 android:layout_centerVertical="true"
-                android:layout_width="@dimen/dp_50"
-                android:layout_height="@dimen/dp_50" />
+                android:layout_width="@dimen/dp_57"
+                android:layout_height="@dimen/dp_57" />
             <ImageView
                 android:layout_marginLeft="@dimen/dp_33"
                 android:layout_marginTop="@dimen/dp_45"
