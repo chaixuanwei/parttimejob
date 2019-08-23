@@ -2,9 +2,6 @@ package com.example.myapplication.frame;
 
 import java.lang.ref.WeakReference;
 
-/**
- * Created by 任小龙 on 2019/4/1.
- */
 public class BasePresenter<V extends ICommonView, M extends ICommonModel> {
     private WeakReference<V> view;
     private WeakReference<M> model;

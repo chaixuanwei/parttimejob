@@ -25,9 +25,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-/**
- * Created by 任小龙 on 2019/4/18.
- */
 public class NetHeaders {
     public static Map getHeadMap() {
         String uuid = !TextUtils.isEmpty(ApplicationJob.getUuid()) ? ApplicationJob.getUuid() : getLocalUUIDX(ApplicationJob.getAppContext());

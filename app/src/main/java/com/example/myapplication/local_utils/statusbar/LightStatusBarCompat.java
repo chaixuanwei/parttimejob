@@ -17,9 +17,6 @@ import java.util.Properties;
 /**
  * 适配小米
  *
- * @author msdx (msdx.android@qq.com)
- * @version 0.5
- * @since 0.2
  */
 
 class LightStatusBarCompat {

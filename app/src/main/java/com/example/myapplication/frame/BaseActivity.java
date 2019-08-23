@@ -13,10 +13,6 @@ import com.example.myapplication.R;
 import com.example.myapplication.customs.LoadingDialogWithContent;
 import com.example.myapplication.local_utils.statusbar.StatusBarCompat;
 
-
-/**
- * Created by 任小龙 on 2019/3/29.
- */
 public class BaseActivity extends AppCompatActivity {
 
     public ApplicationJob mApplication;

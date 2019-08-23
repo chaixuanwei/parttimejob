@@ -9,15 +9,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
-
-/**
- * 兼容KITKAT版本
- *
- * @author msdx (msdx.android@qq.com)
- * @version 0.4.1
- * @since 0.3
- */
-
 class StatusBarKitkatImpl implements IStatusBar {
     private static final String STATUS_BAR_VIEW_TAG = "ghStatusBarView";
 

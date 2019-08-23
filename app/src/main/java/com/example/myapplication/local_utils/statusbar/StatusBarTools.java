@@ -3,11 +3,6 @@ package com.example.myapplication.local_utils.statusbar;
 import android.content.Context;
 import android.content.res.Resources;
 
-/**
- * @author 黄浩杭
- * @version 2017-11-21 0.7
- * @since 2017-11-21 0.7
- */
 public class StatusBarTools {
 
     /**

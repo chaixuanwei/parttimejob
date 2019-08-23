@@ -20,9 +20,6 @@ import okio.Buffer;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
 
-/**
- * Created by 任小龙 on 2019/4/14.
- */
 public class MyGsonConverterFactory extends Converter.Factory {
     public static MyGsonConverterFactory create() {
         return create(new Gson());

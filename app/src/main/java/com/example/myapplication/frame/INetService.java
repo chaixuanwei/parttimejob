@@ -9,9 +9,6 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Url;
 
-/**
- * Created by 任小龙 on 2019/4/1.
- */
 public interface INetService {
 
 }

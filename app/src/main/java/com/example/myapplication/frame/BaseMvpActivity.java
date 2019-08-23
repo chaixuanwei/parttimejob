@@ -7,9 +7,6 @@ import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-/**
- * Created by 任小龙 on 2019/4/1.
- */
 public abstract class BaseMvpActivity<P extends BasePresenter, M> extends BaseActivity implements ICommonView {
 
     private Unbinder mBind;

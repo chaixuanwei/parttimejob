@@ -12,9 +12,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
-/**
- * Created by 任小龙 on 2019/4/1.
- */
 public class NetManager {
     private static volatile NetManager sNetManager;
 

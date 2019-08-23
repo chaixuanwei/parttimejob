@@ -3,9 +3,6 @@ package com.example.myapplication.frame;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
-/**
- * Created by 任小龙 on 2019/4/1.
- */
 public abstract class BaseObserver implements Observer {
 
     private Disposable d;

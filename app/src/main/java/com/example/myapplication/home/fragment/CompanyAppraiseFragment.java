@@ -15,6 +15,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.frame.BaseMvpFragment;
 import com.example.myapplication.frame.CommonPresenter;
 import com.example.myapplication.home.adapter.CommpanyAppraiseAdapter;
+import com.example.myapplication.local_utils.ConvertUtil;
 import com.example.myapplication.model.HomeModel;
 
 import butterknife.BindView;
@@ -40,7 +41,6 @@ public class CompanyAppraiseFragment extends BaseMvpFragment<CommonPresenter, Ho
     TextView numEfficiency;
     @BindView(R.id.company_appraise_rv)
     RecyclerView companyAppraiseRv;
-    Unbinder unbinder;
 
     public static CompanyAppraiseFragment newInstance() {
         if (fragment == null) fragment = new CompanyAppraiseFragment();
@@ -54,6 +54,9 @@ public class CompanyAppraiseFragment extends BaseMvpFragment<CommonPresenter, Ho
 
     @Override
     public void initView() {
+        numAppraise.setText(progressAppraise.getProgress()*0.5+"");
+        numService.setText(progressService.getProgress()*0.5+"");
+        numEfficiency.setText(progressEfficiency.getProgress()*0.5+"");
         companyAppraiseRv.setFocusable(false);
         CommpanyAppraiseAdapter mAdapter = new CommpanyAppraiseAdapter(getActivity());
         companyAppraiseRv.setLayoutManager(new LinearLayoutManager(getActivity()));

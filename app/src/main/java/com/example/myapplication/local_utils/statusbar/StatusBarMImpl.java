@@ -6,14 +6,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-/**
- * 兼容M版本
- *
- * @author msdx (msdx.android@qq.com)
- * @version 0.3
- * @since 0.3
- */
-
 class StatusBarMImpl implements IStatusBar {
     @TargetApi(Build.VERSION_CODES.M)
     @Override

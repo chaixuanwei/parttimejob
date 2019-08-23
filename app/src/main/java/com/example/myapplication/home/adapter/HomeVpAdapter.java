@@ -9,10 +9,6 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-/**
- * Created by 任小龙 on 2019/4/17.
- */
-
 public class HomeVpAdapter extends FragmentStatePagerAdapter {
     private List<Fragment> mFragments;
     private List<String> mTitle;

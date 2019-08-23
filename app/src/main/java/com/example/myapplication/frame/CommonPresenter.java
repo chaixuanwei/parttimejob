@@ -2,9 +2,6 @@ package com.example.myapplication.frame;
 
 import android.util.Log;
 
-/**
- * Created by 任小龙 on 2019/3/29.
- */
 public class CommonPresenter extends BasePresenter implements ICommonPresenter, ICommonView {
 
     @Override

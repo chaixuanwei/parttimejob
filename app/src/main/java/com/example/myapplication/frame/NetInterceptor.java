@@ -21,9 +21,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
 
 import static com.example.myapplication.local_utils.NetworkUtils.isNetworkConnected;
 
-/**
- * Created by 任小龙 on 2019/4/2.
- */
 public class NetInterceptor {
     private static volatile NetInterceptor sNetInterceptor;
 

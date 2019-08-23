@@ -20,9 +20,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-/**
- * Created by 任小龙 on 2019/4/30.
- */
 public class MyTabView extends LinearLayout {
 
     @BindView(R.id.text1)

@@ -9,11 +9,6 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
-/**
- * @author 黄浩杭 (huanghaohang@parkingwang.com)
- * @version 2017-11-21 0.7
- * @since 2017-11-21 0.7
- */
 public class StatusBarView extends View {
 
     private int mStatusBarHeight;

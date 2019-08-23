@@ -11,9 +11,6 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-/**
- * Created by 任小龙 on 2019/4/4.
- */
 public class NetTrustManager {
     private static volatile NetTrustManager sNetTrustManager;
 

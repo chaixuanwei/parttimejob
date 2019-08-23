@@ -20,9 +20,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-/**
- * Created by 任小龙 on 2019/4/8.
- */
 public class MyBottomView extends LinearLayout {
     public static final int FIRST = 1;
     public static final int SECOND = 2;

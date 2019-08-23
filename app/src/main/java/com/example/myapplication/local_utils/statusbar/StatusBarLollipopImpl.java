@@ -5,14 +5,6 @@ import android.os.Build;
 import android.view.Window;
 import android.view.WindowManager;
 
-/**
- * 兼容LOLLIPOP版本
- *
- * @author msdx (msdx.android@qq.com)
- * @version 0.5
- * @since 0.3
- */
-
 class StatusBarLollipopImpl implements IStatusBar {
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override

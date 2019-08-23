@@ -4,9 +4,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 
-/**
- * Created by 任小龙 on 2019/5/4.
- */
 public class ScreenUtil {
 
     private static DisplayMetrics getDisplayMetrics(Context pContext){

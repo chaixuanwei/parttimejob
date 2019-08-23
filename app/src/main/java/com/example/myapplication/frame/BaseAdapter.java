@@ -12,9 +12,6 @@ import java.util.List;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-/**
- * Created by 任小龙 on 2019/4/15.
- */
 public class BaseAdapter<T,H extends RecyclerView.ViewHolder> extends RecyclerView.Adapter {
     public Context mContext;
     protected List<T> mListData;
