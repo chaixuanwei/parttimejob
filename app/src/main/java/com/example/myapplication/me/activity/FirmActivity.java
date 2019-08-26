@@ -36,7 +36,7 @@ public class FirmActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi, Throwable e) {
 
     }
 

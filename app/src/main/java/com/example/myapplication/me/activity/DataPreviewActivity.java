@@ -76,7 +76,7 @@ public class DataPreviewActivity extends BaseMvpActivity<CommonPresenter, MeMode
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi,Throwable e) {
 
     }
 

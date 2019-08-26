@@ -63,7 +63,7 @@ public class SystemMessageFragment extends BaseMvpFragment<CommonPresenter, Mess
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi, Throwable e) {
 
     }
 

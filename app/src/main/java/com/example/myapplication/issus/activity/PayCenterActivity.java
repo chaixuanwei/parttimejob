@@ -74,7 +74,7 @@ public class PayCenterActivity extends BaseMvpActivity<CommonPresenter, IssusMod
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi,Throwable e) {
 
     }
 

@@ -17,7 +17,7 @@
             android:layout_height="@dimen/dp_110">
             <com.example.myapplication.view.RoundImage
                 android:id="@+id/head"
-                android:src="@drawable/leak_canary_icon"
+                android:src="@mipmap/photo"
                 android:layout_centerVertical="true"
                 android:layout_width="@dimen/dp_57"
                 android:layout_height="@dimen/dp_57" />

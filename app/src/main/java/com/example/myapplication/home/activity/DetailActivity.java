@@ -97,7 +97,7 @@ public class DetailActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi,Throwable e) {
 
     }
 

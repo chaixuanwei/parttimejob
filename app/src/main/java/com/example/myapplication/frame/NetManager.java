@@ -73,7 +73,7 @@ public class NetManager {
                 .subscribe(new BaseObserver() {
                     @Override
                     public void onNetError(Throwable e) {
-                        presenter.onError(e);
+                        presenter.onError(whichApi,e);
                     }
                     @Override
                     protected void onNetSuccess(Object value) {

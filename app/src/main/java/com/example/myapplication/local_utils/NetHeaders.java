@@ -12,6 +12,7 @@ import android.os.Environment;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.example.myapplication.config.Config;
 import com.example.myapplication.frame.ApplicationJob;
@@ -29,14 +30,8 @@ public class NetHeaders {
     public static Map getHeadMap() {
         String uuid = !TextUtils.isEmpty(ApplicationJob.getUuid()) ? ApplicationJob.getUuid() : getLocalUUIDX(ApplicationJob.getAppContext());
         Map<String, String> headers = new HashMap<>();
-        headers.put("Pragma", "no-cache");
-        headers.put("Cache-Control", "no-cache");
-        headers.put("Authorization", ApplicationJob.getApplication().mToken);
-        headers.put("UUID", uuid);
-        headers.put("UUIDX", uuid);
-        headers.put("device-tag", "0");
-        headers.put("User-Agent", getUserAgent());
-        headers.put("lang", "zh-cn");
+        headers.put("XX-Api-Version", getAppVersionCode(ApplicationJob.getAppContext()));
+        headers.put("XX-Device-Type", "android");
         return headers;
     }
 
@@ -190,5 +185,18 @@ public class NetHeaders {
             }
         }
         return null;
+    }
+
+    public static String getAppVersionCode(Context context) {
+        int versioncode = 0;
+        try {
+            PackageManager pm = context.getPackageManager();
+            PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
+            // versionName = pi.versionName;
+            versioncode = pi.versionCode;
+        } catch (Exception e) {
+            Log.e("VersionInfo", "Exception", e);
+        }
+        return versioncode + "";
     }
 }

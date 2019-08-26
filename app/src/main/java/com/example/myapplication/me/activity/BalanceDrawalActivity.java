@@ -62,7 +62,7 @@ public class BalanceDrawalActivity extends BaseMvpActivity<CommonPresenter, MeMo
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi,Throwable e) {
 
     }
 

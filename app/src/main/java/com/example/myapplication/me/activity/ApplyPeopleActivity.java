@@ -51,7 +51,7 @@ public class ApplyPeopleActivity extends BaseMvpActivity<CommonPresenter, MeMode
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi,Throwable e) {
 
     }
 

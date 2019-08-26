@@ -109,7 +109,7 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi,Throwable e) {
 
     }
 

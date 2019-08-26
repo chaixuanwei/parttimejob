@@ -68,10 +68,9 @@ public class OrderFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi, Throwable e) {
 
     }
-
     @Override
     public void onResponse(int whichApi, Object[] t) {
 

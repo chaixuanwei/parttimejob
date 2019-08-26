@@ -36,7 +36,7 @@ public class ProjectReviewActivity extends BaseMvpActivity<CommonPresenter, MeMo
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi, Throwable e) {
 
     }
 

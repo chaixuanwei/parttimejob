@@ -58,7 +58,7 @@ public class FeedbackSuccessActivity extends BaseMvpActivity<CommonPresenter, Me
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi,Throwable e) {
 
     }
 

@@ -61,10 +61,9 @@ public class WaitAppraiseActivity extends BaseMvpActivity<CommonPresenter, MeMod
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi, Throwable e) {
 
     }
-
     @Override
     public void onResponse(int whichApi, Object[] t) {
 

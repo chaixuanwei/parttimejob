@@ -54,7 +54,7 @@ public class FinancialDetailsActivity extends BaseMvpActivity<CommonPresenter, M
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi, Throwable e) {
 
     }
 

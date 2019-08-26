@@ -102,7 +102,7 @@ public class AmendActivity extends BaseMvpActivity<CommonPresenter, MeModel> imp
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi, Throwable e) {
 
     }
 

@@ -63,7 +63,7 @@ public class BasicInformationFragment extends BaseMvpFragment<CommonPresenter, M
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi, Throwable e) {
 
     }
 

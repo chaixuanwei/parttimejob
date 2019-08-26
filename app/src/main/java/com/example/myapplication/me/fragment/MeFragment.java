@@ -24,6 +24,7 @@ import com.example.myapplication.frame.BaseMvpFragment;
 import com.example.myapplication.frame.CommonPresenter;
 import com.example.myapplication.local_utils.PhotoUtils;
 import com.example.myapplication.local_utils.SharedPrefrenceUtils;
+import com.example.myapplication.login.LoginActivity;
 import com.example.myapplication.me.activity.FeedbackActivity;
 import com.example.myapplication.me.activity.IdBindActivity;
 import com.example.myapplication.me.activity.MyApproveActivity;
@@ -148,7 +149,7 @@ public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi,Throwable e) {
 
     }
 
@@ -157,9 +158,13 @@ public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
 
     }
 
-    @OnClick({R.id.me_amend, R.id.waitlist, R.id.work, R.id.salary, R.id.waitappraise, R.id.wallet, R.id.approve, R.id.me_issus, R.id.bind, R.id.feedback})
+    @OnClick({R.id.me_amend, R.id.waitlist, R.id.work, R.id.salary, R.id.waitappraise, R.id.wallet, R.id.approve, R.id.me_issus, R.id.bind, R.id.feedback, R.id.head})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.head:
+                Intent mLoginIntent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(mLoginIntent);
+                break;
             case R.id.me_amend:
                 Intent mAmendIntent = new Intent(getActivity(), AmendActivity.class);
                 startActivity(mAmendIntent);

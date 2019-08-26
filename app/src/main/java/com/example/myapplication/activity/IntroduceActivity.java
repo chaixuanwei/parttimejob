@@ -60,13 +60,12 @@ public class IntroduceActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int pI) {
+                skip.setVisibility(View.INVISIBLE);
+                atonce.setVisibility(View.INVISIBLE);
                 if (pI == 0) {
                     skip.setVisibility(View.VISIBLE);
                 } else if (pI == images.size()-1){
                     atonce.setVisibility(View.VISIBLE);
-                } else {
-                    skip.setVisibility(View.INVISIBLE);
-                    atonce.setVisibility(View.INVISIBLE);
                 }
             }
 

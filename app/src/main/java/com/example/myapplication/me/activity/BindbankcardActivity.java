@@ -63,7 +63,7 @@ public class BindbankcardActivity extends BaseMvpActivity<CommonPresenter, MeMod
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi,Throwable e) {
 
     }
 

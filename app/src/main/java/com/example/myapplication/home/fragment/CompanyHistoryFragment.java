@@ -61,7 +61,7 @@ public class CompanyHistoryFragment extends BaseMvpFragment<CommonPresenter, Hom
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi,Throwable e) {
 
     }
 

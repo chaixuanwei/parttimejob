@@ -47,7 +47,7 @@ public class BindActivity extends BaseMvpActivity<CommonPresenter, LoginModel> {
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi,Throwable e) {
 
     }
 

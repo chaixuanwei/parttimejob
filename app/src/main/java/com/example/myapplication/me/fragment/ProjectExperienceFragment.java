@@ -64,7 +64,7 @@ public class ProjectExperienceFragment extends BaseMvpFragment<CommonPresenter, 
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi, Throwable e) {
 
     }
 

@@ -114,7 +114,7 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi,Throwable e) {
 
     }
 

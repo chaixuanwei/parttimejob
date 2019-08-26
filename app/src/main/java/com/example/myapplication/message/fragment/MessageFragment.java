@@ -71,7 +71,7 @@ public class MessageFragment extends BaseMvpFragment<CommonPresenter, MessageMod
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi, Throwable e) {
 
     }
 

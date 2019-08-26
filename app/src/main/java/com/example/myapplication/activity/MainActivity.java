@@ -55,7 +55,7 @@ public class MainActivity extends BaseMvpActivity<CommonPresenter, HomeModel> im
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi,Throwable e) {
         netErrorToast(e);
     }
 

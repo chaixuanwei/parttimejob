@@ -125,6 +125,7 @@
                     android:id="@+id/issus_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
                     android:layout_marginLeft="@dimen/dp_5"
                     android:textSize="@dimen/sp_13"
                     android:layout_weight="1"
@@ -362,10 +363,11 @@
                     android:textColor="@color/grey_second"
                     android:text="工作时间" />
 
-                <TextView
+                <EditText
                     android:id="@+id/issus_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:inputType="time"
                     android:layout_marginLeft="@dimen/dp_5"
                     android:drawableRight="@mipmap/right"
                     android:textColor="@color/black_theme"
@@ -403,7 +405,7 @@
                     android:layout_marginLeft="@dimen/dp_5"
                     android:textSize="@dimen/sp_13"
                     android:textColor="@color/black_theme"
-                    android:numeric="integer"
+                    android:inputType="number"
                     android:hint="填写人数"
                     android:layout_weight="1"
                     android:background="@null" />
@@ -472,6 +474,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_5"
+                    android:inputType="phone"
                     android:textSize="@dimen/sp_13"
                     android:hint="填写电话"
                     android:textColor="@color/black_theme"

@@ -15,8 +15,8 @@ public class CommonPresenter extends BasePresenter implements ICommonPresenter, 
     }
 
     @Override
-    public void onError(Throwable e) {
-        getView().onError(e);
+    public void onError(int whichApi, Throwable e) {
+        getView().onError(whichApi, e);
     }
 
     @Override

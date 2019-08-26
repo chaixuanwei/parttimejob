@@ -49,7 +49,7 @@ public class CompanyIntroFragment extends BaseMvpFragment<CommonPresenter, HomeM
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(int whichApi,Throwable e) {
 
     }
 
