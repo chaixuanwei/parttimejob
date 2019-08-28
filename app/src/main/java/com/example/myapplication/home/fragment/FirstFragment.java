@@ -65,18 +65,18 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
 
     @Override
     public void initView() {
-        List<Integer> images = new ArrayList<>();
-        images.add(R.mipmap.banner_one);
-        images.add(R.mipmap.banner_two);
-        images.add(R.mipmap.banner_three);
-        firstBanner.setImageLoader(new ImageLoader() {
-            @Override
-            public void displayImage(Context context, Object path, ImageView imageView) {
-                Glide.with(getActivity()).load(path).into(imageView);
-            }
-        });
-        firstBanner.setImages(images);
-        firstBanner.start();
+//        List<Integer> images = new ArrayList<>();
+//        images.add(R.mipmap.banner_one);
+//        images.add(R.mipmap.banner_two);
+//        images.add(R.mipmap.banner_three);
+//        firstBanner.setImageLoader(new ImageLoader() {
+//            @Override
+//            public void displayImage(Context context, Object path, ImageView imageView) {
+//                Glide.with(getActivity()).load(path).into(imageView);
+//            }
+//        });
+//        firstBanner.setImages(images);
+//        firstBanner.start();
         LinearLayoutManager mManager = new LinearLayoutManager(getContext());
         mAdapter = new HomeAdapter(getActivity());
         homeRv.setAdapter(mAdapter);

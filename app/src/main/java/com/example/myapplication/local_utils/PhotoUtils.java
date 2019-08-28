@@ -9,11 +9,26 @@ import android.graphics.Matrix;
 import android.net.Uri;
 import android.provider.MediaStore;
 
+import com.blankj.utilcode.util.ToastUtils;
+import com.example.myapplication.config.Config;
+import com.example.myapplication.frame.ApplicationJob;
+import com.example.myapplication.frame.BaseObserver;
+import com.example.myapplication.me.bean.UploadTopBean;
+import com.rx2androidnetworking.Rx2AndroidNetworking;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
+import static com.example.myapplication.local_utils.NetHeaders.getAppVersionCode;
 
 public class PhotoUtils {
     /**
@@ -117,7 +132,7 @@ public class PhotoUtils {
         }
     }
 
-    private Bitmap createBitmapFromByteData(byte[] data , BitmapFactory.Options options){
+    public Bitmap createBitmapFromByteData(byte[] data , BitmapFactory.Options options){
 
         Bitmap bitmap = null;
         if(options == null){
@@ -126,5 +141,29 @@ public class PhotoUtils {
             bitmap = BitmapFactory.decodeByteArray(data, 0, data.length, options);
         }
         return bitmap;
+    }
+
+    /**
+     * user转换为file文件
+     *返回值为file类型
+     * @param uri
+     * @return
+     */
+    public static File uri2File(Activity mActivity, Uri uri) {
+        String img_path;
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor actualimagecursor = mActivity.managedQuery(uri, proj, null,
+                null, null);
+        if (actualimagecursor == null) {
+            img_path = uri.getPath();
+        } else {
+            int actual_image_column_index = actualimagecursor
+                    .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            actualimagecursor.moveToFirst();
+            img_path = actualimagecursor
+                    .getString(actual_image_column_index);
+        }
+        File file = new File(img_path);
+        return file;
     }
 }

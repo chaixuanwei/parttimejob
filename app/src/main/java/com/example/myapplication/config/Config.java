@@ -10,6 +10,7 @@ public class Config {
     public static final String SUCCESS = "success";
     public static final String BITMAP = "bitmap";
     public static final String SIGNA = "signa";
+    public static final String TOPPHOTO = "topphoto";
     public static final int BINDBACK = 100;
     public static final int FINISH = 101;
     public static final int PHOTO = 2;

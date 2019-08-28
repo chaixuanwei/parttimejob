@@ -10,8 +10,10 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
+import com.example.myapplication.me.bean.PerfectBean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> {
     Context mContext;

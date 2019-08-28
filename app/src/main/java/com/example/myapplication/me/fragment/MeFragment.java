@@ -1,15 +1,11 @@
 package com.example.myapplication.me.fragment;
 
 
-import android.app.Activity;
-import android.content.Context;
+import android.Manifest;
 import android.content.Intent;
-import android.database.Cursor;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.net.Uri;
-import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,34 +14,52 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
+import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.example.myapplication.config.Config;
+import com.example.myapplication.frame.ApplicationJob;
 import com.example.myapplication.frame.BaseMvpFragment;
+import com.example.myapplication.frame.BaseObserver;
 import com.example.myapplication.frame.CommonPresenter;
-import com.example.myapplication.local_utils.PhotoUtils;
 import com.example.myapplication.local_utils.SharedPrefrenceUtils;
 import com.example.myapplication.login.LoginActivity;
+import com.example.myapplication.me.activity.AmendActivity;
 import com.example.myapplication.me.activity.FeedbackActivity;
 import com.example.myapplication.me.activity.IdBindActivity;
 import com.example.myapplication.me.activity.MyApproveActivity;
 import com.example.myapplication.me.activity.MyIssusActivity;
 import com.example.myapplication.me.activity.MyWalletActivity;
 import com.example.myapplication.me.activity.SalaryActivity;
+import com.example.myapplication.me.activity.WaitAppraiseActivity;
 import com.example.myapplication.me.activity.WaitListActivity;
 import com.example.myapplication.me.activity.WorkingActivity;
+import com.example.myapplication.me.bean.UploadTopBean;
 import com.example.myapplication.model.MeModel;
-import com.example.myapplication.me.activity.AmendActivity;
-import com.example.myapplication.me.activity.WaitAppraiseActivity;
 import com.example.myapplication.view.RoundImage;
+import com.jph.takephoto.app.TakePhoto;
+import com.jph.takephoto.app.TakePhotoImpl;
+import com.jph.takephoto.compress.CompressConfig;
+import com.jph.takephoto.model.InvokeParam;
+import com.jph.takephoto.model.TContextWrap;
+import com.jph.takephoto.model.TImage;
+import com.jph.takephoto.model.TResult;
+import com.jph.takephoto.permission.InvokeListener;
+import com.jph.takephoto.permission.PermissionManager;
+import com.rx2androidnetworking.Rx2AndroidNetworking;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+
+import static com.example.myapplication.local_utils.NetHeaders.getAppVersionCode;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -90,6 +104,12 @@ public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
     TextView bind;
     @BindView(R.id.feedback)
     TextView feedback;
+    @BindView(R.id.log_out)
+    TextView logOut;
+    private InvokeParam invokeParam;
+    private TakePhotoImpl mTakePhoto;
+    private ArrayList<File> mFiles = new ArrayList<>();
+    private ArrayList<String> mList = new ArrayList<String>();
 
     public static MeFragment newInstance() {
         if (fragment == null) fragment = new MeFragment();
@@ -104,8 +124,12 @@ public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
     @Override
     public void initView() {
         String mSigna = SharedPrefrenceUtils.getString(getActivity(), Config.SIGNA);
-        if (null != mSigna) {
+        if (!mSigna.equals("")) {
             signature.setText(mSigna);
+        }
+        String mPhoto = SharedPrefrenceUtils.getString(getActivity(), Config.TOPPHOTO);
+        if (!mPhoto.equals("")) {
+            Glide.with(getActivity()).load(mPhoto).into(head);
         }
     }
 
@@ -124,18 +148,9 @@ public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
 
             @Override
             public void afterTextChanged(Editable s) {
-                SharedPrefrenceUtils.saveString(getActivity(),Config.SIGNA,s.toString().trim());
+                SharedPrefrenceUtils.saveString(getActivity(), Config.SIGNA, s.toString().trim());
             }
         });
-    }
-
-    @Override
-    public void onResume() {
-        Bitmap mBitmap = SharedPrefrenceUtils.getBitmap(getActivity(), Config.BITMAP, null);
-        if (null != mBitmap) {
-            head.setImageBitmap(mBitmap);
-        }
-        super.onResume();
     }
 
     @Override
@@ -149,7 +164,7 @@ public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
     }
 
     @Override
-    public void onError(int whichApi,Throwable e) {
+    public void onError(int whichApi, Throwable e) {
 
     }
 
@@ -158,13 +173,9 @@ public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
 
     }
 
-    @OnClick({R.id.me_amend, R.id.waitlist, R.id.work, R.id.salary, R.id.waitappraise, R.id.wallet, R.id.approve, R.id.me_issus, R.id.bind, R.id.feedback, R.id.head})
+    @OnClick({R.id.me_amend, R.id.waitlist, R.id.work, R.id.salary, R.id.waitappraise, R.id.wallet, R.id.approve, R.id.me_issus, R.id.bind, R.id.feedback, R.id.log_out})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.head:
-                Intent mLoginIntent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(mLoginIntent);
-                break;
             case R.id.me_amend:
                 Intent mAmendIntent = new Intent(getActivity(), AmendActivity.class);
                 startActivity(mAmendIntent);
@@ -204,6 +215,11 @@ public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
             case R.id.feedback:
                 Intent mFeedbackIntent = new Intent(getActivity(), FeedbackActivity.class);
                 startActivity(mFeedbackIntent);
+                break;
+            case R.id.log_out:
+                Intent mLoginIntent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(mLoginIntent);
+                getActivity().finish();
                 break;
         }
     }

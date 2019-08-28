@@ -88,6 +88,7 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            startActivity(new Intent(LoginActivity.this,MainActivity.class));
                             finish();
                         }
                     });

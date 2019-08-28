@@ -32,6 +32,10 @@ public class NetHeaders {
         Map<String, String> headers = new HashMap<>();
         headers.put("XX-Api-Version", getAppVersionCode(ApplicationJob.getAppContext()));
         headers.put("XX-Device-Type", "android");
+        String mToken = SharedPrefrenceUtils.getString(ApplicationJob.getAppContext(), Config.TOKEN);
+        if (mToken != null) {
+            headers.put("XX-Token",mToken);
+        }
         return headers;
     }
 
