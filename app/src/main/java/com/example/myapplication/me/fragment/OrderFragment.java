@@ -1,26 +1,25 @@
 package com.example.myapplication.me.fragment;
 
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.myapplication.R;
+import com.example.myapplication.config.ApiConfig;
+import com.example.myapplication.config.LoadConfig;
 import com.example.myapplication.frame.BaseMvpFragment;
 import com.example.myapplication.frame.CommonPresenter;
 import com.example.myapplication.me.adapter.NoOrderAdapter;
 import com.example.myapplication.me.adapter.YetOrderAdapter;
+import com.example.myapplication.me.bean.MyIssusBean;
 import com.example.myapplication.model.MeModel;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,10 +29,10 @@ public class OrderFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
     @BindView(R.id.order_rv)
     RecyclerView orderRv;
     @BindView(R.id.order_srl)
-    SwipeRefreshLayout orderSrl;
-    private int mParam;
+    SmartRefreshLayout orderSrl;
+    private int mPage = 1;
     private NoOrderAdapter mNoOrderAdapter;
-    private YetOrderAdapter mYetOrderAdapter;
+    ArrayList<MyIssusBean.DataBean> mList = new ArrayList<>();
 
     public static OrderFragment newInstance() {
         if (fragment == null) fragment = new OrderFragment();
@@ -47,14 +46,15 @@ public class OrderFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
 
     @Override
     public void initView() {
-
+        initRecycleView(orderRv, orderSrl);
+        mNoOrderAdapter = new NoOrderAdapter(getActivity(),mList);
+        orderRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        orderRv.setAdapter(mNoOrderAdapter);
     }
 
     @Override
     public void initData() {
-        mNoOrderAdapter = new NoOrderAdapter(getActivity());
-        orderRv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        orderRv.setAdapter(mNoOrderAdapter);
+        mPresenter.getData(ApiConfig.ORDER_RECEIVING, LoadConfig.NORMAL, 0, mPage);
     }
 
     @Override
@@ -71,9 +71,37 @@ public class OrderFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
     public void onError(int whichApi, Throwable e) {
 
     }
+
     @Override
     public void onResponse(int whichApi, Object[] t) {
-
+        switch (whichApi) {
+            case ApiConfig.ORDER_RECEIVING:
+                MyIssusBean mMyIssusBeans = (MyIssusBean) t[0];
+                int upordown = (int) t[1];
+                if (upordown == LoadConfig.REFRESH) {
+                    mList.clear();
+                    orderSrl.finishRefresh();
+                } else if (upordown == LoadConfig.LOADMORE) {
+                    orderSrl.finishLoadMore();
+                }
+                List<MyIssusBean.DataBean> mData = mMyIssusBeans.getData();
+                mList.addAll(mData);
+                mNoOrderAdapter.notifyDataSetChanged();
+                break;
+        }
     }
 
+    @Override
+    public void refresh() {
+        mPage = 0;
+        mPresenter.getData(ApiConfig.ORDER_RECEIVING, LoadConfig.REFRESH, 0, mPage);
+        super.refresh();
+    }
+
+    @Override
+    public void loadMore() {
+        mPage += mPage;
+        mPresenter.getData(ApiConfig.ORDER_RECEIVING, LoadConfig.LOADMORE, 0, mPage);
+        super.loadMore();
+    }
 }

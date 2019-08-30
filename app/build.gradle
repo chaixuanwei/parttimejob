@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
+    useLibrary 'org.apache.http.legacy'
     defaultConfig {
         multiDexEnabled true
         applicationId "com.sxxh.linghuo"
@@ -18,6 +19,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    configurations {
+        all {
+            exclude module: 'httpclient'
+            exclude module: 'commons-logging'
         }
     }
 }
@@ -62,4 +69,5 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.jph.takephoto:takephoto_library:4.0.3'
     implementation 'com.amitshekhar.android:rx2-android-networking:1.0.0'
+    implementation 'com.contrarywind:Android-PickerView:4.1.8'
 }

@@ -12,13 +12,18 @@ import android.widget.TextView;
 import com.example.myapplication.R;
 import com.example.myapplication.me.activity.ApplyPeopleActivity;
 import com.example.myapplication.me.activity.InspectActivity;
+import com.example.myapplication.me.bean.MyIssusBean;
+
+import java.util.ArrayList;
 
 public class YetOrderAdapter extends RecyclerView.Adapter<YetOrderAdapter.ViewHolder> {
 
     Context mContext;
+    ArrayList<MyIssusBean.DataBean> mList;
 
-    public YetOrderAdapter(Context pContext) {
+    public YetOrderAdapter(Context pContext, ArrayList<MyIssusBean.DataBean> pList) {
         mContext = pContext;
+        mList = pList;
     }
 
     @NonNull
@@ -49,7 +54,7 @@ public class YetOrderAdapter extends RecyclerView.Adapter<YetOrderAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return 10;
+        return mList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

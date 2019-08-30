@@ -12,12 +12,17 @@ import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.me.activity.IssusActivity;
+import com.example.myapplication.me.bean.MyIssusBean;
+
+import java.util.ArrayList;
 
 public class NoOrderAdapter extends RecyclerView.Adapter<NoOrderAdapter.ViewHolder> {
     Context mContext;
+    ArrayList<MyIssusBean.DataBean> mList;
 
-    public NoOrderAdapter(Context pContext) {
+    public NoOrderAdapter(Context pContext, ArrayList<MyIssusBean.DataBean> pList) {
         mContext = pContext;
+        mList = pList;
     }
 
     @NonNull
@@ -41,7 +46,7 @@ public class NoOrderAdapter extends RecyclerView.Adapter<NoOrderAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return 10;
+        return mList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

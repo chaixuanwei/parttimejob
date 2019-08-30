@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.example.myapplication.config.ApiConfig;
@@ -24,6 +25,7 @@ import com.example.myapplication.frame.ApplicationJob;
 import com.example.myapplication.frame.BaseMvpActivity;
 import com.example.myapplication.frame.CommonPresenter;
 import com.example.myapplication.local_utils.SharedPrefrenceUtils;
+import com.example.myapplication.login.LoginActivity;
 import com.example.myapplication.login.bean.AuthCodeBean;
 import com.example.myapplication.me.adapter.PhotoAdapter;
 import com.example.myapplication.me.bean.PerfectBean;
@@ -81,11 +83,12 @@ public class AmendActivity extends BaseMvpActivity<CommonPresenter, MeModel> imp
     @BindView(R.id.confirm)
     TextView confirm;
     private ArrayList<String> mList = new ArrayList<String>();
-    private ArrayList<File> mFiles = new ArrayList<>();
+    private ArrayList<String> mUpload = new ArrayList<String>();
     private PhotoAdapter mAdapter;
     private InvokeParam invokeParam;
     private TakePhotoImpl mTakePhoto;
     private SlideFromBottomPopup mPop;
+    int photo = 0;
     Boolean isTop = false;
 
     @Override
@@ -131,37 +134,51 @@ public class AmendActivity extends BaseMvpActivity<CommonPresenter, MeModel> imp
     @Override
     public void onResponse(int whichApi, final Object[] t) {
         switch (whichApi) {
+            case ApiConfig.ALTER_TOP:
+                 AuthCodeBean AlterTop =(AuthCodeBean) t[0];
+                ToastUtils.showShort("头像修改成功！");
+                break;
             case ApiConfig.SET_PREJECT:
                 AuthCodeBean mAuthCodeBeans = (AuthCodeBean) t[0];
+                if (mAuthCodeBeans.getCode() == 10001) {
+                    ToastUtils.showShort(mAuthCodeBeans.getMsg());
+                    startActivity(new Intent(AmendActivity.this, LoginActivity.class));
+                } else {
+                    ToastUtils.showShort(mAuthCodeBeans.getMsg());
+                }
                 finish();
                 break;
             case ApiConfig.GET_PREJECT:
                 final PerfectBean mPerfectBeans = (PerfectBean) t[0];
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        PerfectBean.DataBean mData = mPerfectBeans.getData();
-                        if (mData != null) {
-                            name.setText(mData.getReal_name());
-                            nickname.setText(mData.getUser_nickname());
-                            int mSex = mData.getSex();
-                            if (mSex == 1) {
-                                rbMan.setChecked(true);
-                            } else if (mSex == 2) {
-                                rbGirl.setChecked(true);
-                            }
-                            age.setText(mData.getAge() + "");
-                            address.setText(mData.getAddress());
-                            List<PerfectBean.DataBean.ProjectImagesBean> mProject_images = mData.getProject_images();
-                            if (mProject_images != null) {
-                                for (int i = 0; i < mProject_images.size(); i++) {
-                                    mList.add(mProject_images.get(i).getUrl());
+                if (mPerfectBeans.getCode() == 10001) {
+                    startActivity(new Intent(AmendActivity.this, LoginActivity.class));
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            PerfectBean.DataBean mData = mPerfectBeans.getData();
+                            if (mData != null) {
+                                name.setText(mData.getReal_name());
+                                nickname.setText(mData.getUser_nickname());
+                                int mSex = mData.getSex();
+                                if (mSex == 1) {
+                                    rbMan.setChecked(true);
+                                } else if (mSex == 2) {
+                                    rbGirl.setChecked(true);
                                 }
-                                mAdapter.notifyDataSetChanged();
+                                age.setText(mData.getAge() + "");
+                                address.setText(mData.getAddress());
+                                List<PerfectBean.DataBean.ProjectImagesBean> mProject_images = mData.getProject_images();
+                                if (mProject_images != null) {
+                                    for (int i = 0; i < mProject_images.size(); i++) {
+                                        mList.add(mProject_images.get(i).getPreview_url());
+                                    }
+                                    mAdapter.notifyDataSetChanged();
+                                }
                             }
                         }
-                    }
-                });
+                    });
+                }
                 break;
         }
     }
@@ -184,8 +201,6 @@ public class AmendActivity extends BaseMvpActivity<CommonPresenter, MeModel> imp
                 String mNickname = nickname.getText().toString();
                 String mAddress = address.getText().toString();
                 int mSix = 0;
-                String mage = age.getText().toString();
-                int mAge = Integer.parseInt(mage);
                 boolean mCheckedMan = rbMan.isChecked();
                 boolean mCheckedGirl = rbGirl.isChecked();
                 if (mCheckedMan) {
@@ -195,7 +210,13 @@ public class AmendActivity extends BaseMvpActivity<CommonPresenter, MeModel> imp
                 } else {
                     mSix = 0;
                 }
-                mPresenter.getData(ApiConfig.SET_PREJECT, LoadConfig.NORMAL, mName, mNickname, mAddress, mSix, mAge, mList);
+                String mage = age.getText().toString();
+                if (!mName.equals("") && !mNickname.equals("") && !mAddress.equals("") && !mage.equals("")) {
+                    int mAge = Integer.parseInt(mage);
+                    mPresenter.getData(ApiConfig.SET_PREJECT, LoadConfig.NORMAL, mName, mNickname, mAddress, mSix, mAge, mUpload);
+                } else {
+                    ToastUtils.showShort("请填写完整信息");
+                }
                 break;
         }
     }
@@ -204,8 +225,10 @@ public class AmendActivity extends BaseMvpActivity<CommonPresenter, MeModel> imp
     start
     上传照片
      */
+
     /**
-     *  获取TakePhoto实例
+     * 获取TakePhoto实例
+     *
      * @return
      */
     @Override
@@ -232,25 +255,64 @@ public class AmendActivity extends BaseMvpActivity<CommonPresenter, MeModel> imp
         }
     }
 
+    //上传照片
+    public void netUpload(File pFile) {
+        String url = "http://job.zhangtongdongli.com/api/user/upload/one";
+        Map<String, String> mMap = new HashMap<>();
+        mMap.put("XX-Api-Version", getAppVersionCode(ApplicationJob.getAppContext()));
+        mMap.put("XX-Device-Type", "android");
+        String mToken = SharedPrefrenceUtils.getString(ApplicationJob.getAppContext(), Config.TOKEN);
+        mMap.put("XX-Token", mToken);
+        Rx2AndroidNetworking.upload(url)
+                .setContentType("multipart/form-data")
+                .addMultipartFile("file", pFile)
+                .addHeaders(mMap)
+                .build()
+                .getObjectObservable(UploadTopBean.class)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<UploadTopBean>() {
+                    @Override
+                    public void accept(final UploadTopBean pUploadTopBean) throws Exception {
+                        if (isTop) {
+                            isTop = false;
+                            final String mUrl = pUploadTopBean.getData().getUrl();
+                            SharedPrefrenceUtils.saveString(AmendActivity.this, Config.TOPPHOTO, mUrl);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Glide.with(AmendActivity.this).load(mUrl).into(headportrait);
+                                }
+                            });
+                            mPresenter.getData(ApiConfig.ALTER_TOP,LoadConfig.NORMAL, mUrl);
+                        } else {
+                            if (photo != 0) {
+                                mList.set(photo - 1, pUploadTopBean.getData().getUrl());
+                            }else {
+                                mList.add(pUploadTopBean.getData().getUrl());
+                            }
+                            mUpload.add(pUploadTopBean.getData().getFilepath());
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    mAdapter.notifyDataSetChanged();
+                                }
+                            });
+                        }
+                    }
+                });
+    }
+
     @Override
     public void takeSuccess(TResult result) {
-        mList.clear();
-        mFiles.clear();
+        if (photo == 0) {
+            mList.clear();
+        }
         ArrayList<TImage> mImages = result.getImages();
-        if (isTop) {
-            isTop = false;
-            String mCompressPath = mImages.get(0).getCompressPath();
-            SharedPrefrenceUtils.saveString(this, Config.TOPPHOTO,mCompressPath);
-            Glide.with(AmendActivity.this).load(mCompressPath).into(headportrait);
-        } else {
-            for (int i = 0; i < mImages.size(); i++) {
-                String mOriginalPath = mImages.get(i).getCompressPath() != null ? result.getImages().get(i).getCompressPath()
-                        : result.getImages().get(i).getOriginalPath();
-                mList.add(mOriginalPath);
-                mFiles.add(new File(mOriginalPath));
-                netUpload(new File(mOriginalPath));
-            }
-            mAdapter.notifyDataSetChanged();
+        for (int i = 0; i < mImages.size(); i++) {
+            String mOriginalPath = mImages.get(i).getCompressPath() != null ? result.getImages().get(i).getCompressPath()
+                    : result.getImages().get(i).getOriginalPath();
+            netUpload(new File(mOriginalPath));
         }
     }
 
@@ -275,36 +337,15 @@ public class AmendActivity extends BaseMvpActivity<CommonPresenter, MeModel> imp
 
     @Override
     public void onPhoto(int pI) {
-        mList.clear();
-        mFiles.clear();
+        photo = pI;
         mTakePhoto = new TakePhotoImpl(this, this);
         mTakePhoto.onEnableCompress(new CompressConfig.Builder().setMaxSize(50 * 1024)
                 .setMaxPixel(1080).create(), true);
-        mTakePhoto.onPickMultiple(5);
-    }
-
-    //上传照片
-    public void netUpload(File pFile) {
-        String url = "http://job.zhangtongdongli.com/api/user/upload/one";
-        Map<String, String> mMap = new HashMap<>();
-        mMap.put("XX-Api-Version", getAppVersionCode(ApplicationJob.getAppContext()));
-        mMap.put("XX-Device-Type", "android");
-        String mToken = SharedPrefrenceUtils.getString(ApplicationJob.getAppContext(), Config.TOKEN);
-        mMap.put("XX-Token", mToken);
-        Rx2AndroidNetworking.upload(url)
-                .setContentType("multipart/form-data")
-                .addMultipartFile("file", pFile)
-                .addHeaders(mMap)
-                .build()
-                .getObjectObservable(UploadTopBean.class)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<UploadTopBean>() {
-                    @Override
-                    public void accept(UploadTopBean pUploadTopBean) throws Exception {
-                        mList.add(pUploadTopBean.getData().getUrl());
-                    }
-                });
+        if (pI == 0) {
+            mTakePhoto.onPickMultiple(5);
+        } else {
+            mTakePhoto.onPickMultiple(1);
+        }
     }
 
     @Override
@@ -312,8 +353,7 @@ public class AmendActivity extends BaseMvpActivity<CommonPresenter, MeModel> imp
         mTakePhoto = new TakePhotoImpl(this, this);
         mTakePhoto.onEnableCompress(new CompressConfig.Builder().setMaxSize(50 * 1024)
                 .setMaxPixel(1080).create(), true);
-//        mTakePhoto.onPickFromGalleryWithCrop(getUri(), getOption());//从相册中获取图片并裁剪
-        mTakePhoto.onPickMultiple(9);    //从相册获取图片多选
+        mTakePhoto.onPickMultiple(5);    //从相册获取图片多选
         Log.e("-----picture", mTakePhoto.toString() + "");
         mPop.dismiss();
     }
@@ -323,7 +363,6 @@ public class AmendActivity extends BaseMvpActivity<CommonPresenter, MeModel> imp
         mTakePhoto = new TakePhotoImpl(this, this);
         mTakePhoto.onEnableCompress(new CompressConfig.Builder().setMaxSize(50 * 1024)
                 .setMaxPixel(1080).create(), true);
-//        mTakePhoto.onPickFromCaptureWithCrop(getUri(), getOption());    //从相机获取图片并裁剪
         mTakePhoto.onPickFromCapture(getUri());    //从相机获取图片(不裁剪)
         mPop.dismiss();
     }

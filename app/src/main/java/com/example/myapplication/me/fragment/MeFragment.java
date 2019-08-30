@@ -127,10 +127,6 @@ public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
         if (!mSigna.equals("")) {
             signature.setText(mSigna);
         }
-        String mPhoto = SharedPrefrenceUtils.getString(getActivity(), Config.TOPPHOTO);
-        if (!mPhoto.equals("")) {
-            Glide.with(getActivity()).load(mPhoto).into(head);
-        }
     }
 
     @Override
@@ -151,6 +147,15 @@ public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
                 SharedPrefrenceUtils.saveString(getActivity(), Config.SIGNA, s.toString().trim());
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        String mPhoto = SharedPrefrenceUtils.getString(getActivity(), Config.TOPPHOTO);
+        if (!mPhoto.equals("")) {
+            Glide.with(getActivity()).load(mPhoto).into(head);
+        }
+        super.onResume();
     }
 
     @Override

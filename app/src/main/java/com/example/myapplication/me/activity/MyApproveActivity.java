@@ -1,18 +1,21 @@
 package com.example.myapplication.me.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.example.myapplication.R;
+import com.example.myapplication.config.ApiConfig;
+import com.example.myapplication.config.LoadConfig;
 import com.example.myapplication.frame.BaseMvpActivity;
 import com.example.myapplication.frame.CommonPresenter;
+import com.example.myapplication.login.bean.AuthCodeBean;
 import com.example.myapplication.model.MeModel;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MyApproveActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
@@ -23,6 +26,10 @@ public class MyApproveActivity extends BaseMvpActivity<CommonPresenter, MeModel>
     LinearLayout people;
     @BindView(R.id.firm)
     LinearLayout firm;
+    @BindView(R.id.get_people_result)
+    TextView getPeopleResult;
+    @BindView(R.id.get_frim_result)
+    TextView getFrimResult;
 
     @Override
     public int getLayoutId() {
@@ -36,7 +43,8 @@ public class MyApproveActivity extends BaseMvpActivity<CommonPresenter, MeModel>
 
     @Override
     public void initData() {
-
+        mPresenter.getData(ApiConfig.GET_PEOPLE, LoadConfig.NORMAL);
+        mPresenter.getData(ApiConfig.GET_FIRM, LoadConfig.NORMAL);
     }
 
     @Override
@@ -56,7 +64,16 @@ public class MyApproveActivity extends BaseMvpActivity<CommonPresenter, MeModel>
 
     @Override
     public void onResponse(int whichApi, Object[] t) {
-
+        switch (whichApi) {
+            case ApiConfig.GET_PEOPLE:
+                AuthCodeBean mPeopleResult = (AuthCodeBean) t[0];
+                getPeopleResult.setText(mPeopleResult.getMsg());
+                break;
+            case ApiConfig.GET_FIRM:
+                AuthCodeBean mFirmResult = (AuthCodeBean) t[0];
+                getFrimResult.setText(mFirmResult.getMsg());
+                break;
+        }
     }
 
     @OnClick({R.id.back, R.id.people, R.id.firm})
@@ -66,12 +83,29 @@ public class MyApproveActivity extends BaseMvpActivity<CommonPresenter, MeModel>
                 finish();
                 break;
             case R.id.people:
-                Intent mIntentPeople = new Intent(this, PeopleActivity.class);
-                startActivity(mIntentPeople);
+                String mPeopleResult = getPeopleResult.getText().toString();
+                if (mPeopleResult.equals("未认证")) {
+                    Intent mIntentPeople = new Intent(this, PeopleActivity.class);
+                    startActivity(mIntentPeople);
+                } else if (mPeopleResult.equals("审核中")) {
+                    startActivity(new Intent(MyApproveActivity.this,WaitAuditActivity.class));
+                    finish();
+                } else {
+                    ToastUtils.showShort("已认证");
+                }
+
                 break;
             case R.id.firm:
-                Intent mIntentFirm = new Intent(this, FirmActivity.class);
-                startActivity(mIntentFirm);
+                String mFrimResult = getFrimResult.getText().toString();
+                if (mFrimResult.equals("未认证")) {
+                    Intent mIntentFirm = new Intent(this, FirmActivity.class);
+                    startActivity(mIntentFirm);
+                } else if (mFrimResult.equals("审核中")) {
+                    startActivity(new Intent(MyApproveActivity.this,WaitAuditActivity.class));
+                    finish();
+                } else {
+                    ToastUtils.showShort("已认证");
+                }
                 break;
         }
     }
