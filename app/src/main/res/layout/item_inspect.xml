@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <ImageView
+        android:id="@+id/item_inspect_img"
         android:src="@mipmap/all"
         android:layout_width="@dimen/dp_55"
         android:layout_height="@dimen/dp_55" />
@@ -16,10 +17,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/item_inspect_name"
             android:text="姓名"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/item_inspect_progress"
             android:text="项目进度"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

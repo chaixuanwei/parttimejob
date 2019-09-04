@@ -6,9 +6,13 @@
     android:paddingLeft="@dimen/dp_30"
     tools:context=".me.fragment.ProjectExperienceFragment">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/project_experience_rv"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/project_experience_srl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
-
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/project_experience_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>

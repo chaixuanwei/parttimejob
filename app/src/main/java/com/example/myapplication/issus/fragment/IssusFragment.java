@@ -2,6 +2,7 @@ package com.example.myapplication.issus.fragment;
 
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Build;
 import android.support.v4.app.Fragment;
@@ -33,6 +34,7 @@ import com.example.myapplication.config.ApiConfig;
 import com.example.myapplication.config.LoadConfig;
 import com.example.myapplication.frame.BaseMvpFragment;
 import com.example.myapplication.frame.CommonPresenter;
+import com.example.myapplication.issus.activity.PayCenterActivity;
 import com.example.myapplication.issus.bean.NatureBean;
 import com.example.myapplication.local_utils.DateUtil;
 import com.example.myapplication.login.bean.AuthCodeBean;
@@ -49,7 +51,7 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> {
+public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> implements View.OnFocusChangeListener, View.OnTouchListener {
     private static final String TAG = "IssusFragment";
     static IssusFragment fragment;
     @BindView(R.id.issus_job_name)
@@ -125,6 +127,24 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
     @Override
     public void initView() {
         initTimePicker();
+        issusPlace.setOnFocusChangeListener(this);
+        issusPlace.setOnTouchListener(this);
+        issusNumber.setOnFocusChangeListener(this);
+        issusNumber.setOnTouchListener(this);
+        issusName.setOnFocusChangeListener(this);
+        issusName.setOnTouchListener(this);
+        issusPhone.setOnFocusChangeListener(this);
+        issusPhone.setOnTouchListener(this);
+    }
+
+    private void initlist() {
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        sc.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                sc.smoothScrollTo(0, sc.getHeight());
+            }
+        }, 300);
     }
 
     @Override
@@ -185,7 +205,8 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
         switch (whichApi) {
             case ApiConfig.TO_ISSUS:
                 AuthCodeBean mAuthCodeBeans = (AuthCodeBean) t[0];
-
+                ToastUtils.showShort(mAuthCodeBeans.getMsg());
+                startActivity(new Intent(getActivity(), PayCenterActivity.class));
                 break;
             case ApiConfig.GET_NATURE:
                 NatureBean mNatureBeans = (NatureBean) t[0];
@@ -231,7 +252,10 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
                 String mIssusMoney = issusMoney.getText().toString();
                 String mIssusPlace = issusPlace.getText().toString();
                 String mIssusNumber = issusNumber.getText().toString();
-                int mNumber = Integer.parseInt(mIssusNumber);
+                int mNumber = 0;
+                if (!mIssusDescribe.equals("")) {
+                    mNumber = Integer.parseInt(mIssusNumber);
+                }
                 String mIssusName = issusName.getText().toString();
                 String mIssusPhone = issusPhone.getText().toString();
                 String mHight = ishight.getText().toString();
@@ -312,5 +336,17 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
         Log.d("getTime()", "choice date millis: " + date.getTime());
         SimpleDateFormat format = new SimpleDateFormat(pattern);
         return format.format(date);
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (sc != null)
+        initlist();
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        initlist();
+        return false;
     }
 }

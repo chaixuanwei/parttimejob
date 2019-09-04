@@ -4,6 +4,7 @@ package com.example.myapplication.me.fragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.example.myapplication.R;
 import com.example.myapplication.config.ApiConfig;
@@ -68,7 +69,7 @@ public class YetOrderFragment extends BaseMvpFragment<CommonPresenter, MeModel> 
 
     @Override
     public void onError(int whichApi, Throwable e) {
-
+        Log.e("已接单", "onError: "+"已接单" );
     }
 
     @Override
@@ -92,15 +93,13 @@ public class YetOrderFragment extends BaseMvpFragment<CommonPresenter, MeModel> 
 
     @Override
     public void refresh() {
-        mPage = 0;
-        mPresenter.getData(ApiConfig.ORDER_RECEIVING, LoadConfig.NORMAL, 1, mPage);
-        super.refresh();
+        mPage = 1;
+        mPresenter.getData(ApiConfig.ORDER_RECEIVING, LoadConfig.REFRESH, 1, mPage);
     }
 
     @Override
     public void loadMore() {
         mPage += mPage;
-        mPresenter.getData(ApiConfig.ORDER_RECEIVING, LoadConfig.NORMAL, 1, mPage);
-        super.loadMore();
+        mPresenter.getData(ApiConfig.ORDER_RECEIVING, LoadConfig.LOADMORE, 1, mPage);
     }
 }

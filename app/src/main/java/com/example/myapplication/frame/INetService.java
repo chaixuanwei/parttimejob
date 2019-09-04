@@ -3,13 +3,16 @@ package com.example.myapplication.frame;
 import com.example.myapplication.issus.bean.NatureBean;
 import com.example.myapplication.login.bean.AuthCodeBean;
 import com.example.myapplication.login.bean.LoginBean;
+import com.example.myapplication.me.bean.ApplyPeopleBean;
+import com.example.myapplication.me.bean.FeedBackBean;
 import com.example.myapplication.me.bean.IndustryBean;
 import com.example.myapplication.me.bean.MyIssusBean;
 import com.example.myapplication.me.bean.PerfectBean;
+import com.example.myapplication.me.bean.ProjectProgressBean;
+import com.example.myapplication.me.bean.ProjectSufferBean;
 import com.example.myapplication.me.bean.ScaleBean;
 import com.example.myapplication.me.bean.UploadTopBean;
 import com.example.myapplication.message.bean.AfficheBean;
-import com.example.myapplication.message.bean.SystemBean;
 
 import java.io.File;
 
@@ -132,4 +135,36 @@ public interface INetService {
     Observable<AfficheBean> getMessageList(@Query("type") String type,
                                           @Query("page") String page,
                                           @Query("limit") String limit);
+
+    //意见反馈
+    @POST("api/user/profile/feedBack")
+    @FormUrlEncoded
+    Observable<AuthCodeBean> setFeedback(@Field("title") String title,
+                                         @Field("content") String content);
+
+    //获取意见
+    @GET("api/user/public/feedBackCategory")
+    Observable<FeedBackBean> getFeedback();
+
+    //获取报名列表
+    @GET("api/user/taskorder/enroll")
+    Observable<ApplyPeopleBean> getApplyPeople(@Query("task_id") int task_id,
+                                               @Query("page") int page);
+
+    //报名审核
+    @POST("api/user/checkorderuser/check")
+    @FormUrlEncoded
+    Observable<AuthCodeBean> setApplyAudit(@Field("task_id") int task_id,
+                                           @Field("user_id") int user_id,
+                                           @Field("status") int status);
+
+    //项目经验
+    @GET("api/user/taskorder/projectexp")
+    Observable<ProjectSufferBean> getProject(@Query("user_id") int user_id,
+                                             @Query("page") int page);
+
+    //获取项目进度
+    @GET("api/user/taskorder/projectrate")
+    Observable<ProjectProgressBean> getProjectrate(@Query("task_id") int task_id,
+                                                   @Query("page") int page);
 }

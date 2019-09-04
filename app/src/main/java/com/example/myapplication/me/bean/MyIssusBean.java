@@ -47,6 +47,7 @@ public class MyIssusBean {
          * countuid : 1
          */
 
+        private String t_id;
         private String name;
         private String pay;
         private String des;
@@ -101,5 +102,14 @@ public class MyIssusBean {
         public void setCountuid(int countuid) {
             this.countuid = countuid;
         }
+
+        public String getT_id() {
+            return t_id;
+        }
+
+        public void setT_id(String pT_id) {
+            t_id = pT_id;
+        }
+
     }
 }

@@ -556,7 +556,9 @@
                 android:id="@+id/bt_issus_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp_10"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_50"
                 android:background="@drawable/blue_round_frame"
                 android:gravity="center_horizontal"
                 android:padding="@dimen/dp_15"
@@ -564,7 +566,7 @@
                 android:textColor="@color/app_theme_color" />
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_200" />
+                android:layout_height="@dimen/dp_150" />
         </LinearLayout>
 
     </ScrollView>

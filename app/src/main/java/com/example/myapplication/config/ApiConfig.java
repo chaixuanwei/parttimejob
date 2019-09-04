@@ -19,4 +19,10 @@ public class ApiConfig {
     public static final int GET_SCALE = 16;//获取规模
     public static final int ORDER_RECEIVING = 17;//接单情况
     public static final int MESSAGE_LIST = 18;//消息列表
+    public static final int FEEDBACK = 19;//意见反馈
+    public static final int GET_FEEDBACK = 20;//获取意见
+    public static final int GET_APPLYPEOPLE = 21;//报名列表
+    public static final int APPLY_AUDIT = 22;//报名审核
+    public static final int PROJECT_SUFFER = 23;//项目经验
+    public static final int GET_PROJECT_RATE = 24;//项目进度
 }

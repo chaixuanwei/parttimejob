@@ -1,5 +1,6 @@
 package com.example.myapplication.me.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -9,12 +10,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.config.ApiConfig;
+import com.example.myapplication.config.LoadConfig;
 import com.example.myapplication.frame.BaseMvpActivity;
 import com.example.myapplication.frame.CommonPresenter;
+import com.example.myapplication.login.bean.AuthCodeBean;
 import com.example.myapplication.me.fragment.BasicInformationFragment;
-import com.example.myapplication.me.fragment.OrderFragment;
 import com.example.myapplication.me.fragment.ProjectExperienceFragment;
-import com.example.myapplication.me.fragment.YetOrderFragment;
 import com.example.myapplication.message.adapter.MessageVpAdapter;
 import com.example.myapplication.model.MeModel;
 
@@ -22,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class InsightsUserActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
@@ -40,6 +41,9 @@ public class InsightsUserActivity extends BaseMvpActivity<CommonPresenter, MeMod
     List<String> mTitleList = new ArrayList<>();
     List<Fragment> mFragmentList = new ArrayList<>();
     private MessageVpAdapter mAdapter;
+    private int mTaskId;
+    private int mUserId;
+    private int status;
 
     @Override
     public int getLayoutId() {
@@ -48,6 +52,10 @@ public class InsightsUserActivity extends BaseMvpActivity<CommonPresenter, MeMod
 
     @Override
     public void initView() {
+        Intent mIntent = getIntent();
+        Bundle mBundle = mIntent.getBundleExtra("bundle");
+        mTaskId = mBundle.getInt("task_id");
+        mUserId = mBundle.getInt("user_id");
         mAdapter = new MessageVpAdapter(getSupportFragmentManager(), mFragmentList, mTitleList);
         insightsUserVp.setAdapter(mAdapter);
         insightsUserTl.setupWithViewPager(insightsUserVp);
@@ -59,7 +67,7 @@ public class InsightsUserActivity extends BaseMvpActivity<CommonPresenter, MeMod
             mTitleList.add("基础信息");
             mFragmentList.add(BasicInformationFragment.newInstance());
             mTitleList.add("项目经验");
-            mFragmentList.add(ProjectExperienceFragment.newInstance());
+            mFragmentList.add(ProjectExperienceFragment.newInstance(mUserId));
             mAdapter.notifyDataSetChanged();
         }
     }
@@ -81,7 +89,12 @@ public class InsightsUserActivity extends BaseMvpActivity<CommonPresenter, MeMod
 
     @Override
     public void onResponse(int whichApi, Object[] t) {
+        switch (whichApi) {
+            case ApiConfig.APPLY_AUDIT:
+                AuthCodeBean mAuthCodeBeans = (AuthCodeBean) t[0];
 
+                break;
+        }
     }
 
     @OnClick({R.id.back, R.id.insights_user_refuse, R.id.insights_user_pass})
@@ -91,8 +104,12 @@ public class InsightsUserActivity extends BaseMvpActivity<CommonPresenter, MeMod
                 finish();
                 break;
             case R.id.insights_user_refuse:
+                status = 0;
+                mPresenter.getData(ApiConfig.APPLY_AUDIT, LoadConfig.NORMAL, mTaskId, mUserId, status);
                 break;
             case R.id.insights_user_pass:
+                status = 1;
+                mPresenter.getData(ApiConfig.APPLY_AUDIT, LoadConfig.NORMAL, mTaskId, mUserId, status);
                 break;
         }
     }

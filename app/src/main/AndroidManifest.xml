@@ -13,12 +13,14 @@
     <application
         android:name=".frame.ApplicationJob"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
+        android:logo="@mipmap/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/NoAppTheme">
-        <activity android:name=".message.SystemTaskMessageActivity"></activity>
+        <activity android:name=".activity.WebviewActivity"></activity>
+        <activity android:name=".message.SystemTaskMessageActivity" />
         <activity android:name=".me.activity.WaitAuditActivity" />
         <activity android:name=".me.activity.BindbankcardActivity" />
         <activity android:name=".activity.IntroduceActivity" />

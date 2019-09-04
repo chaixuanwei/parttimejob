@@ -37,38 +37,11 @@
         android:padding="@dimen/dp_10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <RadioGroup
-            android:orientation="horizontal"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/feedback_rv"
+            android:padding="@dimen/dp_10"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RadioButton
-                android:id="@+id/feedback_id"
-                android:background="@drawable/feedback"
-                android:text="账号问题"
-                android:padding="@dimen/dp_5"
-                android:layout_margin="@dimen/dp_5"
-                android:button="@null"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <RadioButton
-                android:id="@+id/feedback_pay"
-                android:background="@drawable/feedback"
-                android:text="支付问题"
-                android:padding="@dimen/dp_5"
-                android:layout_margin="@dimen/dp_5"
-                android:button="@null"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <RadioButton
-                android:id="@+id/feedback_other"
-                android:background="@drawable/feedback"
-                android:text="其他问题"
-                android:padding="@dimen/dp_5"
-                android:layout_margin="@dimen/dp_5"
-                android:button="@null"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </RadioGroup>
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
         <EditText
             android:id="@+id/feedback_ed_content"
             android:textSize="@dimen/sp_12"

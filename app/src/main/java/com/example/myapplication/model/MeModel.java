@@ -11,6 +11,9 @@ import java.util.ArrayList;
 public class MeModel implements ICommonModel {
 
     private int mLoadMode;
+    private int mPage;
+    private int mTaskid;
+    private int mUserid;
 
     @Override
     public void getData(ICommonView view, int whichApi, Object[] t) {
@@ -89,8 +92,43 @@ public class MeModel implements ICommonModel {
             case ApiConfig.ORDER_RECEIVING:
                 mLoadMode = (int) t[0];
                 int is_order = (int) t[1];
-                int page = (int) t[2];
-                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getMyIssus(is_order,page),view,whichApi,mLoadMode);
+                mPage = (int) t[2];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getMyIssus(is_order, mPage), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.FEEDBACK:
+                mLoadMode = (int) t[0];
+                String title = (String) t[1];
+                String content = (String) t[2];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().setFeedback(title, content), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.GET_FEEDBACK:
+                mLoadMode = (int) t[0];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getFeedback(), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.GET_APPLYPEOPLE:
+                mLoadMode = (int) t[0];
+                mTaskid = (int) t[1];
+                mPage = (int) t[2];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getApplyPeople(mTaskid, mPage), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.APPLY_AUDIT:
+                mLoadMode = (int) t[0];
+                mTaskid = (int) t[1];
+                mUserid = (int) t[2];
+                int status = (int) t[3];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().setApplyAudit(mTaskid, mUserid, status), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.PROJECT_SUFFER:
+                mLoadMode = (int) t[0];
+                mUserid = (int) t[1];
+                mPage = (int) t[2];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getProject(mUserid, mPage), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.GET_PROJECT_RATE:
+                mLoadMode = (int) t[0];
+                mTaskid = (int) t[1];
+                mPage = (int) t[2];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getProjectrate(mTaskid, mPage), view, whichApi, mLoadMode);
                 break;
         }
     }

@@ -27,12 +27,6 @@
     </LinearLayout>
     <TextView
         android:layout_marginTop="@dimen/dp_10"
-        android:id="@+id/item_yet_order_job_suffer"
-        android:text="@string/me_issus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:layout_marginTop="@dimen/dp_10"
         android:id="@+id/item_yet_order_job_content"
         android:text="@string/me_issus"
         android:lineSpacingExtra="@dimen/dp_10"
@@ -43,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/item_yet_order_job_num"
             android:layout_weight="1"
             android:text="(1/30)"
             android:textSize="@dimen/sp_14"

@@ -6,17 +6,35 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <ImageView
+        android:id="@+id/item_people_img"
         android:src="@mipmap/all"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    <TextView
+    <LinearLayout
         android:layout_weight="1"
-        android:layout_marginLeft="@dimen/dp_10"
-        android:text="@string/feedback"
+        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/item_people_name"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:textColor="@color/black_theme"
+            android:textSize="@dimen/sp_14"
+            android:text="@string/feedback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/item_people_project"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_7"
+            android:textSize="@dimen/sp_14"
+            android:text="报名项目："
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
     <TextView
         android:id="@+id/look_people"
+        android:textSize="@dimen/sp_14"
         android:text="查看信息"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

@@ -1,14 +1,18 @@
 package com.example.myapplication.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import com.example.myapplication.R;
+import com.example.myapplication.config.Config;
 import com.example.myapplication.customs.MyBottomView;
 import com.example.myapplication.frame.BaseMvpActivity;
 import com.example.myapplication.frame.CommonPresenter;
 import com.example.myapplication.home.fragment.FirstFragment;
+import com.example.myapplication.local_utils.SharedPrefrenceUtils;
+import com.example.myapplication.login.LoginActivity;
 import com.example.myapplication.model.HomeModel;
 import com.example.myapplication.issus.fragment.IssusFragment;
 import com.example.myapplication.local_utils.statusbar.StatusBarCompat;
@@ -41,7 +45,11 @@ public class MainActivity extends BaseMvpActivity<CommonPresenter, HomeModel> im
 
     @Override
     public void initData() {
-
+        String mToken = SharedPrefrenceUtils.getString(this, Config.TOKEN);
+        if (mToken.equals("")) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        }
     }
 
     @Override

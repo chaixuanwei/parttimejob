@@ -95,16 +95,21 @@ public class SystemTaskMessageActivity extends BaseMvpActivity<CommonPresenter, 
         switch (whichApi) {
             case ApiConfig.MESSAGE_LIST:
                 if (!mType.equals("2")) {
-                    SystemBean mSystemBeans = (SystemBean) t[0];
-                    int upordown = (int) t[1];
-                    if (upordown == LoadConfig.REFRESH) {
-                        mSystemList.clear();
-                        messageSrl.finishRefresh();
-                    } else if (upordown == LoadConfig.LOADMORE) {
-                        messageSrl.finishLoadMore();
+                    Object mO = t[0];
+                    if (mO instanceof SystemBean) {
+                        SystemBean mSystemBeans = (SystemBean) t[0];
+                        if (mSystemBeans.getData().size() != 0) {
+                            int upordown = (int) t[1];
+                            if (upordown == LoadConfig.REFRESH) {
+                                mSystemList.clear();
+                                messageSrl.finishRefresh();
+                            } else if (upordown == LoadConfig.LOADMORE) {
+                                messageSrl.finishLoadMore();
+                            }
+                            mSystemList.addAll(mSystemBeans.getData());
+                            mSystemAdapter.notifyDataSetChanged();
+                        }
                     }
-                    mSystemList.addAll(mSystemBeans.getData());
-                    mSystemAdapter.notifyDataSetChanged();
                 } else {
                     AfficheBean mAfficheBeans = (AfficheBean) t[0];
                     int upordown = (int) t[1];

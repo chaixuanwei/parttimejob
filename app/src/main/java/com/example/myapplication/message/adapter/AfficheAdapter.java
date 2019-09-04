@@ -1,6 +1,7 @@
 package com.example.myapplication.message.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
+import com.example.myapplication.activity.WebviewActivity;
 import com.example.myapplication.message.bean.AfficheBean;
 
 import java.util.ArrayList;
@@ -33,13 +35,21 @@ public class AfficheAdapter extends RecyclerView.Adapter<AfficheAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder pViewHolder, int pI) {
-        AfficheBean.DataBean mDataBean = mAddicheList.get(pI);
+        final AfficheBean.DataBean mDataBean = mAddicheList.get(pI);
         ViewHolder mViewHolder = pViewHolder;
         if (mDataBean != null) {
             mViewHolder.mItemAfficheTitle.setText(mDataBean.getTitle());
             mViewHolder.mItemAfficheContent.setText(mDataBean.getPost_excerpt());
             Glide.with(mContext).load(mDataBean.getThumbnail()).into(mViewHolder.mItemAfficheImg);
         }
+        mViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mIntent = new Intent(mContext, WebviewActivity.class);
+                mIntent.putExtra("url",mDataBean.getUrl());
+                mContext.startActivity(mIntent);
+            }
+        });
     }
 
     @Override
