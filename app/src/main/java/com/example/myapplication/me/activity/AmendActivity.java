@@ -65,7 +65,7 @@ public class AmendActivity extends BaseMvpActivity<CommonPresenter, MeModel> imp
     @BindView(R.id.back)
     ImageView back;
     @BindView(R.id.headportrait)
-    RoundImage headportrait;
+    ImageView headportrait;
     @BindView(R.id.photo_rv)
     RecyclerView photoRv;
     @BindView(R.id.name)
@@ -135,7 +135,7 @@ public class AmendActivity extends BaseMvpActivity<CommonPresenter, MeModel> imp
     public void onResponse(int whichApi, final Object[] t) {
         switch (whichApi) {
             case ApiConfig.ALTER_TOP:
-                 AuthCodeBean AlterTop =(AuthCodeBean) t[0];
+                AuthCodeBean AlterTop = (AuthCodeBean) t[0];
                 ToastUtils.showShort("头像修改成功！");
                 break;
             case ApiConfig.SET_PREJECT:
@@ -284,11 +284,11 @@ public class AmendActivity extends BaseMvpActivity<CommonPresenter, MeModel> imp
                                     Glide.with(AmendActivity.this).load(mUrl).into(headportrait);
                                 }
                             });
-                            mPresenter.getData(ApiConfig.ALTER_TOP,LoadConfig.NORMAL, mUrl);
+                            mPresenter.getData(ApiConfig.ALTER_TOP, LoadConfig.NORMAL, mUrl);
                         } else {
                             if (photo != 0) {
                                 mList.set(photo - 1, pUploadTopBean.getData().getUrl());
-                            }else {
+                            } else {
                                 mList.add(pUploadTopBean.getData().getUrl());
                             }
                             mUpload.add(pUploadTopBean.getData().getFilepath());

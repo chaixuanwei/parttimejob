@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.example.myapplication.R;
 import com.example.myapplication.config.ApiConfig;
 import com.example.myapplication.config.LoadConfig;
@@ -92,7 +93,7 @@ public class InsightsUserActivity extends BaseMvpActivity<CommonPresenter, MeMod
         switch (whichApi) {
             case ApiConfig.APPLY_AUDIT:
                 AuthCodeBean mAuthCodeBeans = (AuthCodeBean) t[0];
-
+                finish();
                 break;
         }
     }

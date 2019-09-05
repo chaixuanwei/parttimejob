@@ -2,6 +2,8 @@ package com.example.myapplication.login;
 
 import android.content.Intent;
 import android.graphics.Paint;
+import android.os.Handler;
+import android.os.Message;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alipay.sdk.app.AuthTask;
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.myapplication.R;
 import com.example.myapplication.activity.MainActivity;
@@ -19,7 +22,12 @@ import com.example.myapplication.frame.BaseMvpActivity;
 import com.example.myapplication.frame.CommonPresenter;
 import com.example.myapplication.local_utils.SharedPrefrenceUtils;
 import com.example.myapplication.login.bean.LoginBean;
+import com.example.myapplication.login.bean.ZFBLoginBean;
+import com.example.myapplication.login.bean.ZFBTokenBean;
 import com.example.myapplication.model.LoginModel;
+import com.example.myapplication.zhifubao.AuthResult;
+
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -43,6 +51,24 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
     ImageView weixin;
     @BindView(R.id.zhifubao)
     ImageView zhifubao;
+    private static final int SDK_PAY_FLAG = 1;
+    private static final int SDK_AUTH_FLAG = 2;
+
+    Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case SDK_AUTH_FLAG: {
+                    @SuppressWarnings("unchecked")
+                    AuthResult authResult = new AuthResult((Map<String, String>) msg.obj, true);
+                    String resultStatus = authResult.getResultStatus();
+                    String mAuthCode = authResult.getAuthCode();
+                    mPresenter.getData(ApiConfig.ZFB_LOGIN, LoadConfig.NORMAL, mAuthCode);
+                    break;
+                }
+            }
+        }
+    };
 
     @Override
     public int getLayoutId() {
@@ -88,12 +114,59 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             finish();
                         }
                     });
                 } else {
                     ToastUtils.showShort(mLoginBeans.getMsg());
+                }
+                break;
+            case ApiConfig.GET_ZFB_LOGIN:
+                ZFBLoginBean mZFBLoginBeans = (ZFBLoginBean) t[0];
+                final String authInfo = mZFBLoginBeans.getData().getUrl();
+                Runnable authRunnable = new Runnable() {
+
+                    @Override
+                    public void run() {
+                        // 构造AuthTask 对象
+                        AuthTask authTask = new AuthTask(LoginActivity.this);
+                        // 调用授权接口，获取授权结果
+                        Map<String, String> result = authTask.authV2(authInfo, true);
+
+                        Message msg = new Message();
+                        msg.what = SDK_AUTH_FLAG;
+                        msg.obj = result;
+                        mHandler.sendMessage(msg);
+                    }
+                };
+
+                // 必须异步调用
+                Thread authThread = new Thread(authRunnable);
+                authThread.start();
+                break;
+            case ApiConfig.ZFB_LOGIN:
+                ZFBTokenBean mZFBTokenBeans = (ZFBTokenBean) t[0];
+                final ZFBTokenBean.DataBean mData = mZFBTokenBeans.getData();
+                if (!mData.getToken().equals("")) {
+                    SharedPrefrenceUtils.saveString(LoginActivity.this,Config.TOKEN,mData.getToken());
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            finish();
+                        }
+                    });
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent mIntent = new Intent(LoginActivity.this, RegisterActivity.class);
+                            String mAlipay_user_id = mData.getAlipay_user_id();
+                            mIntent.putExtra("id",mAlipay_user_id);
+                            startActivity(mIntent);
+                        }
+                    });
                 }
                 break;
         }
@@ -120,6 +193,7 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
             case R.id.weixin:
                 break;
             case R.id.zhifubao:
+                mPresenter.getData(ApiConfig.GET_ZFB_LOGIN, LoadConfig.NORMAL);
                 break;
         }
     }

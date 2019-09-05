@@ -2,7 +2,9 @@ package com.example.myapplication.me.fragment;
 
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.support.v4.app.ActivityCompat;
@@ -11,6 +13,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -67,7 +70,7 @@ import static com.example.myapplication.local_utils.NetHeaders.getAppVersionCode
 public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
     static MeFragment fragment;
     @BindView(R.id.head)
-    RoundImage head;
+    ImageView head;
     @BindView(R.id.name)
     TextView name;
     @BindView(R.id.signature)
@@ -222,6 +225,7 @@ public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
                 startActivity(mFeedbackIntent);
                 break;
             case R.id.log_out:
+                SharedPrefrenceUtils.saveString(getActivity(),Config.TOKEN,"");
                 Intent mLoginIntent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(mLoginIntent);
                 getActivity().finish();

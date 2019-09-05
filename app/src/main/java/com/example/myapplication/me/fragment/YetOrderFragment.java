@@ -46,6 +46,7 @@ public class YetOrderFragment extends BaseMvpFragment<CommonPresenter, MeModel> 
 
     @Override
     public void initView() {
+        mList.clear();
         initRecycleView(orderRv,orderSrl);
         mYetOrderAdapter = new YetOrderAdapter(getActivity(),mList);
         orderRv.setLayoutManager(new LinearLayoutManager(getActivity()));

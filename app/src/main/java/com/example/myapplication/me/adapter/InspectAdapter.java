@@ -43,16 +43,22 @@ public class InspectAdapter extends RecyclerView.Adapter<InspectAdapter.ViewHold
         int mComplete = mDataBean.getComplete();
         if (mComplete == 0) {
             mViewHolder.mItemInspectProgress.setText("项目进度：未完成");
+            mViewHolder.mItemInspectLookall.setVisibility(View.GONE);
         } else {
             mViewHolder.mItemInspectProgress.setText("项目进度：已完成");
+            mViewHolder.mItemInspectLookall.setVisibility(View.VISIBLE);
         }
-        mViewHolder.mItemInspectLl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mProjectReviewIntent = new Intent(mContext, ProjectReviewActivity.class);
-                mContext.startActivity(mProjectReviewIntent);
-            }
-        });
+        if (mViewHolder.mItemInspectLookall.getVisibility() == View.VISIBLE) {
+            mViewHolder.mItemInspectLl.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent mProjectReviewIntent = new Intent(mContext, ProjectReviewActivity.class);
+                    mContext.startActivity(mProjectReviewIntent);
+                }
+            });
+        } else {
+
+        }
     }
 
     @Override
@@ -64,11 +70,13 @@ public class InspectAdapter extends RecyclerView.Adapter<InspectAdapter.ViewHold
         private LinearLayout mItemInspectLl;
         private ImageView mItemInspectImg;
         private TextView mItemInspectName;
+        private TextView mItemInspectLookall;
         private TextView mItemInspectProgress;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mItemInspectLl = itemView.findViewById(R.id.item_inspect_ll);
+            mItemInspectLookall = itemView.findViewById(R.id.item_inspect_look_all);
             mItemInspectImg = itemView.findViewById(R.id.item_inspect_img);
             mItemInspectName = itemView.findViewById(R.id.item_inspect_name);
             mItemInspectProgress = itemView.findViewById(R.id.item_inspect_progress);

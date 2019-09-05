@@ -1,6 +1,6 @@
 package com.example.myapplication.login;
 
-import android.os.Bundle;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -18,7 +18,6 @@ import com.example.myapplication.login.bean.AuthCodeBean;
 import com.example.myapplication.model.LoginModel;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RegisterActivity extends BaseMvpActivity<CommonPresenter, LoginModel> {
@@ -38,6 +37,8 @@ public class RegisterActivity extends BaseMvpActivity<CommonPresenter, LoginMode
     @BindView(R.id.regist_cb)
     CheckBox registCb;
     private String mAuthCode;
+    private String mzfbId = "";
+    private String mwxId = "";
 
     @Override
     public int getLayoutId() {
@@ -46,7 +47,8 @@ public class RegisterActivity extends BaseMvpActivity<CommonPresenter, LoginMode
 
     @Override
     public void initView() {
-
+        Intent mIntent = getIntent();
+        mzfbId = mIntent.getStringExtra("id");
     }
 
     @Override
@@ -105,10 +107,10 @@ public class RegisterActivity extends BaseMvpActivity<CommonPresenter, LoginMode
                 finish();
                 break;
             case R.id.bt_register:
-                if (!registPhone.getText().toString().equals("") && registPassword.length() == 8
+                if (!registPhone.getText().toString().equals("") && registPassword.length() <16 && registPassword.length()>8
                         && !registPhone.getText().toString().equals("") && registCb.isChecked()) {
-                    if (registPassword.getText().toString().matches("^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,}$")) {
-                        mPresenter.getData(ApiConfig.REGIST, LoadConfig.NORMAL, registPhone.getText().toString(), registPassword.getText().toString(), registCode.getText().toString(), "1");
+                    if (registPassword.getText().toString().matches("[a-zA-Z0-9]{8,16}")) {
+                        mPresenter.getData(ApiConfig.REGIST, LoadConfig.NORMAL, registPhone.getText().toString(), registPassword.getText().toString(), registCode.getText().toString(), "1", mzfbId, mwxId);
                     } else {
                         ToastUtils.showShort("请输入正确的密码格式");
                     }

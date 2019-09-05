@@ -25,4 +25,7 @@ public class ApiConfig {
     public static final int APPLY_AUDIT = 22;//报名审核
     public static final int PROJECT_SUFFER = 23;//项目经验
     public static final int GET_PROJECT_RATE = 24;//项目进度
+    public static final int GET_WORKING_LIST = 25;//工作中列表
+    public static final int GET_ZFB_LOGIN = 26;//获取支付宝登录
+    public static final int ZFB_LOGIN = 27;//支付宝登录
 }

@@ -63,6 +63,7 @@ dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife"
     implementation "com.flyco.tablayout:FlycoTabLayout_Lib:$tablayout"
     implementation "com.github.bumptech.glide:glide:$glide"
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     implementation "com.squareup.okhttp3:okhttp:$okhttp3"
     implementation "com.squareup.okhttp3:logging-interceptor:$ok3log"
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanary"
@@ -83,4 +84,5 @@ dependencies {
     implementation 'com.jph.takephoto:takephoto_library:4.0.3'
     implementation 'com.amitshekhar.android:rx2-android-networking:1.0.0'
     implementation 'com.contrarywind:Android-PickerView:4.1.8'
+    implementation (name: 'alipaySdk-15.6.5-20190718211159', ext: 'aar')
 }

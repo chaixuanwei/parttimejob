@@ -3,6 +3,8 @@ package com.example.myapplication.frame;
 import com.example.myapplication.issus.bean.NatureBean;
 import com.example.myapplication.login.bean.AuthCodeBean;
 import com.example.myapplication.login.bean.LoginBean;
+import com.example.myapplication.login.bean.ZFBLoginBean;
+import com.example.myapplication.login.bean.ZFBTokenBean;
 import com.example.myapplication.me.bean.ApplyPeopleBean;
 import com.example.myapplication.me.bean.FeedBackBean;
 import com.example.myapplication.me.bean.IndustryBean;
@@ -12,6 +14,7 @@ import com.example.myapplication.me.bean.ProjectProgressBean;
 import com.example.myapplication.me.bean.ProjectSufferBean;
 import com.example.myapplication.me.bean.ScaleBean;
 import com.example.myapplication.me.bean.UploadTopBean;
+import com.example.myapplication.me.bean.WorkingBean;
 import com.example.myapplication.message.bean.AfficheBean;
 
 import java.io.File;
@@ -35,7 +38,9 @@ public interface INetService {
     Observable<AuthCodeBean> getRegister(@Field("username") String name,
                                          @Field("password") String password,
                                          @Field("mobile_code") String code,
-                                         @Field("agreement") String cd);
+                                         @Field("agreement") String cd,
+                                         @Field("alipay_user_id") String alipay_user_id,
+                                         @Field("wx_user_id") String wx_user_id);
 
     //登录
     @POST("api/user/public/login")
@@ -167,4 +172,17 @@ public interface INetService {
     @GET("api/user/taskorder/projectrate")
     Observable<ProjectProgressBean> getProjectrate(@Query("task_id") int task_id,
                                                    @Query("page") int page);
+
+    //获取工作中列表
+    @GET("api/user/taskcommit/index")
+    Observable<WorkingBean> getWorking(@Query("page") int page);
+
+    //获取支付宝登录
+    @GET("api/user/alipay/login")
+    Observable<ZFBLoginBean> getZFBLogin();
+
+    //
+    @POST("api/user/alipay/login")
+    @FormUrlEncoded
+    Observable<ZFBTokenBean> getZFBToken(@Field("auth_code") String auth_code);
 }

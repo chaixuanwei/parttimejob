@@ -18,7 +18,9 @@ public class LoginModel implements ICommonModel {
                 String mPassword = (String) t[2];
                 String mCode = (String) t[3];
                 String mCd = (String) t[4];
-                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getRegister(mName, mPassword, mCode, mCd), view, whichApi, mLoadMode);
+                String zfbid = (String) t[5];
+                String wxid = (String) t[6];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getRegister(mName, mPassword, mCode, mCd, zfbid, wxid), view, whichApi, mLoadMode);
                 break;
             case ApiConfig.GET_AUTH_CODE:
                 mLoadMode = (int) t[0];
@@ -36,7 +38,16 @@ public class LoginModel implements ICommonModel {
                 String mFindphone = (String) t[1];
                 String mFindpassword = (String) t[2];
                 String mFindCode = (String) t[3];
-                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getFindPassWord(mFindphone,mFindpassword,mFindCode),view,whichApi,mLoadMode);
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getFindPassWord(mFindphone, mFindpassword, mFindCode), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.GET_ZFB_LOGIN:
+                mLoadMode = (int) t[0];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getZFBLogin(), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.ZFB_LOGIN:
+                mLoadMode = (int) t[0];
+                String code = (String) t[1];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getZFBToken(code), view, whichApi, mLoadMode);
                 break;
         }
     }

@@ -40,9 +40,10 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <com.example.myapplication.view.RoundImage
+            <ImageView
                 android:layout_centerHorizontal="true"
                 android:src="@mipmap/camera"
+                android:scaleType="centerCrop"
                 android:id="@+id/headportrait"
                 android:layout_width="@dimen/dp_50"
                 android:layout_height="@dimen/dp_50" />

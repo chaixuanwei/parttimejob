@@ -61,6 +61,7 @@ public class ProjectExperienceFragment extends BaseMvpFragment<CommonPresenter, 
 
     @Override
     public void initView() {
+        mList.clear();
         initRecycleView(projectExperienceRv, projectExperienceSrl);
         mAdapter = new ProjectExperienceAdapter(getActivity(),mList);
         projectExperienceRv.setLayoutManager(new LinearLayoutManager(getActivity()));

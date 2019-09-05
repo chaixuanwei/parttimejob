@@ -130,6 +130,11 @@ public class MeModel implements ICommonModel {
                 mPage = (int) t[2];
                 NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getProjectrate(mTaskid, mPage), view, whichApi, mLoadMode);
                 break;
+            case ApiConfig.GET_WORKING_LIST:
+                mLoadMode = (int) t[0];
+                mPage = (int) t[1];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getWorking(mPage), view, whichApi, mLoadMode);
+                break;
         }
     }
 }

@@ -28,6 +28,7 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
     <TextView
+        android:id="@+id/item_inspect_look_all"
         android:text="查看详细"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
