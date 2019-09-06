@@ -12,7 +12,7 @@ android {
         versionName rootProject.ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    packagingOptions {//加上这写代码
+    packagingOptions {
         pickFirst 'META-INF/*'
     }
     signingConfigs {

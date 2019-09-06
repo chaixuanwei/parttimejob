@@ -12,6 +12,7 @@ import com.example.myapplication.me.bean.MyIssusBean;
 import com.example.myapplication.me.bean.PerfectBean;
 import com.example.myapplication.me.bean.ProjectProgressBean;
 import com.example.myapplication.me.bean.ProjectSufferBean;
+import com.example.myapplication.me.bean.SalaryBean;
 import com.example.myapplication.me.bean.ScaleBean;
 import com.example.myapplication.me.bean.UploadTopBean;
 import com.example.myapplication.me.bean.WorkingBean;
@@ -181,8 +182,16 @@ public interface INetService {
     @GET("api/user/alipay/login")
     Observable<ZFBLoginBean> getZFBLogin();
 
-    //
+    //支付宝登录获取token
     @POST("api/user/alipay/login")
     @FormUrlEncoded
     Observable<ZFBTokenBean> getZFBToken(@Field("auth_code") String auth_code);
+
+    //工资未结列表
+    @GET("api/user/taskorder/notpay")
+    Observable<SalaryBean> getSalary(@Query("page") int page);
+
+    //待录取列表
+    @GET("api/user/taskorder/waitenroll")
+    Observable<SalaryBean> getWait(@Query("page") int page);
 }

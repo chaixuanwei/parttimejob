@@ -6,47 +6,46 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.me.bean.SalaryBean;
+
+import java.util.ArrayList;
 
 public class WaitListAdapter extends RecyclerView.Adapter<WaitListAdapter.ViewHolder> {
     Context mContext;
+    ArrayList<SalaryBean.DataBean> mList;
 
-    public WaitListAdapter(Context pContext) {
+    public WaitListAdapter(Context pContext, ArrayList<SalaryBean.DataBean> pList) {
         mContext = pContext;
+        mList = pList;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup pViewGroup, int pI) {
-        View mView = LayoutInflater.from(mContext).inflate(R.layout.item_wait_list, pViewGroup, false);
+        View mView = LayoutInflater.from(mContext).inflate(R.layout.item_wait, pViewGroup, false);
         ViewHolder mViewHolder = new ViewHolder(mView);
         return mViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder pViewHolder, int pI) {
-
+        ViewHolder mViewHolder = pViewHolder;
+        mViewHolder.mWaitFirmName.setText(mList.get(pI).getTask_name());
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return mList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView mWaitListImg;
-        private TextView mWaitListName;
-        private TextView mWaitListProject;
-        private TextView mWaitListProgress;
+        private TextView mWaitFirmName;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mWaitListImg = itemView.findViewById(R.id.wait_list_img);
-            mWaitListName = itemView.findViewById(R.id.wait_list_name);
-            mWaitListProject = itemView.findViewById(R.id.wait_list_project);
-            mWaitListProgress = itemView.findViewById(R.id.wait_list_progress);
+            mWaitFirmName = itemView.findViewById(R.id.wait_firm_name);
         }
     }
 }

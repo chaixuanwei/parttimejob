@@ -28,4 +28,6 @@ public class ApiConfig {
     public static final int GET_WORKING_LIST = 25;//工作中列表
     public static final int GET_ZFB_LOGIN = 26;//获取支付宝登录
     public static final int ZFB_LOGIN = 27;//支付宝登录
+    public static final int GET_SALARY = 28;//工资未结
+    public static final int GET_WAIT = 29;//待录取列表
 }
