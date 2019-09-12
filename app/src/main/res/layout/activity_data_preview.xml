@@ -144,7 +144,7 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
-    <com.example.myapplication.view.BarChartView
+    <com.sxxh.linghuo.view.BarChartView
         android:id="@+id/barChartView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

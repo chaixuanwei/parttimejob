@@ -20,7 +20,7 @@
             android:layout_gravity="left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <com.example.myapplication.view.RoundImage
+        <com.sxxh.linghuo.view.RoundImage
             android:id="@+id/my_photo"
             android:src="@mipmap/positve"
             android:layout_width="@dimen/dp_57"

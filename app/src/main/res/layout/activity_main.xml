@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_1" />
 
-    <com.example.myapplication.customs.MyBottomView
+    <com.sxxh.linghuo.customs.MyBottomView
         android:id="@+id/bottom_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

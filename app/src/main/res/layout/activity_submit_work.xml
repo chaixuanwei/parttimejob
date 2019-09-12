@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.myapplication.me.activity.SubmitWorkActivity">
+    tools:context=".me.activity.SubmitWorkActivity">
     <android.support.v7.widget.Toolbar
         android:id="@+id/submit_work_tbr"
         android:paddingTop="@dimen/dp_30"

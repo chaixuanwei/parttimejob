@@ -46,6 +46,7 @@
             android:layout_height="wrap_content" />
         <RelativeLayout
             android:id="@+id/now_login"
+            android:visibility="gone"
             android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -110,6 +111,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <LinearLayout
+            android:id="@+id/wx_ll"
             android:layout_marginTop="@dimen/dp_15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -129,6 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/wx_bind"
                 android:background="@drawable/blue_oval_frame"
                 android:layout_gravity="center"
                 android:text="绑定"
@@ -139,6 +142,7 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/wb_ll"
             android:layout_marginTop="@dimen/dp_15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -158,6 +162,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/wb_bind"
                 android:background="@drawable/blue_oval_frame"
                 android:text="绑定"
                 android:layout_gravity="center"
@@ -168,6 +173,7 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/zfb_ll"
             android:layout_marginTop="@dimen/dp_15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -187,6 +193,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:id="@+id/zfb_bind"
                 android:background="@drawable/blue_oval_frame"
                 android:text="绑定"
                 android:gravity="center"

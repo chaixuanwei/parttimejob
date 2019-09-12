@@ -5,6 +5,7 @@
     android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/item_affiche_img"
+        android:scaleType="centerCrop"
         android:layout_width="@dimen/dp_50"
         android:layout_height="@dimen/dp_50" />
     <LinearLayout

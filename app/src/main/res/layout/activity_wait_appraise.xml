@@ -25,19 +25,20 @@
             <TextView
                 android:layout_centerInParent="true"
                 android:text="待评价"
+                android:textColor="@color/write"
                 android:textStyle="bold"
                 android:textSize="@dimen/sp_18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
-    <android.support.v4.widget.SwipeRefreshLayout
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/wait_appraise_srl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/wait_appraise_rv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </android.support.v4.widget.SwipeRefreshLayout>
+            android:layout_height="match_parent"/>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>

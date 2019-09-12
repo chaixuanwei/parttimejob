@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.myapplication.activity.WebviewActivity">
+    tools:context="com.sxxh.linghuo.activity.WebviewActivity">
     <android.support.v7.widget.Toolbar
         android:paddingTop="@dimen/dp_30"
         android:background="@drawable/toolbar"

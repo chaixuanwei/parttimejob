@@ -7,7 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
-        <com.example.myapplication.customs.ProgressImageView
+        <com.sxxh.linghuo.customs.ProgressImageView
             android:id="@+id/view_list_empty_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
