@@ -10,15 +10,16 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alipay.sdk.app.AuthTask;
 import com.blankj.utilcode.util.ToastUtils;
+import com.google.gson.Gson;
 import com.switfpass.pay.utils.Constants;
 import com.sxxh.linghuo.R;
 import com.sxxh.linghuo.activity.MainActivity;
@@ -34,7 +35,6 @@ import com.sxxh.linghuo.login.bean.WXTokenBean;
 import com.sxxh.linghuo.login.bean.ZFBLoginBean;
 import com.sxxh.linghuo.login.bean.ZFBTokenBean;
 import com.sxxh.linghuo.model.LoginModel;
-import com.sxxh.linghuo.wxapi.WXEntryActivity;
 import com.sxxh.linghuo.zhifubao.AuthResult;
 import com.tencent.mm.opensdk.constants.ConstantsAPI;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
@@ -66,8 +66,8 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
     @BindView(R.id.zhifubao)
     ImageView zhifubao;
     private IWXAPI api;
-    private static final int SDK_WX_LOGIN = 1;
     private static final int SDK_ZFB_LOGIN = 2;
+    private static final String APP_ID = "wx09fddc4711f09625";
     Boolean isWx = false;
 
     Handler mHandler = new Handler() {
@@ -94,8 +94,17 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        api = WXAPIFactory.createWXAPI(this, WXEntryActivity.WEIXIN_APP_ID, true);
-        api.registerApp(WXEntryActivity.WEIXIN_APP_ID);
+        regToWx();
+    }
+
+    private void regToWx() {
+        // 通过WXAPIFactory工厂，获取IWXAPI的实例
+        api = WXAPIFactory.createWXAPI(this, APP_ID, true);
+
+        // 将应用的appId注册到微信
+        api.registerApp(APP_ID);
+
+        //建议动态监听微信启动广播进行注册到微信
         registerReceiver(new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -137,7 +146,7 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
     @Override
     public void onResponse(int whichApi, Object[] t) {
         switch (whichApi) {
-            case ApiConfig.GET_Login:
+            case ApiConfig.GET_LOGIN:
                 LoginBean mLoginBeans = (LoginBean) t[0];
                 SharedPrefrenceUtils.saveString(LoginActivity.this, Config.TOKEN, mLoginBeans.getData().getToken());
                 String mString = SharedPrefrenceUtils.getString(this, Config.TOKEN);
@@ -182,50 +191,59 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
                 break;
             case ApiConfig.ZFB_LOGIN:
                 ZFBTokenBean mZFBTokenBeans = (ZFBTokenBean) t[0];
-                final ZFBTokenBean.DataBean mZFBData = mZFBTokenBeans.getData();
-                if (!mZFBData.getToken().equals("")) {
-                    SharedPrefrenceUtils.saveString(LoginActivity.this,Config.TOKEN,mZFBData.getToken());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                            finish();
-                        }
-                    });
-                } else {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent mIntent = new Intent(LoginActivity.this, RegisterActivity.class);
-                            String mAlipay_user_id = mZFBData.getAlipay_user_id();
-                            mIntent.putExtra("id",mAlipay_user_id);
-                            startActivity(mIntent);
-                        }
-                    });
+                Log.e(TAG, "onResponse: " + mZFBTokenBeans);
+                if (!TextUtils.isEmpty(mZFBTokenBeans.getData().toString())) {
+                    Gson mGson = new Gson();
+                    String mZFBDatas = mGson.toJson(mZFBTokenBeans.getData());
+                    final ZFBTokenBean.DataBean mZFBData = mGson.fromJson(mZFBDatas, ZFBTokenBean.DataBean.class);
+                    if (!mZFBData.getToken().equals("")) {
+                        SharedPrefrenceUtils.saveString(LoginActivity.this, Config.TOKEN, mZFBData.getToken());
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                finish();
+                            }
+                        });
+                    } else {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent mIntent = new Intent(LoginActivity.this, RegisterActivity.class);
+                                String mAlipay_user_id = mZFBData.getAlipay_user_id();
+                                mIntent.putExtra("id", mAlipay_user_id);
+                                startActivity(mIntent);
+                            }
+                        });
+                    }
                 }
                 break;
             case ApiConfig.WX_LOGIN:
                 WXTokenBean mWXTokenBean = (WXTokenBean) t[0];
-                final WXTokenBean.DataBean mWXData = mWXTokenBean.getData();
-                if (!mWXData.getToken().equals("")) {
-                    SharedPrefrenceUtils.saveString(LoginActivity.this,Config.TOKEN,mWXData.getToken());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                            finish();
-                        }
-                    });
-                } else {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent mIntent = new Intent(LoginActivity.this, RegisterActivity.class);
-                            String mWx_user_id = mWXData.getWx_user_id();
-                            mIntent.putExtra("id",mWx_user_id);
-                            startActivity(mIntent);
-                        }
-                    });
+                if (!TextUtils.isEmpty(mWXTokenBean.getData().toString())) {
+                    Gson mGson = new Gson();
+                    String mWXDatas = mGson.toJson(mWXTokenBean.getData());
+                    final WXTokenBean.DataBean mWXData = mGson.fromJson(mWXDatas, WXTokenBean.DataBean.class);
+                    if (!mWXData.getToken().equals("")) {
+                        SharedPrefrenceUtils.saveString(LoginActivity.this, Config.TOKEN, mWXData.getToken());
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                finish();
+                            }
+                        });
+                    } else {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent mIntent = new Intent(LoginActivity.this, RegisterActivity.class);
+                                String mWx_user_id = mWXData.getWx_user_id();
+                                mIntent.putExtra("id", mWx_user_id);
+                                startActivity(mIntent);
+                            }
+                        });
+                    }
                 }
                 break;
         }
@@ -239,7 +257,7 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
                 break;
             case R.id.bt_login:
                 if (!userPhone.getText().toString().equals("") && !userPassword.getText().toString().equals("")) {
-                    mPresenter.getData(ApiConfig.GET_Login, LoadConfig.NORMAL, userPhone.getText().toString(), userPassword.getText().toString());
+                    mPresenter.getData(ApiConfig.GET_LOGIN, LoadConfig.NORMAL, userPhone.getText().toString(), userPassword.getText().toString());
                 } else {
                     ToastUtils.showShort("请填写信息！");
                 }
@@ -263,21 +281,25 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
      * 登录微信
      */
     private void WXLogin() {
-        api = WXAPIFactory.createWXAPI(this, WXEntryActivity.WEIXIN_APP_ID, true);
-        api.registerApp(WXEntryActivity.WEIXIN_APP_ID);
         SendAuth.Req req = new SendAuth.Req();
         req.scope = "snsapi_userinfo";
-        req.state = "wechat_sdk_demo";
+        req.state = "wechat_sdk_demo_test";
         api.sendReq(req);
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (!WXEntryActivity.mOpenId.equals("") && isWx) {
+        String mOpenId = SharedPrefrenceUtils.getString(LoginActivity.this, Config.OPENID);
+        String mNickName = SharedPrefrenceUtils.getString(LoginActivity.this, Config.NICKNAME,"");
+        String mSex = SharedPrefrenceUtils.getString(LoginActivity.this, Config.SEX,"");
+        String mCity = SharedPrefrenceUtils.getString(LoginActivity.this, Config.CITY,"");
+        String mProvince = SharedPrefrenceUtils.getString(LoginActivity.this, Config.PROVINCE,"");
+        String mCountry = SharedPrefrenceUtils.getString(LoginActivity.this, Config.COUNTRY,"");
+        String mHeadimgurl = SharedPrefrenceUtils.getString(LoginActivity.this, Config.HEADIMGURL,"");
+        if (!mOpenId.equals("") && isWx) {
             isWx = false;
-            mPresenter.getData(ApiConfig.WX_LOGIN, LoadConfig.NORMAL,WXEntryActivity.nickName, WXEntryActivity.mOpenId,WXEntryActivity.headimgurl,WXEntryActivity.province,WXEntryActivity.city ,"login");
+            mPresenter.getData(ApiConfig.WX_LOGIN, LoadConfig.NORMAL, mNickName, mOpenId, mHeadimgurl, mProvince, mCity, "login");
         }
     }
 }

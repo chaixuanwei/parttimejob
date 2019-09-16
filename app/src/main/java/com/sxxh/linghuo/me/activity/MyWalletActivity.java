@@ -2,22 +2,23 @@ package com.sxxh.linghuo.me.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.sxxh.linghuo.R;
+import com.sxxh.linghuo.config.ApiConfig;
 import com.sxxh.linghuo.config.Config;
 import com.sxxh.linghuo.frame.BaseMvpActivity;
 import com.sxxh.linghuo.frame.CommonPresenter;
 import com.sxxh.linghuo.local_utils.SharedPrefrenceUtils;
+import com.sxxh.linghuo.me.bean.HeadBalanceBean;
 import com.sxxh.linghuo.model.MeModel;
 import com.sxxh.linghuo.view.RoundImage;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class MyWalletActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
@@ -34,6 +35,9 @@ public class MyWalletActivity extends BaseMvpActivity<CommonPresenter, MeModel> 
     ImageView back;
     @BindView(R.id.my_photo)
     RoundImage myPhoto;
+    @BindView(R.id.balance_num)
+    TextView balanceNum;
+    private String mBalance;
 
     @Override
     public int getLayoutId() {
@@ -50,7 +54,7 @@ public class MyWalletActivity extends BaseMvpActivity<CommonPresenter, MeModel> 
 
     @Override
     public void initData() {
-
+        mPresenter.getData(ApiConfig.HEAD_BALANCE);
     }
 
     @Override
@@ -70,14 +74,23 @@ public class MyWalletActivity extends BaseMvpActivity<CommonPresenter, MeModel> 
 
     @Override
     public void onResponse(int whichApi, Object[] t) {
-
+        switch (whichApi) {
+            case ApiConfig.HEAD_BALANCE:
+                HeadBalanceBean mHeadBalances = (HeadBalanceBean) t[0];
+                Glide.with(this).load(mHeadBalances.getData().getAvatar()).into(myPhoto);
+                mBalance = mHeadBalances.getData().getBalance();
+                balanceNum.setText(mBalance);
+                break;
+        }
     }
 
     @OnClick({R.id.balancedrawal_ll, R.id.financialdetails_ll, R.id.datastatistics_ll})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.balancedrawal_ll:
-                startActivity(new Intent(this, BalanceDrawalActivity.class));
+                Intent mBalanceDrawalIntent = new Intent(this, BalanceDrawalActivity.class);
+                mBalanceDrawalIntent.putExtra("balance", mBalance);
+                startActivity(mBalanceDrawalIntent);
                 break;
             case R.id.financialdetails_ll:
                 startActivity(new Intent(this, FinancialDetailsActivity.class));
@@ -91,12 +104,5 @@ public class MyWalletActivity extends BaseMvpActivity<CommonPresenter, MeModel> 
     @OnClick(R.id.back)
     public void onClick() {
         finish();
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 }

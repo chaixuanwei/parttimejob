@@ -9,6 +9,8 @@ import com.sxxh.linghuo.login.bean.ZFBLoginBean;
 import com.sxxh.linghuo.login.bean.ZFBTokenBean;
 import com.sxxh.linghuo.me.bean.ApplyPeopleBean;
 import com.sxxh.linghuo.me.bean.FeedBackBean;
+import com.sxxh.linghuo.me.bean.FinancialDetailsBean;
+import com.sxxh.linghuo.me.bean.HeadBalanceBean;
 import com.sxxh.linghuo.me.bean.IdBindBean;
 import com.sxxh.linghuo.me.bean.IndustryBean;
 import com.sxxh.linghuo.me.bean.MyIssusBean;
@@ -18,6 +20,7 @@ import com.sxxh.linghuo.me.bean.ProjectSufferBean;
 import com.sxxh.linghuo.me.bean.SalaryBean;
 import com.sxxh.linghuo.me.bean.ScaleBean;
 import com.sxxh.linghuo.me.bean.UploadTopBean;
+import com.sxxh.linghuo.me.bean.WaitAppraiseBean;
 import com.sxxh.linghuo.me.bean.WorkingBean;
 import com.sxxh.linghuo.message.bean.AfficheBean;
 
@@ -226,4 +229,26 @@ public interface INetService {
     //账户绑定
     @GET("api/user/profile/bindingList")
     Observable<IdBindBean> getIdBind();
+
+    //获取头像和余额
+    @GET("api/user/profile/user_balance")
+    Observable<HeadBalanceBean> getHeadBalance();
+
+    //资金明细
+    @GET("api/user/profile/capital_details")
+    Observable<FinancialDetailsBean> getFinancialDetails();
+
+    //待评价列表
+    @GET("api/user/taskorder/waitcomment")
+    Observable<WaitAppraiseBean> getWaitAppraise(@Query("page") int page);
+
+    //评价提交
+    @POST("api/user/comment/commit")
+    @FormUrlEncoded
+    Observable<AuthCodeBean> setAtonce(@Field("u_id") int u_id,
+                                       @Field("paycomment") int paycomment,
+                                       @Field("servicecomment") int servicecomment,
+                                       @Field("stationcomment") int stationcomment,
+                                       @Field("tagscomment") String tagscomment,
+                                       @Field("concomment") String concomment);
 }

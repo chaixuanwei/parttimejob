@@ -1,6 +1,7 @@
 package com.sxxh.linghuo.login;
 
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -39,6 +40,7 @@ public class RegisterActivity extends BaseMvpActivity<CommonPresenter, LoginMode
     private String mAuthCode;
     private String mzfbId = "";
     private String mwxId = "";
+    private CountDownTimer mCountDownTimer;
 
     @Override
     public int getLayoutId() {
@@ -120,11 +122,32 @@ public class RegisterActivity extends BaseMvpActivity<CommonPresenter, LoginMode
                 break;
             case R.id.regist_getcord:
                 if (!registPhone.getText().toString().equals("")) {
+                    mCountDownTimer = new CountDownTimer(180000, 1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            registGetcord.setText("获取验证码("+(millisUntilFinished / 1000) + " s)");
+                            registGetcord.setClickable(false);
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            registGetcord.setText("获取验证码");
+                            registGetcord.setClickable(false);
+                        }
+                    }.start();
                     mPresenter.getData(ApiConfig.GET_AUTH_CODE, LoadConfig.NORMAL, registPhone.getText().toString());
                 } else {
                     ToastUtils.showShort("请输入手机号");
                 }
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mCountDownTimer != null) {
+            mCountDownTimer.cancel();
+        }
+        super.onDestroy();
     }
 }

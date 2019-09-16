@@ -3,7 +3,7 @@ package com.sxxh.linghuo.config;
 public class ApiConfig {
     public static final int REGIST = 1;//注册
     public static final int GET_AUTH_CODE = 2;//获取验证码
-    public static final int GET_Login = 3;//登录
+    public static final int GET_LOGIN = 3;//登录
     public static final int GET_FindPassword = 4;//找回密码
     public static final int UPLOAD_PICTURES = 5;//上传
     public static final int SET_PREJECT = 6;//上传资料
@@ -34,4 +34,8 @@ public class ApiConfig {
     public static final int GET_WX_LOGIN = 31;//获取微信登录
     public static final int WX_LOGIN = 32;//微信登录
     public static final int ID_BIND = 33;//账号绑定
+    public static final int HEAD_BALANCE = 34;//获取头像和余额
+    public static final int FINANCIAL_DETAIL = 35;//资金明细
+    public static final int WAIT_APPRAISE = 36;//待评价列表
+    public static final int SET_ATONCE = 37;//评价提交
 }

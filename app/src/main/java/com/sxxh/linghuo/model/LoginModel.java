@@ -27,7 +27,7 @@ public class LoginModel implements ICommonModel {
                 String mobile = (String) t[1];
                 NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getAuthCode(mobile), view, whichApi, mLoadMode);
                 break;
-            case ApiConfig.GET_Login:
+            case ApiConfig.GET_LOGIN:
                 mLoadMode = (int) t[0];
                 String mUserphone = (String) t[1];
                 String mUserpassword = (String) t[2];

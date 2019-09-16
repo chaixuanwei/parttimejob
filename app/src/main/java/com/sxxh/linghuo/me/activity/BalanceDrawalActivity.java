@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -16,6 +17,7 @@ import com.sxxh.linghuo.frame.CommonPresenter;
 import com.sxxh.linghuo.model.MeModel;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class BalanceDrawalActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
@@ -34,6 +36,10 @@ public class BalanceDrawalActivity extends BaseMvpActivity<CommonPresenter, MeMo
     RelativeLayout balanceRlYinhang;
     @BindView(R.id.pay_mode_ll)
     LinearLayout payModeLl;
+    @BindView(R.id.total_balance)
+    TextView totalBalance;
+    @BindView(R.id.balance_sum)
+    EditText balanceSum;
 
     @Override
     public int getLayoutId() {
@@ -42,7 +48,9 @@ public class BalanceDrawalActivity extends BaseMvpActivity<CommonPresenter, MeMo
 
     @Override
     public void initView() {
-
+        Intent mIntent = getIntent();
+        String mBalance = mIntent.getStringExtra("balance");
+        totalBalance.setText(mBalance);
     }
 
     @Override
@@ -61,7 +69,7 @@ public class BalanceDrawalActivity extends BaseMvpActivity<CommonPresenter, MeMo
     }
 
     @Override
-    public void onError(int whichApi,Throwable e) {
+    public void onError(int whichApi, Throwable e) {
 
     }
 
@@ -69,7 +77,6 @@ public class BalanceDrawalActivity extends BaseMvpActivity<CommonPresenter, MeMo
     public void onResponse(int whichApi, Object[] t) {
 
     }
-
 
     @OnClick({R.id.back, R.id.pay, R.id.balancedrawal_mode, R.id.balance_rl_weixin, R.id.balance_rl_zhifubao, R.id.balance_rl_yinhang})
     public void onClick(View view) {
@@ -91,7 +98,7 @@ public class BalanceDrawalActivity extends BaseMvpActivity<CommonPresenter, MeMo
                 balancedrawalMode.setText("支付宝");
                 break;
             case R.id.balance_rl_yinhang:
-                Intent mIntent = new Intent(this,BindbankcardActivity.class);
+                Intent mIntent = new Intent(this, BindbankcardActivity.class);
                 startActivityForResult(mIntent, Config.BINDBACK);
                 payModeLl.setVisibility(View.GONE);
                 balancedrawalMode.setText("银行卡");
@@ -108,7 +115,7 @@ public class BalanceDrawalActivity extends BaseMvpActivity<CommonPresenter, MeMo
             String mIdnumber = mBundle.getString("idnumber");
             String mIdcard = mBundle.getString("idcard");
             String mIdphoto = mBundle.getString("idphoto");
-            balancedrawalMode.setText("银行卡("+mIdcard.substring(mIdcard.length()-4)+")");
+            balancedrawalMode.setText("银行卡(" + mIdcard.substring(mIdcard.length() - 4) + ")");
         }
     }
 }

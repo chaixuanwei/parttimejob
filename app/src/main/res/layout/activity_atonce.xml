@@ -197,6 +197,7 @@
     </LinearLayout>
 
     <EditText
+        android:id="@+id/ed_content"
         android:layout_below="@id/atonce_check_two"
         android:background="@drawable/grey_background"
         android:minLines="5"

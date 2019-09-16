@@ -1,7 +1,14 @@
 package com.sxxh.linghuo.me.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,19 +17,31 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alipay.sdk.app.AuthTask;
+import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.switfpass.pay.utils.Constants;
 import com.sxxh.linghuo.R;
+import com.sxxh.linghuo.activity.MainActivity;
 import com.sxxh.linghuo.config.ApiConfig;
 import com.sxxh.linghuo.config.Config;
 import com.sxxh.linghuo.config.LoadConfig;
 import com.sxxh.linghuo.frame.BaseMvpActivity;
 import com.sxxh.linghuo.frame.CommonPresenter;
 import com.sxxh.linghuo.local_utils.SharedPrefrenceUtils;
+import com.sxxh.linghuo.login.LoginActivity;
+import com.sxxh.linghuo.login.RegisterActivity;
+import com.sxxh.linghuo.login.bean.WXLoginBean;
+import com.sxxh.linghuo.login.bean.WXTokenBean;
 import com.sxxh.linghuo.login.bean.ZFBLoginBean;
 import com.sxxh.linghuo.login.bean.ZFBTokenBean;
 import com.sxxh.linghuo.me.bean.IdBindBean;
 import com.sxxh.linghuo.model.MeModel;
 import com.sxxh.linghuo.zhifubao.AuthResult;
+import com.tencent.mm.opensdk.constants.ConstantsAPI;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import java.util.Map;
 
@@ -58,6 +77,9 @@ public class IdBindActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
     @BindView(R.id.zfb_bind)
     TextView zfbBind;
     private static final int SDK_AUTH_FLAG = 2;
+    private IWXAPI api;
+    private static final String APP_ID = "wx09fddc4711f09625";
+    Boolean isWx = false;
 
     Handler mHandler = new Handler() {
         @Override
@@ -83,6 +105,12 @@ public class IdBindActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
     @Override
     public void initView() {
 
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        regToWx();
     }
 
     @Override
@@ -161,10 +189,58 @@ public class IdBindActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
                 break;
             case ApiConfig.ZFB_LOGIN:
                 ZFBTokenBean mZFBTokenBeans = (ZFBTokenBean) t[0];
-                final ZFBTokenBean.DataBean mZFBData = mZFBTokenBeans.getData();
-                SharedPrefrenceUtils.saveString(IdBindActivity.this, Config.TOKEN, mZFBData.getToken());
+                if (!TextUtils.isEmpty(mZFBTokenBeans.getData().toString())) {
+                    Gson mGson = new Gson();
+                    String mZFBDatas = mGson.toJson(mZFBTokenBeans.getData());
+                    final ZFBTokenBean.DataBean mZFBData = mGson.fromJson(mZFBDatas, ZFBTokenBean.DataBean.class);
+                    ToastUtils.showShort(mZFBTokenBeans.getMsg());
+                    SharedPrefrenceUtils.saveString(IdBindActivity.this, Config.TOKEN, mZFBData.getToken());
+                } else {
+                    ToastUtils.showShort(mZFBTokenBeans.getMsg());
+                }
+                break;
+            case ApiConfig.GET_WX_LOGIN:
+                WXLoginBean mWXLoginBeans = (WXLoginBean) t[0];
+                WXLogin();
+                break;
+            case ApiConfig.WX_LOGIN:
+                WXTokenBean mWXTokenBean = (WXTokenBean) t[0];
+                if (!TextUtils.isEmpty(mWXTokenBean.getData().toString())) {
+                    Gson mGson = new Gson();
+                    String mWXDatas = mGson.toJson(mWXTokenBean.getData());
+                    WXTokenBean.DataBean mDataBean = mGson.fromJson(mWXDatas, WXTokenBean.DataBean.class);
+
+                }
                 break;
         }
+    }
+
+    /**
+     * 登录微信
+     */
+    private void regToWx() {
+        // 通过WXAPIFactory工厂，获取IWXAPI的实例
+        api = WXAPIFactory.createWXAPI(this, APP_ID, true);
+
+        // 将应用的appId注册到微信
+        api.registerApp(APP_ID);
+
+        //建议动态监听微信启动广播进行注册到微信
+        registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                // 将该app注册到微信
+                api.registerApp(Constants.APP_ID);
+            }
+        }, new IntentFilter(ConstantsAPI.ACTION_REFRESH_WXAPP));
+    }
+
+    private void WXLogin() {
+        SendAuth.Req req = new SendAuth.Req();
+        req.scope = "snsapi_userinfo";
+        req.state = "wechat_sdk_demo_test";
+        api.sendReq(req);
     }
 
     @OnClick({R.id.back, R.id.wx_bind, R.id.wb_bind, R.id.zfb_bind})
@@ -174,12 +250,30 @@ public class IdBindActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
                 finish();
                 break;
             case R.id.wx_bind:
+                isWx = true;
+                mPresenter.getData(ApiConfig.GET_WX_LOGIN, LoadConfig.NORMAL);
                 break;
             case R.id.wb_bind:
                 break;
             case R.id.zfb_bind:
                 mPresenter.getData(ApiConfig.GET_ZFB_LOGIN, LoadConfig.NORMAL);
                 break;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String mOpenId = SharedPrefrenceUtils.getString(IdBindActivity.this, Config.OPENID);
+        String mNickName = SharedPrefrenceUtils.getString(IdBindActivity.this, Config.NICKNAME,"");
+        String mSex = SharedPrefrenceUtils.getString(IdBindActivity.this, Config.SEX,"");
+        String mCity = SharedPrefrenceUtils.getString(IdBindActivity.this, Config.CITY,"");
+        String mProvince = SharedPrefrenceUtils.getString(IdBindActivity.this, Config.PROVINCE,"");
+        String mCountry = SharedPrefrenceUtils.getString(IdBindActivity.this, Config.COUNTRY,"");
+        String mHeadimgurl = SharedPrefrenceUtils.getString(IdBindActivity.this, Config.HEADIMGURL,"");
+        if (!mOpenId.equals("") && isWx) {
+            isWx = false;
+            mPresenter.getData(ApiConfig.WX_LOGIN, LoadConfig.NORMAL, mNickName, mOpenId, mHeadimgurl, mProvince, mCity, "binding");
         }
     }
 }

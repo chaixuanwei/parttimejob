@@ -15,5 +15,12 @@ public class Config {
     public static final int FINISH = 101;
     public static final int PHOTO = 2;
     public static final int MOREPHOTO = 3;
+    public static final String OPENID = "OpenId";
+    public static final String NICKNAME = "nickName";
+    public static final String SEX = "sex";
+    public static final String CITY = "city";
+    public static final String PROVINCE = "province";
+    public static final String COUNTRY = "country";
+    public static final String HEADIMGURL = "headimgurl";
     public static final String APP_ID_WX = "wx09fddc4711f09625";
 }

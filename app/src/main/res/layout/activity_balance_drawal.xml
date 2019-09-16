@@ -141,6 +141,7 @@
                 android:textSize="@dimen/sp_15" />
 
             <TextView
+                android:id="@+id/total_balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -171,15 +172,18 @@
                 android:textColor="@color/black_theme"
                 android:textSize="@dimen/sp_15" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/balance_sum"
+                android:layout_width="match_parent"
+                android:background="@null"
+                android:gravity="right"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:drawableRight="@mipmap/right"
                 android:drawablePadding="@dimen/dp_10"
                 android:paddingRight="@dimen/dp_10"
-                android:text="1元起"
+                android:hint="1元起"
                 android:textColor="@color/grey_second"
                 android:textSize="@dimen/sp_15" />
         </RelativeLayout>

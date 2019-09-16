@@ -1,5 +1,6 @@
 package com.sxxh.linghuo.login;
 
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,6 +32,7 @@ public class FindPasswordActivity extends BaseMvpActivity<CommonPresenter, Login
     TextView getcord;
     @BindView(R.id.find_password)
     EditText findPassword;
+    private CountDownTimer mCountDownTimer;
 
     @Override
     public int getLayoutId() {
@@ -73,6 +75,7 @@ public class FindPasswordActivity extends BaseMvpActivity<CommonPresenter, Login
                 AuthCodeBean mAuthCodeBean = (AuthCodeBean) t[0];
                 if (mAuthCodeBean.getCode() == 1) {
                     ToastUtils.showShort(mAuthCodeBean.getMsg());
+                    finish();
                 }
                 break;
         }
@@ -93,11 +96,30 @@ public class FindPasswordActivity extends BaseMvpActivity<CommonPresenter, Login
                 break;
             case R.id.getcord:
                 if (!findUserPhone.getText().toString().equals("")) {
+                    mCountDownTimer = new CountDownTimer(180000, 1000) {
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            getcord.setText("获取验证码("+(millisUntilFinished / 1000) + " s)");
+                            getcord.setClickable(false);
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            getcord.setText("获取验证码");
+                            getcord.setClickable(false);
+                        }
+                    }.start();
                     mPresenter.getData(ApiConfig.GET_AUTH_CODE, LoadConfig.NORMAL, findUserPhone.getText().toString());
                 } else {
                     ToastUtils.showShort("请输入手机号");
                 }
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        mCountDownTimer.cancel();
+        super.onDestroy();
     }
 }

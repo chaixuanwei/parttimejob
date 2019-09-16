@@ -165,6 +165,42 @@ public class MeModel implements ICommonModel {
                 String zfbact = (String) t[2];
                 NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getZFBToken(code, zfbact), view, whichApi, mLoadMode);
                 break;
+            case ApiConfig.GET_WX_LOGIN:
+                mLoadMode = (int) t[0];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getWXLogin(), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.WX_LOGIN:
+                mLoadMode = (int) t[0];
+                String nickname = (String) t[1];
+                String openid = (String) t[2];
+                String headimgurl = (String) t[3];
+                String province = (String) t[4];
+                String city = (String) t[5];
+                String wxact = (String) t[6];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getWXToken(nickname, openid, headimgurl, province, city, wxact), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.HEAD_BALANCE:
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getHeadBalance(), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.FINANCIAL_DETAIL:
+                mLoadMode = (int) t[0];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getFinancialDetails(), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.WAIT_APPRAISE:
+                mLoadMode = (int) t[0];
+                mPage = (int) t[1];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getWaitAppraise(mPage), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.SET_ATONCE:
+                mLoadMode = (int) t[0];
+                int u_id = (int) t[1];
+                int paycomment = (int) t[2];
+                int servicecomment = (int) t[3];
+                int stationcomment = (int) t[4];
+                String tagscomment = (String) t[5];
+                String concomment = (String) t[5];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().setAtonce(u_id, paycomment, servicecomment, stationcomment, tagscomment, concomment), view, whichApi, mLoadMode);
+                break;
         }
     }
 }

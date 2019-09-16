@@ -9,7 +9,7 @@ public class WXTokenBean {
 
     private int code;
     private String msg;
-    private DataBean data;
+    private Object data;
 
     public int getCode() {
         return code;
@@ -27,11 +27,11 @@ public class WXTokenBean {
         this.msg = msg;
     }
 
-    public DataBean getData() {
+    public Object getData() {
         return data;
     }
 
-    public void setData(DataBean data) {
+    public void setData(Object data) {
         this.data = data;
     }
 

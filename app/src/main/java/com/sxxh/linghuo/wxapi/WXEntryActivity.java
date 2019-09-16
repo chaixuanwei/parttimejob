@@ -8,7 +8,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.ToastUtils;
+import com.sxxh.linghuo.config.Config;
 import com.sxxh.linghuo.local_utils.OkHttpUtils;
+import com.sxxh.linghuo.local_utils.SharedPrefrenceUtils;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
@@ -24,13 +26,6 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
     public static final String WEIXIN_APP_ID = "wx09fddc4711f09625";
     private static final String APP_SECRET = "b5d88f588442752159074cf7d55eb615";
     private IWXAPI mWeixinAPI;
-    public static String mOpenId = "";
-    public static String nickName = "";
-    public static String sex = "";
-    public static String city = "";
-    public static String province = "";
-    public static String country = "";
-    public static String headimgurl = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,7 +53,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
     public void onResp(BaseResp resp) {
         switch (resp.errCode) {
             case BaseResp.ErrCode.ERR_OK:
-                Log.e("asdf","resp1");
+                Log.e("asdf", "resp1");
                 //发送成功
                 SendAuth.Resp sendResp = (SendAuth.Resp) resp;
                 if (sendResp != null) {
@@ -67,17 +62,17 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                 }
                 break;
             case BaseResp.ErrCode.ERR_USER_CANCEL:
-                Log.e("asdf","resp2");
+                Log.e("asdf", "resp2");
                 //发送取消
                 ToastUtils.showShort("发送取消");
                 break;
             case BaseResp.ErrCode.ERR_AUTH_DENIED:
-                Log.e("asdf","resp3");
+                Log.e("asdf", "resp3");
                 //发送被拒绝
                 ToastUtils.showShort("发送被拒绝");
                 break;
             default:
-                Log.e("asdf","resp4");
+                Log.e("asdf", "resp4");
                 //发送返回
                 ToastUtils.showShort("发送返回");
                 break;
@@ -117,13 +112,21 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                         try {
                             JSONObject jsonObject = new JSONObject(responses);
 
-                            mOpenId = jsonObject.getString("openid");
-                            nickName = jsonObject.getString("nickname");
-                            sex = jsonObject.getString("sex");
-                            city = jsonObject.getString("city");
-                            province = jsonObject.getString("province");
-                            country = jsonObject.getString("country");
-                            headimgurl = jsonObject.getString("headimgurl");
+                            String mOpenId = jsonObject.getString("openid");
+                            String mNickName = jsonObject.getString("nickname");
+                            String mSex = jsonObject.getString("sex");
+                            String mCity = jsonObject.getString("city");
+                            String mProvince = jsonObject.getString("province");
+                            String mCountry = jsonObject.getString("country");
+                            String mHeadimgurl = jsonObject.getString("headimgurl");
+                            SharedPrefrenceUtils.saveString(WXEntryActivity.this, Config.OPENID, mOpenId);
+                            SharedPrefrenceUtils.saveString(WXEntryActivity.this, Config.NICKNAME, mNickName);
+                            SharedPrefrenceUtils.saveString(WXEntryActivity.this, Config.SEX, mSex);
+                            SharedPrefrenceUtils.saveString(WXEntryActivity.this, Config.CITY, mCity);
+                            SharedPrefrenceUtils.saveString(WXEntryActivity.this, Config.PROVINCE, mProvince);
+                            SharedPrefrenceUtils.saveString(WXEntryActivity.this, Config.COUNTRY, mCountry);
+                            SharedPrefrenceUtils.saveString(WXEntryActivity.this, Config.HEADIMGURL, mHeadimgurl);
+                            finish();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
