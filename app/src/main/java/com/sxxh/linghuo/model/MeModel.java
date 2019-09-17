@@ -201,6 +201,26 @@ public class MeModel implements ICommonModel {
                 String concomment = (String) t[5];
                 NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().setAtonce(u_id, paycomment, servicecomment, stationcomment, tagscomment, concomment), view, whichApi, mLoadMode);
                 break;
+            case ApiConfig.SET_WITHDRAW:
+                mLoadMode = (int) t[0];
+                int type = (int) t[1];
+                float price = (float) t[2];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().setWithDraw(type, price), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.COMPAINT_FIRM:
+                mLoadMode = (int) t[0];
+                int user_id = (int) t[1];
+                String user_type = (String) t[2];
+                String user_content = (String) t[3];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().setComplaintFirm(user_id, user_type, user_content), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.COMPAINT_PEOPLE:
+                mLoadMode = (int) t[0];
+                int firm_id = (int) t[1];
+                String firm_type = (String) t[2];
+                String firm_content = (String) t[3];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().setComplaintPeople(firm_id, firm_type, firm_content), view, whichApi, mLoadMode);
+                break;
         }
     }
 }

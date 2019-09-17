@@ -65,7 +65,7 @@ public class SalaryActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
 
     @Override
     public void onError(int whichApi, Throwable e) {
-        Log.e("工资未结列表", "onError: " + "工资未结列表");
+        Log.e("工资未结列表", "onError: " + "工资未结列表" + e.getMessage());
     }
 
     @Override

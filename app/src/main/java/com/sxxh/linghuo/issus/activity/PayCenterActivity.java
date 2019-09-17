@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.sxxh.linghuo.R;
 import com.sxxh.linghuo.frame.BaseMvpActivity;
 import com.sxxh.linghuo.frame.CommonPresenter;
-import com.sxxh.linghuo.me.activity.SubmitPayActivity;
 import com.sxxh.linghuo.model.IssusModel;
 
 import butterknife.BindView;
@@ -88,8 +87,8 @@ public class PayCenterActivity extends BaseMvpActivity<CommonPresenter, IssusMod
                 finish();
                 break;
             case R.id.pay:
-                Intent mIntent = new Intent(this, SubmitPayActivity.class);
-                startActivity(mIntent);
+//                Intent mIntent = new Intent(this, SubmitPayActivity.class);
+//                startActivity(mIntent);
                 break;
             case R.id.pay_rl:
                 if (payModeLl.getVisibility() == View.VISIBLE) {

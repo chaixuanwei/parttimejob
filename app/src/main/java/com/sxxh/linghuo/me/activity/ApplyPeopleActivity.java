@@ -2,6 +2,7 @@ package com.sxxh.linghuo.me.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 
 import com.sxxh.linghuo.R;
 import com.sxxh.linghuo.config.ApiConfig;
+import com.sxxh.linghuo.config.Config;
 import com.sxxh.linghuo.config.LoadConfig;
 import com.sxxh.linghuo.frame.BaseMvpActivity;
 import com.sxxh.linghuo.frame.CommonPresenter;
@@ -49,6 +51,7 @@ public class ApplyPeopleActivity extends BaseMvpActivity<CommonPresenter, MeMode
         mAdapter = new ApplyPeopleAdapter(this, mList);
         applyPeopleRv.setLayoutManager(new LinearLayoutManager(this));
         applyPeopleRv.setAdapter(mAdapter);
+        applyPeopleRv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         mAdapter.setJump(this);
     }
 
@@ -109,12 +112,19 @@ public class ApplyPeopleActivity extends BaseMvpActivity<CommonPresenter, MeMode
     }
 
     @Override
-    public void people(int id) {
-        Intent mInsightsUserIntent = new Intent(ApplyPeopleActivity.this, InsightsUserActivity.class);
-        Bundle mBundle = new Bundle();
-        mBundle.putInt("task_id", Integer.parseInt(mTask_id));
-        mBundle.putInt("user_id",id);
-        mInsightsUserIntent.putExtra("bundle",mBundle);
-        startActivity(mInsightsUserIntent);
+    public void people(String type,int id) {
+        if (type.equals("look")) {
+            Intent mInsightsUserIntent = new Intent(ApplyPeopleActivity.this, InsightsUserActivity.class);
+            Bundle mBundle = new Bundle();
+            mBundle.putInt("task_id", Integer.parseInt(mTask_id));
+            mBundle.putInt("user_id", id);
+            mInsightsUserIntent.putExtra("bundle", mBundle);
+            startActivity(mInsightsUserIntent);
+        } else if (type.equals("compaint")) {
+            Intent compaintIntent = new Intent(this, CompaintActivity.class);
+            compaintIntent.putExtra(Config.COMPLAINT,"2");
+            compaintIntent.putExtra(Config.USER_ID, id);
+            startActivity(compaintIntent);
+        }
     }
 }

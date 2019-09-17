@@ -115,6 +115,7 @@ public class DetailActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
                 break;
             case R.id.complain:
                 Intent compaintIntent = new Intent(this, CompaintActivity.class);
+                compaintIntent.putExtra(Config.COMPLAINT,"1");
                 startActivity(compaintIntent);
                 break;
             case R.id.detail_call:

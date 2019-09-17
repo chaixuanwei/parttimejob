@@ -32,7 +32,7 @@ public class NetHeaders {
         headers.put("XX-Api-Version", getAppVersionCode(ApplicationJob.getAppContext()));
         headers.put("XX-Device-Type", "android");
         String mToken = SharedPrefrenceUtils.getString(ApplicationJob.getAppContext(), Config.TOKEN);
-        if (mToken != null) {
+        if (!mToken.equals("")) {
             headers.put("XX-Token",mToken);
         }
         return headers;

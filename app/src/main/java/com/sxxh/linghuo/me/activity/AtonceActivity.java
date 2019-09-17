@@ -113,7 +113,7 @@ public class AtonceActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
 
     @Override
     public void onError(int whichApi, Throwable e) {
-        Log.e("评价", "onError: " + "评价");
+        Log.e("评价", "onError: " + "评价" + e.getMessage());
     }
 
     @Override

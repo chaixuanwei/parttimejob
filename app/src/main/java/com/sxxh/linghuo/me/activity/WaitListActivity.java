@@ -65,7 +65,7 @@ public class WaitListActivity extends BaseMvpActivity<CommonPresenter, MeModel> 
 
     @Override
     public void onError(int whichApi, Throwable e) {
-        Log.e("待录取列表", "onError: " + "待录取列表");
+        Log.e("待录取列表", "onError: " + "待录取列表" + e.getMessage());
     }
 
     @Override

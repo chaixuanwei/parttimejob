@@ -71,7 +71,7 @@ public class WaitAppraiseActivity extends BaseMvpActivity<CommonPresenter, MeMod
 
     @Override
     public void onError(int whichApi, Throwable e) {
-        Log.e("待评价", "onError: " + "待评价");
+        Log.e("待评价", "onError: " + "待评价" + e.getMessage());
     }
 
     @Override

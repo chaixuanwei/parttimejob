@@ -8,6 +8,7 @@ import com.sxxh.linghuo.login.bean.WXTokenBean;
 import com.sxxh.linghuo.login.bean.ZFBLoginBean;
 import com.sxxh.linghuo.login.bean.ZFBTokenBean;
 import com.sxxh.linghuo.me.bean.ApplyPeopleBean;
+import com.sxxh.linghuo.me.bean.BalanceDrawBean;
 import com.sxxh.linghuo.me.bean.FeedBackBean;
 import com.sxxh.linghuo.me.bean.FinancialDetailsBean;
 import com.sxxh.linghuo.me.bean.HeadBalanceBean;
@@ -145,8 +146,8 @@ public interface INetService {
     //消息列表
     @GET("api/user/profile/myNotice")
     Observable<AfficheBean> getMessageList(@Query("type") String type,
-                                          @Query("page") String page,
-                                          @Query("limit") String limit);
+                                           @Query("page") String page,
+                                           @Query("limit") String limit);
 
     //意见反馈
     @POST("api/user/profile/feedBack")
@@ -251,4 +252,28 @@ public interface INetService {
                                        @Field("stationcomment") int stationcomment,
                                        @Field("tagscomment") String tagscomment,
                                        @Field("concomment") String concomment);
+
+    //提交提现
+    @POST("api/user/profile/withdrawal")
+    @FormUrlEncoded
+    Observable<AuthCodeBean> setWithDraw(@Field("type") int type,
+                                         @Field("price") float price);
+
+    //获取提现
+    @GET("api/user/profile/withdrawal")
+    Observable<BalanceDrawBean> getWithDraw();
+
+    //兼职人对发布任务人投诉
+    @POST("api/user/complaint/parttimetopublish")
+    @FormUrlEncoded
+    Observable<AuthCodeBean> setComplaintFirm(@Field("uid") int uid,
+                                                @Field("report_type") String report_type,
+                                                @Field("content") String content);
+
+    //发布任务人对兼职人投诉
+    @POST("api/user/complaint/publishtoparttime")
+    @FormUrlEncoded
+    Observable<AuthCodeBean> setComplaintPeople(@Field("user_id") int user_id,
+                                              @Field("report_type") String report_type,
+                                              @Field("content") String content);
 }

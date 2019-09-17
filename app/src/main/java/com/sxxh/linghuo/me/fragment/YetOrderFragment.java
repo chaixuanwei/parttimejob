@@ -70,7 +70,7 @@ public class YetOrderFragment extends BaseMvpFragment<CommonPresenter, MeModel> 
 
     @Override
     public void onError(int whichApi, Throwable e) {
-        Log.e("已接单", "onError: "+"已接单" );
+        Log.e("已接单", "onError: "+"已接单" + e.getMessage());
     }
 
     @Override

@@ -39,10 +39,16 @@ public class ApplyPeopleAdapter extends RecyclerView.Adapter<ApplyPeopleAdapter.
         mViewHolder.mItemPeopleName.setText(mDataBean.getName());
         mViewHolder.mItemPeopleProject.setText(mDataBean.getReal_name());
         Glide.with(mContext).load(mDataBean.getAvatar()).into(mViewHolder.mItemPeopleImg);
-        mViewHolder.mApplyPeopleLl.setOnClickListener(new View.OnClickListener() {
+        mViewHolder.mLookPeople.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mJump.people(mDataBean.getU_id());
+                mJump.people("look",mDataBean.getU_id());
+            }
+        });
+        mViewHolder.mCompaintPeople.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mJump.people("compaint",mDataBean.getU_id());
             }
         });
     }
@@ -54,7 +60,7 @@ public class ApplyPeopleAdapter extends RecyclerView.Adapter<ApplyPeopleAdapter.
     }
 
     public interface ToUser{
-        void people(int id);
+        void people(String type,int id);
     };
 
     @Override
@@ -67,6 +73,8 @@ public class ApplyPeopleAdapter extends RecyclerView.Adapter<ApplyPeopleAdapter.
         private ImageView mItemPeopleImg;
         private TextView mItemPeopleName;
         private TextView mItemPeopleProject;
+        private TextView mCompaintPeople;
+        private TextView mLookPeople;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -74,6 +82,8 @@ public class ApplyPeopleAdapter extends RecyclerView.Adapter<ApplyPeopleAdapter.
             mItemPeopleImg = itemView.findViewById(R.id.item_people_img);
             mItemPeopleName = itemView.findViewById(R.id.item_people_name);
             mItemPeopleProject = itemView.findViewById(R.id.item_people_project);
+            mLookPeople = itemView.findViewById(R.id.look_people);
+            mCompaintPeople = itemView.findViewById(R.id.compaint_people);
         }
     }
 }

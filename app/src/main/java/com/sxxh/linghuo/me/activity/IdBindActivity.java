@@ -22,15 +22,12 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.switfpass.pay.utils.Constants;
 import com.sxxh.linghuo.R;
-import com.sxxh.linghuo.activity.MainActivity;
 import com.sxxh.linghuo.config.ApiConfig;
 import com.sxxh.linghuo.config.Config;
 import com.sxxh.linghuo.config.LoadConfig;
 import com.sxxh.linghuo.frame.BaseMvpActivity;
 import com.sxxh.linghuo.frame.CommonPresenter;
 import com.sxxh.linghuo.local_utils.SharedPrefrenceUtils;
-import com.sxxh.linghuo.login.LoginActivity;
-import com.sxxh.linghuo.login.RegisterActivity;
 import com.sxxh.linghuo.login.bean.WXLoginBean;
 import com.sxxh.linghuo.login.bean.WXTokenBean;
 import com.sxxh.linghuo.login.bean.ZFBLoginBean;
@@ -52,16 +49,6 @@ public class IdBindActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
 
     @BindView(R.id.back)
     ImageView back;
-    @BindView(R.id.now_img_photo)
-    ImageView nowImgPhoto;
-    @BindView(R.id.now_txt_name)
-    TextView nowTxtName;
-    @BindView(R.id.now_txt_id)
-    TextView nowTxtId;
-    @BindView(R.id.now_login)
-    RelativeLayout nowLogin;
-    @BindView(R.id.now_ll)
-    LinearLayout nowLl;
     @BindView(R.id.grey_line)
     TextView greyLine;
     @BindView(R.id.wx_ll)
@@ -77,6 +64,32 @@ public class IdBindActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
     @BindView(R.id.zfb_bind)
     TextView zfbBind;
     private static final int SDK_AUTH_FLAG = 2;
+    @BindView(R.id.wx_img_photo)
+    ImageView wxImgPhoto;
+    @BindView(R.id.wx_txt_name)
+    TextView wxTxtName;
+    @BindView(R.id.wx_txt_id)
+    TextView wxTxtId;
+    @BindView(R.id.wx_login)
+    RelativeLayout wxLogin;
+    @BindView(R.id.wb_img_photo)
+    ImageView wbImgPhoto;
+    @BindView(R.id.wb_txt_name)
+    TextView wbTxtName;
+    @BindView(R.id.wb_txt_id)
+    TextView wbTxtId;
+    @BindView(R.id.wb_login)
+    RelativeLayout wbLogin;
+    @BindView(R.id.zfb_img_photo)
+    ImageView zfbImgPhoto;
+    @BindView(R.id.zfb_txt_name)
+    TextView zfbTxtName;
+    @BindView(R.id.zfb_txt_id)
+    TextView zfbTxtId;
+    @BindView(R.id.zfb_login)
+    RelativeLayout zfbLogin;
+    @BindView(R.id.now_ll)
+    LinearLayout nowLl;
     private IWXAPI api;
     private static final String APP_ID = "wx09fddc4711f09625";
     Boolean isWx = false;
@@ -130,7 +143,7 @@ public class IdBindActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
 
     @Override
     public void onError(int whichApi, Throwable e) {
-        Log.e("账号绑定", "onError: 账号绑定" );
+        Log.e("账号绑定", "onError: 账号绑定" + e.getMessage());
     }
 
     @Override
@@ -141,27 +154,23 @@ public class IdBindActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
                 IdBindBean.DataBean mData = mIdBindBeans.getData();
                 if (mData.getWx().getBinding() == 1) {
                     wxLl.setVisibility(View.GONE);
-                } else {
-                    Glide.with(this).load(R.mipmap.bind_weixin).into(nowImgPhoto);
-                    nowTxtName.setText("微信");
-                    nowTxtId.setText(mData.getWx().getNick_name());
+                    wxLogin.setVisibility(View.VISIBLE);
+                    wxTxtId.setText(mData.getWx().getNick_name());
                 }
                 if (mData.getAlipay().getBinding() == 1) {
                     zfbLl.setVisibility(View.GONE);
-                } else {
-                    Glide.with(this).load(R.mipmap.bind_zhifubao).into(nowImgPhoto);
-                    nowTxtName.setText("支付宝");
-                    nowTxtId.setText(mData.getAlipay().getNick_name());
+                    zfbLogin.setVisibility(View.VISIBLE);
+                    zfbTxtId.setText(mData.getAlipay().getNick_name());
                 }
                 if (mData.getSina_blog().getBinding() == 1) {
                     wbLl.setVisibility(View.GONE);
-                } else {
-                    Glide.with(this).load(R.mipmap.bind_weibo).into(nowImgPhoto);
-                    nowTxtName.setText("微博");
-                    nowTxtId.setText(mData.getSina_blog().getNick_name());
+                    wbLogin.setVisibility(View.VISIBLE);
+                    wbTxtId.setText(mData.getSina_blog().getNick_name());
                 }
                 if (mData.getSina_blog().getBinding() == 0 && mData.getAlipay().getBinding() == 0 && mData.getWx().getBinding() == 0) {
-                    nowLogin.setVisibility(View.GONE);
+                    nowLl.setVisibility(View.GONE);
+                } else {
+                    nowLl.setVisibility(View.VISIBLE);
                 }
                 break;
             case ApiConfig.GET_ZFB_LOGIN:
@@ -198,6 +207,7 @@ public class IdBindActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
                 } else {
                     ToastUtils.showShort(mZFBTokenBeans.getMsg());
                 }
+                mPresenter.getData(ApiConfig.ID_BIND, LoadConfig.NORMAL);
                 break;
             case ApiConfig.GET_WX_LOGIN:
                 WXLoginBean mWXLoginBeans = (WXLoginBean) t[0];
@@ -209,8 +219,8 @@ public class IdBindActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
                     Gson mGson = new Gson();
                     String mWXDatas = mGson.toJson(mWXTokenBean.getData());
                     WXTokenBean.DataBean mDataBean = mGson.fromJson(mWXDatas, WXTokenBean.DataBean.class);
-
                 }
+                mPresenter.getData(ApiConfig.ID_BIND, LoadConfig.NORMAL);
                 break;
         }
     }
@@ -265,12 +275,12 @@ public class IdBindActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
     protected void onResume() {
         super.onResume();
         String mOpenId = SharedPrefrenceUtils.getString(IdBindActivity.this, Config.OPENID);
-        String mNickName = SharedPrefrenceUtils.getString(IdBindActivity.this, Config.NICKNAME,"");
-        String mSex = SharedPrefrenceUtils.getString(IdBindActivity.this, Config.SEX,"");
-        String mCity = SharedPrefrenceUtils.getString(IdBindActivity.this, Config.CITY,"");
-        String mProvince = SharedPrefrenceUtils.getString(IdBindActivity.this, Config.PROVINCE,"");
-        String mCountry = SharedPrefrenceUtils.getString(IdBindActivity.this, Config.COUNTRY,"");
-        String mHeadimgurl = SharedPrefrenceUtils.getString(IdBindActivity.this, Config.HEADIMGURL,"");
+        String mNickName = SharedPrefrenceUtils.getString(IdBindActivity.this, Config.NICKNAME, "");
+        String mSex = SharedPrefrenceUtils.getString(IdBindActivity.this, Config.SEX, "");
+        String mCity = SharedPrefrenceUtils.getString(IdBindActivity.this, Config.CITY, "");
+        String mProvince = SharedPrefrenceUtils.getString(IdBindActivity.this, Config.PROVINCE, "");
+        String mCountry = SharedPrefrenceUtils.getString(IdBindActivity.this, Config.COUNTRY, "");
+        String mHeadimgurl = SharedPrefrenceUtils.getString(IdBindActivity.this, Config.HEADIMGURL, "");
         if (!mOpenId.equals("") && isWx) {
             isWx = false;
             mPresenter.getData(ApiConfig.WX_LOGIN, LoadConfig.NORMAL, mNickName, mOpenId, mHeadimgurl, mProvince, mCity, "binding");

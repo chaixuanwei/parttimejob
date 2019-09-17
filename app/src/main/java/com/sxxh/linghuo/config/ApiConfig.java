@@ -38,4 +38,8 @@ public class ApiConfig {
     public static final int FINANCIAL_DETAIL = 35;//资金明细
     public static final int WAIT_APPRAISE = 36;//待评价列表
     public static final int SET_ATONCE = 37;//评价提交
+    public static final int SET_WITHDRAW = 38;//提交提现
+    public static final int GET_WITHDRAW = 39;//获取提现
+    public static final int COMPAINT_FIRM = 40;//投诉公司
+    public static final int COMPAINT_PEOPLE = 41;//投诉兼职人
 }

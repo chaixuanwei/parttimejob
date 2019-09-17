@@ -66,7 +66,7 @@ public class FinancialDetailsActivity extends BaseMvpActivity<CommonPresenter, M
 
     @Override
     public void onError(int whichApi, Throwable e) {
-        Log.e("资金明细", "onError: 资金明细" );
+        Log.e("资金明细", "onError: 资金明细" + e.getMessage());
     }
 
     @Override

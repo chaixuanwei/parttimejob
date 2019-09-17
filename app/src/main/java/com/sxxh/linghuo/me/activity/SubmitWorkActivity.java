@@ -104,7 +104,7 @@ public class SubmitWorkActivity extends BaseMvpActivity<CommonPresenter, MeModel
 
     @Override
     public void onError(int whichApi, Throwable e) {
-        Log.e("立即提交", "onError: " + "立即提交");
+        Log.e("立即提交", "onError: " + "立即提交" + e.getMessage());
     }
 
     @Override

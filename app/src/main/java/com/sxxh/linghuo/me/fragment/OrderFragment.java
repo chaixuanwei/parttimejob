@@ -69,7 +69,7 @@ public class OrderFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
 
     @Override
     public void onError(int whichApi, Throwable e) {
-        Log.e("未接单", "onError: " + "未接单");
+        Log.e("未接单", "onError: " + "未接单" + e.getMessage());
     }
 
     @Override
