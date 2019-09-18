@@ -99,10 +99,10 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
 
     private void regToWx() {
         // 通过WXAPIFactory工厂，获取IWXAPI的实例
-        api = WXAPIFactory.createWXAPI(this, APP_ID, true);
+        api = WXAPIFactory.createWXAPI(this, Config.APP_ID_WX, true);
 
         // 将应用的appId注册到微信
-        api.registerApp(APP_ID);
+        api.registerApp(Config.APP_ID_WX);
 
         //建议动态监听微信启动广播进行注册到微信
         registerReceiver(new BroadcastReceiver() {
@@ -291,12 +291,12 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
     protected void onResume() {
         super.onResume();
         String mOpenId = SharedPrefrenceUtils.getString(LoginActivity.this, Config.OPENID);
-        String mNickName = SharedPrefrenceUtils.getString(LoginActivity.this, Config.NICKNAME,"");
-        String mSex = SharedPrefrenceUtils.getString(LoginActivity.this, Config.SEX,"");
-        String mCity = SharedPrefrenceUtils.getString(LoginActivity.this, Config.CITY,"");
-        String mProvince = SharedPrefrenceUtils.getString(LoginActivity.this, Config.PROVINCE,"");
-        String mCountry = SharedPrefrenceUtils.getString(LoginActivity.this, Config.COUNTRY,"");
-        String mHeadimgurl = SharedPrefrenceUtils.getString(LoginActivity.this, Config.HEADIMGURL,"");
+        String mNickName = SharedPrefrenceUtils.getString(LoginActivity.this, Config.NICKNAME, "");
+        String mSex = SharedPrefrenceUtils.getString(LoginActivity.this, Config.SEX, "");
+        String mCity = SharedPrefrenceUtils.getString(LoginActivity.this, Config.CITY, "");
+        String mProvince = SharedPrefrenceUtils.getString(LoginActivity.this, Config.PROVINCE, "");
+        String mCountry = SharedPrefrenceUtils.getString(LoginActivity.this, Config.COUNTRY, "");
+        String mHeadimgurl = SharedPrefrenceUtils.getString(LoginActivity.this, Config.HEADIMGURL, "");
         if (!mOpenId.equals("") && isWx) {
             isWx = false;
             mPresenter.getData(ApiConfig.WX_LOGIN, LoadConfig.NORMAL, mNickName, mOpenId, mHeadimgurl, mProvince, mCity, "login");

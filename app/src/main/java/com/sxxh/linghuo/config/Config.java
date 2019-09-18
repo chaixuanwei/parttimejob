@@ -23,6 +23,8 @@ public class Config {
     public static final String COUNTRY = "country";
     public static final String HEADIMGURL = "headimgurl";
     public static final String APP_ID_WX = "wx09fddc4711f09625";
+    public static final String APP_ID_WB = "679663261";
+    public static final String REDIRECT_URL = "http://job.zhangtongdongli.com";
     public static final String COMPLAINT = "complaint";
     public static final String USER_ID = "userid";
 }
