@@ -62,6 +62,7 @@ public class BalanceDrawBean {
             private int alipay_fee;
             private String alipay_type;
             private int createTime;
+            private int endTime;
             private int wx_fee;
             private String wx_type;
 
@@ -86,6 +87,14 @@ public class BalanceDrawBean {
             }
 
             public void setCreateTime(int createTime) {
+                this.createTime = createTime;
+            }
+
+            public int getEndTime() {
+                return createTime;
+            }
+
+            public void setEndTime(int createTime) {
                 this.createTime = createTime;
             }
 

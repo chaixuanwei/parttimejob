@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class FinancialDetailsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context mContext;
     ArrayList<FinancialDetailsBean.DataBean> mList;
-    int DAY = 2;
+//    int DAY = 2;
     int SERVICE_CHARGE = 1;
     int WITHDRAW = 0;
 
@@ -37,10 +37,11 @@ public class FinancialDetailsAdapter extends RecyclerView.Adapter<RecyclerView.V
         } else if (pI == SERVICE_CHARGE) {
             View mView = LayoutInflater.from(mContext).inflate(R.layout.item_service, pViewGroup, false);
             mViewHolder = new ServiceView(mView);
-        } else if (pI == DAY) {
+        }
+        /* else if (pI == DAY) {
             View mView = LayoutInflater.from(mContext).inflate(R.layout.item_day, pViewGroup, false);
             mViewHolder = new DayView(mView);
-        }
+        }*/
         return mViewHolder;
     }
 
@@ -61,9 +62,10 @@ public class FinancialDetailsAdapter extends RecyclerView.Adapter<RecyclerView.V
             mServiceView.mServiceNum.setText(mDataBean.getChange());
             mServiceView.mServicePlace.setText(mDataBean.getDescription());
             mServiceView.mServiceTime.setText(mDate);
-        } else if (pI == DAY) {
-            DayView mDayView = (DayView) pViewHolder;
         }
+        /* else if (pI == DAY) {
+            DayView mDayView = (DayView) pViewHolder;
+        }*/
     }
 
     @Override
@@ -73,9 +75,10 @@ public class FinancialDetailsAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public int getItemViewType(int position) {
-        if (position == DAY) {
+        /*if (position == DAY) {
             return DAY;
-        } else if (mList.get(position).getType() == SERVICE_CHARGE) {
+        } else */
+        if (mList.get(position).getType() == SERVICE_CHARGE) {
             return SERVICE_CHARGE;
         } else if (mList.get(position).getType() == WITHDRAW) {
             return WITHDRAW;
@@ -113,7 +116,7 @@ public class FinancialDetailsAdapter extends RecyclerView.Adapter<RecyclerView.V
         }
     }
 
-    private class DayView extends RecyclerView.ViewHolder {
+    /*private class DayView extends RecyclerView.ViewHolder {
         private TextView mItemDay;
         private TextView mItemNum;
 
@@ -122,5 +125,5 @@ public class FinancialDetailsAdapter extends RecyclerView.Adapter<RecyclerView.V
             mItemDay = itemView.findViewById(R.id.item_day);
             mItemNum = itemView.findViewById(R.id.item_num);
         }
-    }
+    }*/
 }

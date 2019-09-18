@@ -207,6 +207,10 @@ public class MeModel implements ICommonModel {
                 float price = (float) t[2];
                 NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().setWithDraw(type, price), view, whichApi, mLoadMode);
                 break;
+            case ApiConfig.GET_WITHDRAW:
+                mLoadMode = (int) t[0];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getWithDraw(), view, whichApi, mLoadMode);
+                break;
             case ApiConfig.COMPAINT_FIRM:
                 mLoadMode = (int) t[0];
                 int user_id = (int) t[1];
