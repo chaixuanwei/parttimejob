@@ -69,7 +69,8 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
 
     @Override
     public void initView() {
-        mCollapsingToolbarLayout.setContentScrimResource(R.drawable.toolbar);
+//        mCollapsingToolbarLayout.setContentScrimResource(R.drawable.toolbar);
+        mCollapsingToolbarLayout.setContentScrimColor(getResources().getColor(R.color.blue_theme));
         List<Integer> images = new ArrayList<>();
         images.add(R.mipmap.banner_one);
         images.add(R.mipmap.banner_two);
