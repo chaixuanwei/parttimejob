@@ -91,11 +91,11 @@ public class BalanceDrawBean {
             }
 
             public int getEndTime() {
-                return createTime;
+                return endTime;
             }
 
             public void setEndTime(int createTime) {
-                this.createTime = createTime;
+                this.endTime = createTime;
             }
 
             public int getWx_fee() {
