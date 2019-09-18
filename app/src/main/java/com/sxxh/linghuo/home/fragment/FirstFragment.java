@@ -1,24 +1,33 @@
 package com.sxxh.linghuo.home.fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.sxxh.linghuo.R;
 import com.sxxh.linghuo.frame.BaseMvpFragment;
 import com.sxxh.linghuo.frame.CommonPresenter;
 import com.sxxh.linghuo.home.adapter.HomeAdapter;
 import com.sxxh.linghuo.model.HomeModel;
 import com.youth.banner.Banner;
+import com.youth.banner.loader.ImageLoader;
 import com.zaaach.citypicker.CityPickerActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,10 +42,12 @@ import static android.app.Activity.RESULT_OK;
 public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
     private static final int REQUEST_CODE_PICK_CITY = 0;
     static FirstFragment fragment;
+    @BindView(R.id.collapsingToolbarLayout)
+    CollapsingToolbarLayout mCollapsingToolbarLayout;
     @BindView(R.id.place)
     TextView place;
-    @BindView(R.id.searchView)
-    SearchView searchView;
+    @BindView(R.id.first_search)
+    LinearLayout first_search;
     @BindView(R.id.home_rv)
     RecyclerView homeRv;
     Unbinder unbinder;
@@ -53,23 +64,25 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_first;
+        return R.layout.fragment_first2;
     }
 
     @Override
     public void initView() {
-//        List<Integer> images = new ArrayList<>();
-//        images.add(R.mipmap.banner_one);
-//        images.add(R.mipmap.banner_two);
-//        images.add(R.mipmap.banner_three);
-//        firstBanner.setImageLoader(new ImageLoader() {
-//            @Override
-//            public void displayImage(Context context, Object path, ImageView imageView) {
-//                Glide.with(getActivity()).load(path).into(imageView);
-//            }
-//        });
-//        firstBanner.setImages(images);
-//        firstBanner.start();
+        mCollapsingToolbarLayout.setContentScrimResource(R.drawable.toolbar);
+        List<Integer> images = new ArrayList<>();
+        images.add(R.mipmap.banner_one);
+        images.add(R.mipmap.banner_two);
+        images.add(R.mipmap.banner_three);
+        firstBanner.setImageLoader(new ImageLoader() {
+            @Override
+            public void displayImage(Context context, Object path, ImageView imageView) {
+                Glide.with(getActivity()).load(path).into(imageView);
+            }
+        });
+        firstBanner.setImages(images);
+        firstBanner.start();
+
         LinearLayoutManager mManager = new LinearLayoutManager(getContext());
         mAdapter = new HomeAdapter(getActivity());
         homeRv.setAdapter(mAdapter);
