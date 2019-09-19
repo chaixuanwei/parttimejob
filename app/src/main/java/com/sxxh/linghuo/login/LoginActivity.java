@@ -79,7 +79,7 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
     Boolean isWb = false;
     private SsoHandler mSsoHandler;
     private Oauth2AccessToken mAccessToken;
-    private String mWBOpenId;
+    private String mWBOpenId = "";
 
     Handler mHandler = new Handler() {
         @Override

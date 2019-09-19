@@ -87,7 +87,7 @@ public class AmendActivity extends BaseMvpActivity<CommonPresenter, MeModel> imp
     private InvokeParam invokeParam;
     private TakePhotoImpl mTakePhoto;
     private SlideFromBottomPopup mPop;
-    int photo = 0;
+    int photo = 100;
     Boolean isTop = false;
 
     @Override

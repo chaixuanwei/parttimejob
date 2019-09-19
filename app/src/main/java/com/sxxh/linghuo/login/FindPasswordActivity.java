@@ -70,12 +70,14 @@ public class FindPasswordActivity extends BaseMvpActivity<CommonPresenter, Login
             case ApiConfig.GET_FindPassword:
                 AuthCodeBean mAuthCodeBeans = (AuthCodeBean) t[0];
                 ToastUtils.showShort(mAuthCodeBeans.getMsg());
+                if (mAuthCodeBeans.getMsg().equals("密码重置成功,请使用新密码登录!")) {
+                    finish();
+                }
                 break;
             case ApiConfig.GET_AUTH_CODE:
                 AuthCodeBean mAuthCodeBean = (AuthCodeBean) t[0];
                 if (mAuthCodeBean.getCode() == 1) {
                     ToastUtils.showShort(mAuthCodeBean.getMsg());
-                    finish();
                 }
                 break;
         }
@@ -119,7 +121,9 @@ public class FindPasswordActivity extends BaseMvpActivity<CommonPresenter, Login
 
     @Override
     protected void onDestroy() {
-        mCountDownTimer.cancel();
+        if (null != mCountDownTimer) {
+            mCountDownTimer.cancel();
+        }
         super.onDestroy();
     }
 }
