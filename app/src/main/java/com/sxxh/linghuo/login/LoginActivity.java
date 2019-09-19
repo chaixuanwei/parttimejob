@@ -79,7 +79,7 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
     Boolean isWb = false;
     private SsoHandler mSsoHandler;
     private Oauth2AccessToken mAccessToken;
-    private String mWBOpenId;
+    private String mWBOpenId = "";
 
     Handler mHandler = new Handler() {
         @Override
@@ -376,7 +376,6 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
 
     @Override
     protected void onResume() {
-        super.onResume();
         String mOpenId = SharedPrefrenceUtils.getString(LoginActivity.this, Config.OPENID);
         String mNickName = SharedPrefrenceUtils.getString(LoginActivity.this, Config.NICKNAME, "");
         String mSex = SharedPrefrenceUtils.getString(LoginActivity.this, Config.SEX, "");
@@ -392,5 +391,6 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
             isWb = false;
             mPresenter.getData(ApiConfig.WB_LOGIN, LoadConfig.NORMAL, "", mWBOpenId, "", "", "", "login");
         }
+        super.onResume();
     }
 }
