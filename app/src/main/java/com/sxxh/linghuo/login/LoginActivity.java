@@ -1,5 +1,6 @@
 package com.sxxh.linghuo.login;
 
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -80,6 +81,7 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
     private SsoHandler mSsoHandler;
     private Oauth2AccessToken mAccessToken;
     private String mWBOpenId = "";
+    private String mWXOpenId = "";
 
     Handler mHandler = new Handler() {
         @Override
@@ -200,7 +202,12 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
                 break;
             case ApiConfig.GET_WX_LOGIN:
                 WXLoginBean mWXLoginBeans = (WXLoginBean) t[0];
-                WXLogin();
+                if (!mWXOpenId.equals("")) {
+                    showProgressDialog(this, "登录中。。");
+                    mPresenter.getData(ApiConfig.WX_LOGIN, LoadConfig.NORMAL, "", mWXOpenId, "", "", "", "login");
+                } else {
+                    WXLogin();
+                }
                 break;
             case ApiConfig.ZFB_LOGIN:
                 ZFBTokenBean mZFBTokenBeans = (ZFBTokenBean) t[0];
@@ -232,6 +239,7 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
                 }
                 break;
             case ApiConfig.WX_LOGIN:
+                dismissProgressDialog();
                 WXTokenBean mWXTokenBean = (WXTokenBean) t[0];
                 if (!TextUtils.isEmpty(mWXTokenBean.getData().toString())) {
                     Gson mGson = new Gson();
@@ -376,21 +384,49 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
 
     @Override
     protected void onResume() {
-        String mOpenId = SharedPrefrenceUtils.getString(LoginActivity.this, Config.OPENID);
-        String mNickName = SharedPrefrenceUtils.getString(LoginActivity.this, Config.NICKNAME, "");
-        String mSex = SharedPrefrenceUtils.getString(LoginActivity.this, Config.SEX, "");
-        String mCity = SharedPrefrenceUtils.getString(LoginActivity.this, Config.CITY, "");
-        String mProvince = SharedPrefrenceUtils.getString(LoginActivity.this, Config.PROVINCE, "");
-        String mCountry = SharedPrefrenceUtils.getString(LoginActivity.this, Config.COUNTRY, "");
-        String mHeadimgurl = SharedPrefrenceUtils.getString(LoginActivity.this, Config.HEADIMGURL, "");
-        if (!mOpenId.equals("") && isWx) {
+        mWXOpenId = SharedPrefrenceUtils.getString(LoginActivity.this, Config.OPENID);
+        if (!mWXOpenId.equals("") && isWx) {
             isWx = false;
-            mPresenter.getData(ApiConfig.WX_LOGIN, LoadConfig.NORMAL, mNickName, mOpenId, mHeadimgurl, mProvince, mCity, "login");
+            mPresenter.getData(ApiConfig.WX_LOGIN, LoadConfig.NORMAL, "", mWXOpenId, "", "", "", "login");
         }
         if (!mWBOpenId.equals("") && isWb) {
             isWb = false;
             mPresenter.getData(ApiConfig.WB_LOGIN, LoadConfig.NORMAL, "", mWBOpenId, "", "", "", "login");
         }
         super.onResume();
+    }
+
+    //加载框变量
+    private ProgressDialog progressDialog;
+
+    public void showProgressDialog(Context mContext, String text) {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(mContext);
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        }
+        progressDialog.setMessage(text);    //设置内容
+        progressDialog.setCancelable(false);//点击屏幕和按返回键都不能取消加载框
+        progressDialog.show();
+
+        //设置超时自动消失
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //取消加载框
+                if (dismissProgressDialog()) {
+                    //超时处理
+                }
+            }
+        }, 60000);//超时时间60秒
+    }
+
+    public Boolean dismissProgressDialog() {
+        if (progressDialog != null) {
+            if (progressDialog.isShowing()) {
+                progressDialog.dismiss();
+                return true;//取消成功
+            }
+        }
+        return false;//已经取消过了，不需要取消
     }
 }
