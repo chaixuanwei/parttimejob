@@ -64,6 +64,16 @@ public class LoginModel implements ICommonModel {
                 String wxact = (String) t[6];
                 NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getWXToken(nickname, openid, headimgurl, province, city, wxact), view, whichApi, mLoadMode);
                 break;
+            case ApiConfig.WB_LOGIN:
+                mLoadMode = (int) t[0];
+                String wbnickname = (String) t[1];
+                String wbopenid = (String) t[2];
+                String wbheadimgurl = (String) t[3];
+                String wbprovince = (String) t[4];
+                String wbcity = (String) t[5];
+                String wbact = (String) t[6];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getWBToken(wbnickname, wbopenid, wbheadimgurl, wbprovince, wbcity, wbact), view, whichApi, mLoadMode);
+                break;
         }
     }
 }

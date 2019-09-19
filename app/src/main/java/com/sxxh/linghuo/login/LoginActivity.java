@@ -20,6 +20,12 @@ import android.widget.TextView;
 import com.alipay.sdk.app.AuthTask;
 import com.blankj.utilcode.util.ToastUtils;
 import com.google.gson.Gson;
+import com.sina.weibo.sdk.WbSdk;
+import com.sina.weibo.sdk.auth.AccessTokenKeeper;
+import com.sina.weibo.sdk.auth.AuthInfo;
+import com.sina.weibo.sdk.auth.Oauth2AccessToken;
+import com.sina.weibo.sdk.auth.WbConnectErrorMessage;
+import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.switfpass.pay.utils.Constants;
 import com.sxxh.linghuo.R;
 import com.sxxh.linghuo.activity.MainActivity;
@@ -30,6 +36,7 @@ import com.sxxh.linghuo.frame.BaseMvpActivity;
 import com.sxxh.linghuo.frame.CommonPresenter;
 import com.sxxh.linghuo.local_utils.SharedPrefrenceUtils;
 import com.sxxh.linghuo.login.bean.LoginBean;
+import com.sxxh.linghuo.login.bean.WBTokenBean;
 import com.sxxh.linghuo.login.bean.WXLoginBean;
 import com.sxxh.linghuo.login.bean.WXTokenBean;
 import com.sxxh.linghuo.login.bean.ZFBLoginBean;
@@ -69,6 +76,10 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
     private static final int SDK_ZFB_LOGIN = 2;
     private static final String APP_ID = "wx09fddc4711f09625";
     Boolean isWx = false;
+    Boolean isWb = false;
+    private SsoHandler mSsoHandler;
+    private Oauth2AccessToken mAccessToken;
+    private String mWBOpenId;
 
     Handler mHandler = new Handler() {
         @Override
@@ -94,6 +105,8 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        WbSdk.install(this, new AuthInfo(this, Config.APP_ID_WB, Config.REDIRECT_URL, ""));
+        mSsoHandler = new SsoHandler(LoginActivity.this);
         regToWx();
     }
 
@@ -246,6 +259,34 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
                     }
                 }
                 break;
+            case ApiConfig.WB_LOGIN:
+                WBTokenBean mWBTokenBeans = (WBTokenBean) t[0];
+                if (!TextUtils.isEmpty(mWBTokenBeans.getData().toString())) {
+                    Gson mGson = new Gson();
+                    String mWBDatas = mGson.toJson(mWBTokenBeans.getData());
+                    final WBTokenBean.DataBean mWBData = mGson.fromJson(mWBDatas, WBTokenBean.DataBean.class);
+                    if (!mWBData.getToken().equals("")) {
+                        SharedPrefrenceUtils.saveString(LoginActivity.this, Config.TOKEN, mWBData.getToken());
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                finish();
+                            }
+                        });
+                    } else {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent mIntent = new Intent(LoginActivity.this, RegisterActivity.class);
+                                String mWb_user_id = mWBData.getSina_user_id();
+                                mIntent.putExtra("id", mWb_user_id);
+                                startActivity(mIntent);
+                            }
+                        });
+                    }
+                }
+                break;
         }
     }
 
@@ -266,6 +307,8 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
                 startActivity(new Intent(this, RegisterActivity.class));
                 break;
             case R.id.weibo:
+                isWb = true;
+                loginToSina();
                 break;
             case R.id.weixin:
                 isWx = true;
@@ -277,14 +320,58 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
         }
     }
 
+    //吊起新浪微博客户端授权，如果未安装这使用web授权
+    private void loginToSina() {
+        mSsoHandler.authorize(new SelfWbAuthListener());
+    }
+
+    private class SelfWbAuthListener implements com.sina.weibo.sdk.auth.WbAuthListener {
+        @Override
+        public void onSuccess(final Oauth2AccessToken token) {
+            LoginActivity.this.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mAccessToken = token;
+                    if (mAccessToken.isSessionValid()) {
+                        mWBOpenId = mAccessToken.getUid();
+                        AccessTokenKeeper.writeAccessToken(LoginActivity.this, mAccessToken);
+                        ToastUtils.showShort("授权成功");
+                    }
+                }
+            });
+        }
+
+        @Override
+        public void cancel() {
+            ToastUtils.showShort("取消授权");
+        }
+
+        @Override
+        public void onFailure(WbConnectErrorMessage errorMessage) {
+            ToastUtils.showShort(errorMessage.getErrorMessage());
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (mSsoHandler != null) {
+            mSsoHandler.authorizeCallBack(requestCode, resultCode, data);
+        }
+    }
+
     /**
      * 登录微信
      */
     private void WXLogin() {
-        SendAuth.Req req = new SendAuth.Req();
-        req.scope = "snsapi_userinfo";
-        req.state = "wechat_sdk_demo_test";
-        api.sendReq(req);
+        if (!api.isWXAppInstalled()) {
+            ToastUtils.showShort("您的设备未安装微信客户端");
+        } else {
+            SendAuth.Req req = new SendAuth.Req();
+            req.scope = "snsapi_userinfo";
+            req.state = "wechat_sdk_demo_test";
+            api.sendReq(req);
+        }
     }
 
     @Override
@@ -300,6 +387,10 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
         if (!mOpenId.equals("") && isWx) {
             isWx = false;
             mPresenter.getData(ApiConfig.WX_LOGIN, LoadConfig.NORMAL, mNickName, mOpenId, mHeadimgurl, mProvince, mCity, "login");
+        }
+        if (!mWBOpenId.equals("") && isWb) {
+            isWb = false;
+            mPresenter.getData(ApiConfig.WB_LOGIN, LoadConfig.NORMAL, "", mWBOpenId, "", "", "", "login");
         }
     }
 }

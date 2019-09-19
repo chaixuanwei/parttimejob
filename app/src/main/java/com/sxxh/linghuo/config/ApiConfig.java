@@ -42,4 +42,8 @@ public class ApiConfig {
     public static final int GET_WITHDRAW = 39;//获取提现
     public static final int COMPAINT_FIRM = 40;//投诉公司
     public static final int COMPAINT_PEOPLE = 41;//投诉兼职人
+    public static final int HOME_BANNER = 42;//首页轮播图
+    public static final int HOME_MENU = 43;//菜单
+    public static final int GET_WB_LOGIN = 44;//获取微博登录
+    public static final int WB_LOGIN = 45;//微博登录
 }

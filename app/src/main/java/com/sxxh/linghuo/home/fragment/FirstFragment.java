@@ -3,24 +3,25 @@ package com.sxxh.linghuo.home.fragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.sxxh.linghuo.R;
+import com.sxxh.linghuo.config.ApiConfig;
+import com.sxxh.linghuo.config.LoadConfig;
 import com.sxxh.linghuo.frame.BaseMvpFragment;
 import com.sxxh.linghuo.frame.CommonPresenter;
+import com.sxxh.linghuo.home.bean.BannerBean;
 import com.sxxh.linghuo.home.adapter.HomeAdapter;
+import com.sxxh.linghuo.home.bean.MenuBean;
 import com.sxxh.linghuo.model.HomeModel;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
@@ -30,7 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
@@ -53,7 +53,6 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
     Unbinder unbinder;
     @BindView(R.id.first_banner)
     Banner firstBanner;
-    Unbinder unbinder1;
     private HomeAdapter mAdapter;
 
 
@@ -71,19 +70,6 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
     public void initView() {
 //        mCollapsingToolbarLayout.setContentScrimResource(R.drawable.toolbar);
         mCollapsingToolbarLayout.setContentScrimColor(getResources().getColor(R.color.blue_theme));
-        List<Integer> images = new ArrayList<>();
-        images.add(R.mipmap.banner_one);
-        images.add(R.mipmap.banner_two);
-        images.add(R.mipmap.banner_three);
-        firstBanner.setImageLoader(new ImageLoader() {
-            @Override
-            public void displayImage(Context context, Object path, ImageView imageView) {
-                Glide.with(getActivity()).load(path).into(imageView);
-            }
-        });
-        firstBanner.setImages(images);
-        firstBanner.start();
-
         LinearLayoutManager mManager = new LinearLayoutManager(getContext());
         mAdapter = new HomeAdapter(getActivity());
         homeRv.setAdapter(mAdapter);
@@ -92,7 +78,8 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
 
     @Override
     public void initData() {
-
+        mPresenter.getData(ApiConfig.HOME_BANNER, LoadConfig.NORMAL, "1");
+        mPresenter.getData(ApiConfig.HOME_MENU, LoadConfig.NORMAL);
     }
 
     @Override
@@ -117,31 +104,59 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
 
     @Override
     public void onError(int whichApi,Throwable e) {
-
+        Log.e("首页", "onError: " + e.getMessage());
     }
 
     @Override
     public void onResponse(int whichApi, Object[] t) {
+        switch (whichApi) {
+            case ApiConfig.HOME_BANNER:
+                BannerBean mBannerBeans = (BannerBean) t[0];
+                List<BannerBean.DataBean> mData = mBannerBeans.getData();
+                List<String> images = new ArrayList<>();
+                List<String> urls = new ArrayList<>();
+                List<String> titles = new ArrayList<>();
+                for (int i = 0; i < mData.size(); i++) {
+                    images.add(mData.get(i).getImage());
+                    urls.add(mData.get(i).getUrl());
+                    titles.add(mData.get(i).getTitle());
+                }
+                firstBanner.setImageLoader(new ImageLoader() {
+                    @Override
+                    public void displayImage(Context context, Object path, ImageView imageView) {
+                        Glide.with(getActivity()).load((String)path).into(imageView);
+                    }
+                });
+                firstBanner.setImages(images);
+                firstBanner.setBannerTitles(titles);
+                firstBanner.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                    @Override
+                    public void onPageScrolled(int pI, float pV, int pI1) {
 
+                    }
+
+                    @Override
+                    public void onPageSelected(int pI) {
+
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int pI) {
+
+                    }
+                });
+                firstBanner.start();
+                break;
+            case ApiConfig.HOME_MENU:
+                MenuBean mMenuBeans = (MenuBean) t[0];
+
+                break;
+        }
     }
 
     @OnClick(R.id.place)
     public void onClick() {
         startActivityForResult(new Intent(getActivity(), CityPickerActivity.class),
                 REQUEST_CODE_PICK_CITY);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder1 = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder1.unbind();
     }
 }

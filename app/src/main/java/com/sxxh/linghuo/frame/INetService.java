@@ -1,8 +1,11 @@
 package com.sxxh.linghuo.frame;
 
+import com.sxxh.linghuo.home.bean.BannerBean;
+import com.sxxh.linghuo.home.bean.MenuBean;
 import com.sxxh.linghuo.issus.bean.NatureBean;
 import com.sxxh.linghuo.login.bean.AuthCodeBean;
 import com.sxxh.linghuo.login.bean.LoginBean;
+import com.sxxh.linghuo.login.bean.WBTokenBean;
 import com.sxxh.linghuo.login.bean.WXLoginBean;
 import com.sxxh.linghuo.login.bean.WXTokenBean;
 import com.sxxh.linghuo.login.bean.ZFBLoginBean;
@@ -209,6 +212,16 @@ public interface INetService {
                                        @Field("city") String city,
                                        @Field("act") String act);
 
+    //微博登录获取token
+    @POST("api/user/sina/login")
+    @FormUrlEncoded
+    Observable<WBTokenBean> getWBToken(@Field("nickname") String nickname,
+                                       @Field("openid") String openid,
+                                       @Field("headimgurl") String headimgurl,
+                                       @Field("province") String province,
+                                       @Field("city") String city,
+                                       @Field("act") String act);
+
 //    //支付宝支付
 //    @GET("api/user/alipay/order_pay")
 //    Observable<> getZFBPay();
@@ -276,4 +289,12 @@ public interface INetService {
     Observable<AuthCodeBean> setComplaintPeople(@Field("user_id") int user_id,
                                               @Field("report_type") String report_type,
                                               @Field("content") String content);
+
+    //首页轮播图
+    @GET("api/job/public/get_slides")
+    Observable<BannerBean> getBanner(@Query("id") String id);
+
+    //首页菜单
+    @GET("api/job/public/menu")
+    Observable<MenuBean> getMenu();
 }
