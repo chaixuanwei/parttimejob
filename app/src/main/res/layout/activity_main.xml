@@ -7,41 +7,42 @@
     tools:context=".activity.MainActivity">
 
     <FrameLayout
+        android:id="@+id/frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/frame_layout"
-        android:layout_above="@+id/line"/>
+        android:layout_above="@+id/line" />
 
     <TextView
         android:id="@+id/line"
-        android:background="@color/grey_second"
-        android:layout_above="@id/bottom_view"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_1" />
+        android:layout_height="@dimen/dp_0_5"
+        android:layout_above="@id/bottom_view"
+        android:background="@color/grey_second" />
 
     <com.sxxh.linghuo.customs.MyBottomView
         android:id="@+id/bottom_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/dp_5"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:paddingTop="@dimen/dp_5"
+        app:bottomNum="4"
+        app:bottomTextSize="@dimen/sp_6"
         app:changeDrawable="true"
         app:changeTextColor="true"
-        app:textSelectedColor="@color/app_theme_color"
-        app:textUnSelectedColor="@color/grey_first"
-        app:bottomTextSize="@dimen/sp_6"
+        app:imageSelectedFirst="@mipmap/select_home"
+        app:imageSelectedFourth="@mipmap/select_me"
+        app:imageSelectedSecond="@mipmap/select_issus"
+        app:imageSelectedThird="@mipmap/select_message"
+        app:imageUnSelectedFirst="@mipmap/unselect_home"
+        app:imageUnSelectedFourth="@mipmap/unselect_me"
+        app:imageUnSelectedSecond="@mipmap/unselect_issus"
+        app:imageUnSelectedThird="@mipmap/unselect_message"
         app:textFirst="@string/first_page"
         app:textFourth="@string/me"
         app:textSecond="@string/issue"
+        app:textSelectedColor="@color/app_theme_color"
         app:textThird="@string/message"
-        app:bottomNum="4"
-        app:imageUnSelectedFirst="@mipmap/unselect_home"
-        app:imageUnSelectedSecond="@mipmap/unselect_issus"
-        app:imageUnSelectedThird="@mipmap/unselect_message"
-        app:imageUnSelectedFourth="@mipmap/unselect_me"
-        app:imageSelectedFirst="@mipmap/select_home"
-        app:imageSelectedSecond="@mipmap/select_issus"
-        app:imageSelectedThird="@mipmap/select_message"
-        app:imageSelectedFourth="@mipmap/select_me"
-        android:layout_alignParentBottom="true"/>
+        app:textUnSelectedColor="@color/grey_first" />
 
 </RelativeLayout>

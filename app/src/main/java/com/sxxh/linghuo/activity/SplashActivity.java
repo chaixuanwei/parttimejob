@@ -25,14 +25,14 @@ public class SplashActivity extends BaseActivity {
         setContentView(R.layout.activity_splash);
         mSplashThree = findViewById(R.id.splash_three);
         mIsFirst = SharedPrefrenceUtils.getBoolean(this, Config.ISFIRST, true);
-        if (mIsFirst)SharedPrefrenceUtils.saveBoolean(this,Config.ISFIRST,false);
+        if (mIsFirst) SharedPrefrenceUtils.saveBoolean(this, Config.ISFIRST, false);
         mSplashThree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!mIsFirst) {
                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
                     SplashActivity.this.finish();
-                }else {
+                } else {
                     Intent intent = new Intent(SplashActivity.this, IntroduceActivity.class);
                     startActivity(intent);
                     SplashActivity.this.finish();
