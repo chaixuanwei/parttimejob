@@ -30,12 +30,28 @@ public class SystemMessageAdapter extends RecyclerView.Adapter<SystemMessageAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder pViewHolder, int pI) {
-        SystemBean.DataBean mDataBean = mSystemList.get(pI);
+    public void onBindViewHolder(@NonNull ViewHolder pViewHolder, final int pI) {
+        final SystemBean.DataBean mDataBean = mSystemList.get(pI);
         ViewHolder mViewHolder = pViewHolder;
         mViewHolder.mItemSystemTitle.setText(mDataBean.getTitle());
         mViewHolder.mItemSystemContent.setText(mDataBean.getContent());
         mViewHolder.mItemSystemTime.setText(mDataBean.getCreate_time());
+        mViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mToMessageContent.YetRead(mDataBean.getId());
+            }
+        });
+    }
+
+    private ToMessageContent mToMessageContent;
+
+    public void setToMessageContent(ToMessageContent pToMessageContent) {
+        mToMessageContent = pToMessageContent;
+    }
+
+    public interface ToMessageContent{
+        void YetRead(int pI);
     }
 
     @Override

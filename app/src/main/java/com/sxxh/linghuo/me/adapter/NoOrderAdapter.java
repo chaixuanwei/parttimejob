@@ -57,6 +57,7 @@ public class NoOrderAdapter extends RecyclerView.Adapter<NoOrderAdapter.ViewHold
         private TextView mItemOrderJobPay;
         private TextView mItemOrderJobContent;
         private TextView mItemOrderJobLook;
+        private TextView mItemOrderWaitPayment;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,6 +65,7 @@ public class NoOrderAdapter extends RecyclerView.Adapter<NoOrderAdapter.ViewHold
             mItemOrderJobPay = itemView.findViewById(R.id.item_order_job_pay);
             mItemOrderJobContent = itemView.findViewById(R.id.item_order_job_content);
             mItemOrderJobLook = itemView.findViewById(R.id.item_order_job_look);
+            mItemOrderWaitPayment = itemView.findViewById(R.id.item_order_wait_payment);
         }
     }
 }

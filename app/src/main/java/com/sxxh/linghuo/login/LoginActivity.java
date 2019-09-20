@@ -1,6 +1,5 @@
 package com.sxxh.linghuo.login;
 
-import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -202,12 +201,12 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
                 break;
             case ApiConfig.GET_WX_LOGIN:
                 WXLoginBean mWXLoginBeans = (WXLoginBean) t[0];
-                if (!mWXOpenId.equals("")) {
-                    showProgressDialog(this, "登录中。。");
-                    mPresenter.getData(ApiConfig.WX_LOGIN, LoadConfig.NORMAL, "", mWXOpenId, "", "", "", "login");
-                } else {
-                    WXLogin();
-                }
+//                if (!mWXOpenId.equals("")) {
+//                    showProgressDialog(this, "登录中。。");
+//                    mPresenter.getData(ApiConfig.WX_LOGIN, LoadConfig.NORMAL, "", mWXOpenId, "", "", "", "login");
+//                } else {
+                WXLogin();
+//                }
                 break;
             case ApiConfig.ZFB_LOGIN:
                 ZFBTokenBean mZFBTokenBeans = (ZFBTokenBean) t[0];
@@ -239,7 +238,7 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
                 }
                 break;
             case ApiConfig.WX_LOGIN:
-                dismissProgressDialog();
+//                dismissProgressDialog();
                 WXTokenBean mWXTokenBean = (WXTokenBean) t[0];
                 if (!TextUtils.isEmpty(mWXTokenBean.getData().toString())) {
                     Gson mGson = new Gson();
@@ -396,37 +395,37 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
         super.onResume();
     }
 
-    //加载框变量
-    private ProgressDialog progressDialog;
-
-    public void showProgressDialog(Context mContext, String text) {
-        if (progressDialog == null) {
-            progressDialog = new ProgressDialog(mContext);
-            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        }
-        progressDialog.setMessage(text);    //设置内容
-        progressDialog.setCancelable(false);//点击屏幕和按返回键都不能取消加载框
-        progressDialog.show();
-
-        //设置超时自动消失
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //取消加载框
-                if (dismissProgressDialog()) {
-                    //超时处理
-                }
-            }
-        }, 60000);//超时时间60秒
-    }
-
-    public Boolean dismissProgressDialog() {
-        if (progressDialog != null) {
-            if (progressDialog.isShowing()) {
-                progressDialog.dismiss();
-                return true;//取消成功
-            }
-        }
-        return false;//已经取消过了，不需要取消
-    }
+//    //加载框变量
+//    private ProgressDialog progressDialog;
+//
+//    public void showProgressDialog(Context mContext, String text) {
+//        if (progressDialog == null) {
+//            progressDialog = new ProgressDialog(mContext);
+//            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//        }
+//        progressDialog.setMessage(text);    //设置内容
+//        progressDialog.setCancelable(false);//点击屏幕和按返回键都不能取消加载框
+//        progressDialog.show();
+//
+//        //设置超时自动消失
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                //取消加载框
+//                if (dismissProgressDialog()) {
+//                    //超时处理
+//                }
+//            }
+//        }, 60000);//超时时间60秒
+//    }
+//
+//    public Boolean dismissProgressDialog() {
+//        if (progressDialog != null) {
+//            if (progressDialog.isShowing()) {
+//                progressDialog.dismiss();
+//                return true;//取消成功
+//            }
+//        }
+//        return false;//已经取消过了，不需要取消
+//    }
 }
