@@ -52,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp_11"
                 android:background="@null"
+                android:maxLength="11"
                 android:hint="请输入需要登录的手机号"
                 android:inputType="phone"
                 android:singleLine="true"
@@ -130,7 +131,7 @@
                 android:layout_toRightOf="@id/none"
                 android:text="注册"
                 android:textColor="@color/app_theme_color"
-                android:textSize="@dimen/sp_12" />
+                android:textSize="@dimen/sp_14" />
         </LinearLayout>
 
         <TextView
