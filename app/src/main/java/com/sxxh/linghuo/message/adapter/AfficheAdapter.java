@@ -1,7 +1,6 @@
 package com.sxxh.linghuo.message.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.sxxh.linghuo.R;
-import com.sxxh.linghuo.activity.WebviewActivity;
 import com.sxxh.linghuo.message.bean.AfficheBean;
 
 import java.util.ArrayList;
@@ -34,7 +32,7 @@ public class AfficheAdapter extends RecyclerView.Adapter<AfficheAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder pViewHolder, int pI) {
+    public void onBindViewHolder(@NonNull ViewHolder pViewHolder, final int pI) {
         final AfficheBean.DataBean mDataBean = mAddicheList.get(pI);
         ViewHolder mViewHolder = pViewHolder;
         if (mDataBean != null) {
@@ -45,11 +43,19 @@ public class AfficheAdapter extends RecyclerView.Adapter<AfficheAdapter.ViewHold
         mViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mIntent = new Intent(mContext, WebviewActivity.class);
-                mIntent.putExtra("url",mDataBean.getUrl());
-                mContext.startActivity(mIntent);
+                mToAdContent.YetAdRead(mDataBean.getId(), mDataBean.getUrl());
             }
         });
+    }
+
+    private ToAdContent mToAdContent;
+
+    public void setToAdContent(ToAdContent pToAdContent) {
+        mToAdContent = pToAdContent;
+    }
+
+    public interface ToAdContent {
+        void YetAdRead(int pI, String url);
     }
 
     @Override
@@ -61,6 +67,7 @@ public class AfficheAdapter extends RecyclerView.Adapter<AfficheAdapter.ViewHold
         private ImageView mItemAfficheImg;
         private TextView mItemAfficheTitle;
         private TextView mItemAfficheContent;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mItemAfficheImg = itemView.findViewById(R.id.item_affiche_img);

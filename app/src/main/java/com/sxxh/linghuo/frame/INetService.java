@@ -27,6 +27,7 @@ import com.sxxh.linghuo.me.bean.UploadTopBean;
 import com.sxxh.linghuo.me.bean.WaitAppraiseBean;
 import com.sxxh.linghuo.me.bean.WorkingBean;
 import com.sxxh.linghuo.message.bean.AfficheBean;
+import com.sxxh.linghuo.message.bean.CountBean;
 
 import java.io.File;
 
@@ -297,4 +298,14 @@ public interface INetService {
     //首页菜单
     @GET("api/job/public/menu")
     Observable<MenuBean> getMenu();
+
+    //标记消息已读
+    @POST("api/user/profile/readNotice")
+    @FormUrlEncoded
+    Observable<AuthCodeBean> getYetRead(@Field("id") String id,
+                                        @Field("type") String type);
+
+    //获取消息未读
+    @GET("api/user/profile/noSeecount")
+    Observable<CountBean> getNonRead(@Query("type") String type);
 }

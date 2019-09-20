@@ -9,25 +9,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.ToastUtils;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.sxxh.linghuo.R;
+import com.sxxh.linghuo.activity.WebviewActivity;
 import com.sxxh.linghuo.config.ApiConfig;
 import com.sxxh.linghuo.config.LoadConfig;
 import com.sxxh.linghuo.frame.BaseMvpActivity;
 import com.sxxh.linghuo.frame.CommonPresenter;
 import com.sxxh.linghuo.login.LoginActivity;
+import com.sxxh.linghuo.login.bean.AuthCodeBean;
 import com.sxxh.linghuo.message.adapter.AfficheAdapter;
 import com.sxxh.linghuo.message.adapter.SystemMessageAdapter;
 import com.sxxh.linghuo.message.bean.AfficheBean;
 import com.sxxh.linghuo.message.bean.SystemBean;
 import com.sxxh.linghuo.model.MessageModel;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class SystemTaskMessageActivity extends BaseMvpActivity<CommonPresenter, MessageModel> {
+public class SystemTaskMessageActivity extends BaseMvpActivity<CommonPresenter, MessageModel> implements SystemMessageAdapter.ToMessageContent, AfficheAdapter.ToAdContent {
 
     @BindView(R.id.message_rv)
     RecyclerView messageRv;
@@ -65,9 +67,11 @@ public class SystemTaskMessageActivity extends BaseMvpActivity<CommonPresenter, 
         if (!mType.equals("2")) {
             mSystemAdapter = new SystemMessageAdapter(this, mSystemList);
             messageRv.setAdapter(mSystemAdapter);
+            mSystemAdapter.setToMessageContent(this);
         } else {
             mAfficheAdapter = new AfficheAdapter(this, mAddicheList);
             messageRv.setAdapter(mAfficheAdapter);
+            mAfficheAdapter.setToAdContent(this);
         }
         messageRv.setLayoutManager(new LinearLayoutManager(this));
         messageRv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
@@ -131,6 +135,9 @@ public class SystemTaskMessageActivity extends BaseMvpActivity<CommonPresenter, 
                     mAfficheAdapter.notifyDataSetChanged();
                 }
                 break;
+            case ApiConfig.YET_READ:
+                AuthCodeBean mAuthCodeBeans = (AuthCodeBean) t[0];
+                break;
         }
     }
 
@@ -151,5 +158,18 @@ public class SystemTaskMessageActivity extends BaseMvpActivity<CommonPresenter, 
     @OnClick(R.id.back)
     public void onClick() {
         finish();
+    }
+
+    @Override
+    public void YetRead(int pI) {
+
+    }
+
+    @Override
+    public void YetAdRead(int pI, String url) {
+        mPresenter.getData(ApiConfig.YET_READ, LoadConfig.NORMAL, pI + "", mType);
+        Intent mIntent = new Intent(this, WebviewActivity.class);
+        mIntent.putExtra("url", url);
+        this.startActivity(mIntent);
     }
 }
