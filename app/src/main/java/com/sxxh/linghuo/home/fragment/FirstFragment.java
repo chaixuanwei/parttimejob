@@ -145,6 +145,7 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
 
                     }
                 });
+                firstBanner.setDelayTime(3000);
                 firstBanner.start();
                 break;
             case ApiConfig.HOME_MENU:

@@ -75,7 +75,6 @@ public class MainActivity extends BaseMvpActivity<CommonPresenter, HomeModel> im
                         // 这里的requestCode就是申请时设置的requestCode。
                         // 和onActivityResult()的requestCode一样，用来区分多个不同的请求。
                         if (requestCode == 200) {
-                            // TODO ...
                         }
                     }
 
