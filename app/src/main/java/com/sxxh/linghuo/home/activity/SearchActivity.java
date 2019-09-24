@@ -1,12 +1,14 @@
 package com.sxxh.linghuo.home.activity;
 
-import android.os.Bundle;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.sxxh.linghuo.R;
+import com.sxxh.linghuo.config.Config;
 import com.sxxh.linghuo.frame.BaseMvpActivity;
 import com.sxxh.linghuo.frame.CommonPresenter;
 import com.sxxh.linghuo.model.HomeModel;
@@ -19,7 +21,6 @@ import java.util.List;
 import java.util.Set;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomeModel> {
@@ -131,5 +132,13 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
 
     @OnClick(R.id.txt_search)
     public void onClick() {
+        String mS = etSearch.getText().toString();
+        if (mS.equals("")) {
+            ToastUtils.showShort("请填写搜索内容！");
+        } else {
+            Intent mIntent = new Intent(this, SearchListActivity.class);
+            mIntent.putExtra(Config.SEARCH_STR, mS);
+            startActivity(mIntent);
+        }
     }
 }
