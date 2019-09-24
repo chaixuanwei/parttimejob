@@ -201,12 +201,7 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
                 break;
             case ApiConfig.GET_WX_LOGIN:
                 WXLoginBean mWXLoginBeans = (WXLoginBean) t[0];
-//                if (!mWXOpenId.equals("")) {
-//                    showProgressDialog(this, "登录中。。");
-//                    mPresenter.getData(ApiConfig.WX_LOGIN, LoadConfig.NORMAL, "", mWXOpenId, "", "", "", "login");
-//                } else {
                 WXLogin();
-//                }
                 break;
             case ApiConfig.ZFB_LOGIN:
                 ZFBTokenBean mZFBTokenBeans = (ZFBTokenBean) t[0];
@@ -238,7 +233,6 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
                 }
                 break;
             case ApiConfig.WX_LOGIN:
-//                dismissProgressDialog();
                 WXTokenBean mWXTokenBean = (WXTokenBean) t[0];
                 if (!TextUtils.isEmpty(mWXTokenBean.getData().toString())) {
                     Gson mGson = new Gson();
