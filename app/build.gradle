@@ -88,4 +88,5 @@ dependencies {
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     implementation 'com.yanzhenjie:permission:1.1.2'
     implementation 'com.sina.weibo.sdk:core:4.4.1:openDefaultRelease@aar'
+    implementation 'com.hyman:flowlayout-lib:1.1.2'
 }

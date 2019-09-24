@@ -447,4 +447,5 @@
     <dimen name="h10">18sp</dimen>
     <!--h11-->
     <dimen name="h11">19sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
