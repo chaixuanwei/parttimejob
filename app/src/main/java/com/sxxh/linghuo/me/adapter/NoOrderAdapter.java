@@ -45,6 +45,11 @@ public class NoOrderAdapter extends RecyclerView.Adapter<NoOrderAdapter.ViewHold
                 mContext.startActivity(mIssusIntent);
             }
         });
+        if (mDataBean.getPay_status() == 0) {
+            mViewHolder.mItemOrderWaitPayment.setVisibility(View.VISIBLE);
+        } else if (mDataBean.getPay_status() == 1) {
+            mViewHolder.mItemOrderWaitPayment.setVisibility(View.GONE);
+        }
     }
 
     @Override
