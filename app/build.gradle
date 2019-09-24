@@ -84,7 +84,7 @@ dependencies {
     implementation 'com.jph.takephoto:takephoto_library:4.0.3'
     implementation 'com.amitshekhar.android:rx2-android-networking:1.0.0'
     implementation 'com.contrarywind:Android-PickerView:4.1.8'
-    implementation (name: 'alipaySdk-15.6.5-20190718211159', ext: 'aar')
+    implementation(name: 'alipaySdk-15.6.5-20190718211159', ext: 'aar')
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     implementation 'com.yanzhenjie:permission:1.1.2'
     implementation 'com.sina.weibo.sdk:core:4.4.1:openDefaultRelease@aar'

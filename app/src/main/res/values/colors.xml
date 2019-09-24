@@ -13,6 +13,7 @@
     <color name="black_theme">#000000</color>
     <color name="black_theme2">#333333</color>
     <color name="grey_first">#222222</color>
+    <color name="search_text">#1C1C1D</color>
 <!--    <color name="grey_second">#A9A9A9</color>-->
     <color name="grey_second">#e6e6e6</color>
     <color name="text_color">#999999</color>
