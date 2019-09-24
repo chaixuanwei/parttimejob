@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import com.sxxh.linghuo.config.ApiConfig;
 import com.sxxh.linghuo.config.LoadConfig;
 import com.sxxh.linghuo.frame.BaseMvpFragment;
 import com.sxxh.linghuo.frame.CommonPresenter;
+import com.sxxh.linghuo.home.activity.SearchActivity;
 import com.sxxh.linghuo.home.bean.BannerBean;
 import com.sxxh.linghuo.home.adapter.HomeAdapter;
 import com.sxxh.linghuo.home.bean.MenuBean;
@@ -51,6 +53,8 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
     @BindView(R.id.home_rv)
     RecyclerView homeRv;
     Unbinder unbinder;
+    @BindView(R.id.search)
+    TextView mSearch;
     @BindView(R.id.first_banner)
     Banner firstBanner;
     private HomeAdapter mAdapter;
@@ -74,6 +78,13 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
         mAdapter = new HomeAdapter(getActivity());
         homeRv.setAdapter(mAdapter);
         homeRv.setLayoutManager(mManager);
+        mSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mIntent = new Intent(getActivity(), SearchActivity.class);
+                startActivity(mIntent);
+            }
+        });
     }
 
     @Override

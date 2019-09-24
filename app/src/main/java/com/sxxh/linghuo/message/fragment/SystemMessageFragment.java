@@ -48,9 +48,9 @@ public class SystemMessageFragment extends BaseMvpFragment<CommonPresenter, Mess
 
     @Override
     public void initData() {
-//        mPresenter.getData(ApiConfig.NON_READ_A, LoadConfig.NORMAL, "1");
-//        mPresenter.getData(ApiConfig.NON_READ_B, LoadConfig.NORMAL, "2");
-//        mPresenter.getData(ApiConfig.NON_READ_C, LoadConfig.NORMAL, "3");
+        mPresenter.getData(ApiConfig.NON_READ_A, LoadConfig.NORMAL, "1");
+        mPresenter.getData(ApiConfig.NON_READ_B, LoadConfig.NORMAL, "2");
+        mPresenter.getData(ApiConfig.NON_READ_C, LoadConfig.NORMAL, "3");
     }
 
     @Override
@@ -65,22 +65,22 @@ public class SystemMessageFragment extends BaseMvpFragment<CommonPresenter, Mess
 
     @Override
     public void onError(int whichApi, Throwable e) {
-//        Log.e("消息", "onError: " + e.getMessage());
+        Log.e("消息", "onError: " + e.getMessage());
     }
 
     @Override
     public void onResponse(int whichApi, Object[] t) {
-//        switch (whichApi) {
-//            case ApiConfig.NON_READ_A:
-//                CountBean mCountBeans_a = (CountBean) t[0];
-//                break;
-//            case ApiConfig.NON_READ_B:
-//                CountBean mCountBeans_b = (CountBean) t[0];
-//                break;
-//            case ApiConfig.NON_READ_C:
-//                CountBean mCountBeans_c = (CountBean) t[0];
-//                break;
-//        }
+        switch (whichApi) {
+            case ApiConfig.NON_READ_A:
+                CountBean mCountBeans_a = (CountBean) t[0];
+                break;
+            case ApiConfig.NON_READ_B:
+                CountBean mCountBeans_b = (CountBean) t[0];
+                break;
+            case ApiConfig.NON_READ_C:
+                CountBean mCountBeans_c = (CountBean) t[0];
+                break;
+        }
     }
 
     @OnClick({R.id.system_rl, R.id.task_rl, R.id.affiche_rl})

@@ -47,7 +47,8 @@ public class ApiConfig {
     public static final int GET_WB_LOGIN = 44;//获取微博登录
     public static final int WB_LOGIN = 45;//微博登录
     public static final int YET_READ = 46;//消息已读
-//    public static final int NON_READ_A = 47;//消息未读
-//    public static final int NON_READ_B = 48;//消息未读
-//    public static final int NON_READ_C = 49;//消息未读
+    public static final int NON_READ_A = 47;//消息未读
+    public static final int NON_READ_B = 48;//消息未读
+    public static final int NON_READ_C = 49;//消息未读
+    public static final int ISSUS_MESSAGE = 50;//首页发布人基础信息
 }

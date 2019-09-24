@@ -35,4 +35,5 @@
     <color name="west_item_bg">#FFF3ED</color>
     <color name="east_item_bg">#F7F7F7</color>
     <color name="rank_line">#DBDBDB</color>
+    <color name="read_error_edit_solid">#F7F7F7</color>
 </resources>

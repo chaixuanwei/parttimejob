@@ -25,21 +25,21 @@ public class MessageModel implements ICommonModel {
                 mType = (String) t[2];
                 NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getYetRead(id, mType), view, whichApi, mLoadMode);
                 break;
-//            case ApiConfig.NON_READ_A:
-//                mLoadMode = (int) t[0];
-//                mType = (String) t[1];
-//                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getNonRead(mType), view, whichApi, mLoadMode);
-//                break;
-//            case ApiConfig.NON_READ_B:
-//                mLoadMode = (int) t[0];
-//                mType = (String) t[1];
-//                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getNonRead(mType), view, whichApi, mLoadMode);
-//                break;
-//            case ApiConfig.NON_READ_C:
-//                mLoadMode = (int) t[0];
-//                mType = (String) t[1];
-//                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getNonRead(mType), view, whichApi, mLoadMode);
-//                break;
+            case ApiConfig.NON_READ_A:
+                mLoadMode = (int) t[0];
+                mType = (String) t[1];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getNonRead(mType), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.NON_READ_B:
+                mLoadMode = (int) t[0];
+                mType = (String) t[1];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getNonRead(mType), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.NON_READ_C:
+                mLoadMode = (int) t[0];
+                mType = (String) t[1];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getNonRead(mType), view, whichApi, mLoadMode);
+                break;
         }
     }
 }

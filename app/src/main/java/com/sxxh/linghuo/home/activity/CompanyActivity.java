@@ -56,6 +56,7 @@ public class CompanyActivity extends BaseMvpActivity<CommonPresenter, HomeModel>
 
     @Override
     public void initData() {
+//        mPresenter.getData(ApiConfig.ISSUS_MESSAGE, LoadConfig.NORMAL);
         if (mTitleList.size() == 0 && mFragmentList.size() == 0) {
             mTitleList.add("整体评价");
             mFragmentList.add(CompanyAppraiseFragment.newInstance());
