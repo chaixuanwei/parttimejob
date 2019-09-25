@@ -29,4 +29,5 @@ public class Config {
     public static final String USER_ID = "userid";
     public static final String TASK_ID = "taskid";
     public static final String SEARCH_STR = "search";
+    public static final String PLACE = "place";
 }
