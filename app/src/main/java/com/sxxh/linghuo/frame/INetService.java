@@ -1,6 +1,7 @@
 package com.sxxh.linghuo.frame;
 
 import com.sxxh.linghuo.home.bean.BannerBean;
+import com.sxxh.linghuo.home.bean.IssusMessageBean;
 import com.sxxh.linghuo.home.bean.MenuBean;
 import com.sxxh.linghuo.issus.bean.NatureBean;
 import com.sxxh.linghuo.login.bean.AuthCodeBean;
@@ -308,4 +309,8 @@ public interface INetService {
     //获取消息未读
     @GET("api/user/profile/noSeecount")
     Observable<CountBean> getNonRead(@Query("type") String type);
+
+    //首页发布人基础信息
+    @GET("api/user/companyinfo/job")
+    Observable<IssusMessageBean> getIssusMessage(@Query("uid") int uId);
 }

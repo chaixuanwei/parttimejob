@@ -67,6 +67,7 @@ public class DetailActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
     TextView detailCall;
     @BindView(R.id.detail_apply)
     TextView detailApply;
+    private int tId = 1;
 
     @Override
     public int getLayoutId() {
@@ -111,6 +112,7 @@ public class DetailActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
                 break;
             case R.id.company_content:
                 Intent mCompanyIntent = new Intent(this, CompanyActivity.class);
+                mCompanyIntent.putExtra(Config.TASK_ID, tId);
                 startActivity(mCompanyIntent);
                 break;
             case R.id.complain:

@@ -27,5 +27,6 @@ public class Config {
     public static final String REDIRECT_URL = "http://job.zhangtongdongli.com";
     public static final String COMPLAINT = "complaint";
     public static final String USER_ID = "userid";
+    public static final String TASK_ID = "taskid";
     public static final String SEARCH_STR = "search";
 }

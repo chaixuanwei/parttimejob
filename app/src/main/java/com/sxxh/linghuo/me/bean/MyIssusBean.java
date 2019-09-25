@@ -51,6 +51,7 @@ public class MyIssusBean {
         private String name;
         private String pay;
         private String des;
+        private int pay_status;
         private int property;
         private int zp_num;
         private int countuid;
@@ -111,5 +112,12 @@ public class MyIssusBean {
             t_id = pT_id;
         }
 
+        public int getPay_status() {
+            return pay_status;
+        }
+
+        public void setPay_status(int pPay_status) {
+            pay_status = pPay_status;
+        }
     }
 }

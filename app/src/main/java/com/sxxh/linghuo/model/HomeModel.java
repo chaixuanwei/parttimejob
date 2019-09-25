@@ -21,6 +21,11 @@ public class HomeModel implements ICommonModel {
                 mLoadMode = (int) t[0];
                 NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getMenu(), view, whichApi, mLoadMode);
                 break;
+            case ApiConfig.ISSUS_MESSAGE:
+                mLoadMode = (int) t[0];
+                int tId = (int) t[1];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getIssusMessage(tId), view, whichApi, mLoadMode);
+                break;
         }
     }
 }
