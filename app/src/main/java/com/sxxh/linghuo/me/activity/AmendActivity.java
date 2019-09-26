@@ -306,7 +306,7 @@ public class AmendActivity extends BaseMvpActivity<CommonPresenter, MeModel> imp
 
     @Override
     public void takeSuccess(TResult result) {
-        if (photo == 0) {
+        if (photo == 0 && !isTop) {
             mList.clear();
         }
         ArrayList<TImage> mImages = result.getImages();
