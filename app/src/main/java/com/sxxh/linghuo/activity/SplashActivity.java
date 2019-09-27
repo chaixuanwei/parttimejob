@@ -2,6 +2,7 @@ package com.sxxh.linghuo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -14,8 +15,9 @@ import com.sxxh.linghuo.local_utils.SharedPrefrenceUtils;
 
 public class SplashActivity extends BaseActivity {
 
-    private TextView mSplashThree;
+    private TextView mCountDown;
     private boolean mIsFirst;
+    private CountDownTimer mStart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +25,25 @@ public class SplashActivity extends BaseActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
-        mSplashThree = findViewById(R.id.splash_three);
+        mCountDown = findViewById(R.id.count_down);
+        mStart = new CountDownTimer(5000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                mCountDown.setText((int) (millisUntilFinished/1000)+"秒后跳过");
+            }
+
+            @Override
+            public void onFinish() {
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                SplashActivity.this.finish();
+            }
+        }.start();
         mIsFirst = SharedPrefrenceUtils.getBoolean(this, Config.ISFIRST, true);
         if (mIsFirst) SharedPrefrenceUtils.saveBoolean(this, Config.ISFIRST, false);
-        mSplashThree.setOnClickListener(new View.OnClickListener() {
+        mCountDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mStart.cancel();
                 if (!mIsFirst) {
                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
                     SplashActivity.this.finish();
@@ -39,5 +54,11 @@ public class SplashActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        mStart.cancel();
+        super.onDestroy();
     }
 }
