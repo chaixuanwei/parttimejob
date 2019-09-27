@@ -139,12 +139,12 @@ public class PayCenterActivity extends BaseMvpActivity<CommonPresenter, IssusMod
                 } else if (payModepay.getText().toString().equals("微信")) {
                     PayReq payReq = new PayReq();
                     payReq.appId = Config.APP_ID_WX; //应用ID
-                    payReq.partnerId = ""; //商户号 即微信支付分配的商户号
-                    payReq.prepayId = ""; //预支付交易会话ID
-                    payReq.packageValue = ""; //扩展字段
-                    payReq.nonceStr = ""; //随机字符串不长于32位。
-                    payReq.timeStamp = "" ; //时间戳
-                    payReq.sign = "";  //签名
+                    payReq.partnerId = ""; //商户号 即微信支付分配的商户号WeChatPayEntity .getPartnerid();
+                    payReq.prepayId = ""; //预支付交易会话ID.getPrepayid();
+                    payReq.packageValue = ""; //扩展字段.getPackageX();
+                    payReq.nonceStr = ""; //随机字符串不长于32位。.getNoncestr();
+                    payReq.timeStamp = "" ; //时间戳.getTimestamp();
+                    payReq.sign = "";  //签名.getPaySign();
                     api.sendReq(payReq);
                 } else if (payModepay.getText().toString().equals("支付宝")) {
                     mZFBPayInfo = null;
