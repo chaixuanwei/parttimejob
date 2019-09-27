@@ -121,12 +121,6 @@ public class IdBindActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        regToWx();
-    }
-
-    @Override
     public void initData() {
         mPresenter.getData(ApiConfig.ID_BIND, LoadConfig.NORMAL);
     }
@@ -223,27 +217,6 @@ public class IdBindActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
                 mPresenter.getData(ApiConfig.ID_BIND, LoadConfig.NORMAL);
                 break;
         }
-    }
-
-    /**
-     * 登录微信
-     */
-    private void regToWx() {
-        // 通过WXAPIFactory工厂，获取IWXAPI的实例
-        api = WXAPIFactory.createWXAPI(this, APP_ID, true);
-
-        // 将应用的appId注册到微信
-        api.registerApp(APP_ID);
-
-        //建议动态监听微信启动广播进行注册到微信
-        registerReceiver(new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-
-                // 将该app注册到微信
-                api.registerApp(Constants.APP_ID);
-            }
-        }, new IntentFilter(ConstantsAPI.ACTION_REFRESH_WXAPP));
     }
 
     private void WXLogin() {

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sxxh.linghuo.R;
+import com.sxxh.linghuo.issus.activity.PayCenterActivity;
 import com.sxxh.linghuo.me.activity.IssusActivity;
 import com.sxxh.linghuo.me.bean.MyIssusBean;
 
@@ -43,6 +44,13 @@ public class NoOrderAdapter extends RecyclerView.Adapter<NoOrderAdapter.ViewHold
             public void onClick(View v) {
                 Intent mIssusIntent = new Intent(mContext, IssusActivity.class);
                 mContext.startActivity(mIssusIntent);
+            }
+        });
+        mViewHolder.mItemOrderWaitPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mPayCenterIntent = new Intent(mContext, PayCenterActivity.class);
+                mContext.startActivity(mPayCenterIntent);
             }
         });
         if (mDataBean.getPay_status() == 0) {

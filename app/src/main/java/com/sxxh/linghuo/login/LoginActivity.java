@@ -72,7 +72,6 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
     ImageView weixin;
     @BindView(R.id.zhifubao)
     ImageView zhifubao;
-    private IWXAPI api;
     private static final int SDK_ZFB_LOGIN = 2;
     private static final String APP_ID = "wx09fddc4711f09625";
     Boolean isWx = false;
@@ -108,25 +107,6 @@ public class LoginActivity extends BaseMvpActivity<CommonPresenter, LoginModel> 
         super.onCreate(savedInstanceState);
         WbSdk.install(this, new AuthInfo(this, Config.APP_ID_WB, Config.REDIRECT_URL, ""));
         mSsoHandler = new SsoHandler(LoginActivity.this);
-        regToWx();
-    }
-
-    private void regToWx() {
-        // 通过WXAPIFactory工厂，获取IWXAPI的实例
-        api = WXAPIFactory.createWXAPI(this, Config.APP_ID_WX, true);
-
-        // 将应用的appId注册到微信
-        api.registerApp(Config.APP_ID_WX);
-
-        //建议动态监听微信启动广播进行注册到微信
-        registerReceiver(new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-
-                // 将该app注册到微信
-                api.registerApp(Constants.APP_ID);
-            }
-        }, new IntentFilter(ConstantsAPI.ACTION_REFRESH_WXAPP));
     }
 
     @Override
