@@ -109,11 +109,6 @@
                 android:layout_height="@dimen/dp_1"
                 android:background="@color/grey_second" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_1"
-                android:background="@color/grey_second" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
