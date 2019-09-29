@@ -99,7 +99,7 @@ public class OrderFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
 
     @Override
     public void loadMore() {
-        mPage += mPage;
+        mPage = mPage + 1;
         mPresenter.getData(ApiConfig.ORDER_RECEIVING, LoadConfig.LOADMORE, 0, mPage);
     }
 }
