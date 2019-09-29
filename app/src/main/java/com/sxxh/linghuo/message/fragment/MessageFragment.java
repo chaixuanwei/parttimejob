@@ -56,6 +56,8 @@ public class MessageFragment extends BaseMvpFragment<CommonPresenter, MessageMod
             mFragmentList.add(SystemMessageFragment.newInstance());
             mTitleList.add("聊天记录");
             mFragmentList.add(ChatRecordFragment.newInstance());
+            mTitleList.add("好友列表");
+            mFragmentList.add(FriendFragment.newInstance());
             mAdapter.notifyDataSetChanged();
         }
     }

@@ -257,7 +257,7 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
                 String mHight = ishight.getText().toString();
                 String mFive = isfive.getText().toString();
                 String mGatherPlace = gatherPlace.getText().toString();
-                if (!mIssusJobName.equals("") && !mIssusDescribe.equals("") && !mIssusMoney.equals("")
+                if (!mIssusJobName.equals("") && !mIssusDescribe.equals("")
                         && !mIssusPlace.equals("") && !mIssusNumber.equals("")
                         && !mIssusName.equals("") && !mIssusPhone.equals("")) {
                     mPresenter.getData(ApiConfig.TO_ISSUS, LoadConfig.NORMAL, mIssusJobName, mIssusDescribe
