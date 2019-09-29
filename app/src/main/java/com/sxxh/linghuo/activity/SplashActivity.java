@@ -31,9 +31,11 @@ public class SplashActivity extends BaseActivity {
             public void onClick(View v) {
                 if (!mIsFirst) {
                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                    overridePendingTransition(R.anim.right_enter,R.anim.left_exit);
                     SplashActivity.this.finish();
                 } else {
                     Intent intent = new Intent(SplashActivity.this, IntroduceActivity.class);
+                    overridePendingTransition(R.anim.right_enter,R.anim.left_exit);
                     startActivity(intent);
                     SplashActivity.this.finish();
                 }

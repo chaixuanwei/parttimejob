@@ -5,30 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
+    android:gravity="center"
     tools:context=".activity.SplashActivity">
 
     <TextView
         android:id="@+id/splash_one"
-        android:layout_centerHorizontal="true"
-        android:text="@string/splashone"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/splashone" />
 
     <TextView
         android:id="@+id/splash_two"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/splash_one"
-        android:text="@string/splashtwo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/splash_one"
+        android:layout_margin="@dimen/dp_10"
+        android:layout_centerHorizontal="true"
+        android:text="@string/splashtwo" />
 
     <TextView
         android:id="@+id/splash_three"
-        android:background="@drawable/splash_round"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/splash_two"
-        android:text="@string/splashthree"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/splash_two"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/splash_round"
+        android:paddingLeft="@dimen/dp_15"
+        android:paddingTop="@dimen/dp_8"
+        android:paddingRight="@dimen/dp_15"
+        android:paddingBottom="@dimen/dp_8"
+        android:text="@string/splashthree" />
 
 </RelativeLayout>
