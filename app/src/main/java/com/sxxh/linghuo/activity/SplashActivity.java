@@ -29,12 +29,13 @@ public class SplashActivity extends BaseActivity {
         mStart = new CountDownTimer(5000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                mCountDown.setText((int) (millisUntilFinished/1000)+"秒后跳过");
+                mCountDown.setText((int) (millisUntilFinished/1000)+"\t秒后跳过");
             }
 
             @Override
             public void onFinish() {
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                overridePendingTransition(R.anim.right_enter,R.anim.left_exit);
                 SplashActivity.this.finish();
             }
         }.start();
@@ -50,8 +51,8 @@ public class SplashActivity extends BaseActivity {
                     SplashActivity.this.finish();
                 } else {
                     Intent intent = new Intent(SplashActivity.this, IntroduceActivity.class);
-                    overridePendingTransition(R.anim.right_enter,R.anim.left_exit);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.right_enter,R.anim.left_exit);
                     SplashActivity.this.finish();
                 }
             }
