@@ -101,6 +101,7 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
             @Override
             public void onClick(View v) {
                 mHistoryList.clear();
+                mHistoryAdapter.notifyDataChanged();
             }
         });
     }

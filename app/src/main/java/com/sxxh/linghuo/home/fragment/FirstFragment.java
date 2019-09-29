@@ -17,13 +17,15 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.sxxh.linghuo.R;
 import com.sxxh.linghuo.config.ApiConfig;
+import com.sxxh.linghuo.config.Config;
 import com.sxxh.linghuo.config.LoadConfig;
 import com.sxxh.linghuo.frame.BaseMvpFragment;
 import com.sxxh.linghuo.frame.CommonPresenter;
 import com.sxxh.linghuo.home.activity.SearchActivity;
-import com.sxxh.linghuo.home.bean.BannerBean;
 import com.sxxh.linghuo.home.adapter.HomeAdapter;
+import com.sxxh.linghuo.home.bean.BannerBean;
 import com.sxxh.linghuo.home.bean.MenuBean;
+import com.sxxh.linghuo.local_utils.SharedPrefrenceUtils;
 import com.sxxh.linghuo.model.HomeModel;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
@@ -85,6 +87,8 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
                 startActivity(mIntent);
             }
         });
+        String mPlace = SharedPrefrenceUtils.getString(getActivity(), Config.PLACE);
+        place.setText(mPlace);
     }
 
     @Override
@@ -98,6 +102,7 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
         if (requestCode == REQUEST_CODE_PICK_CITY && resultCode == RESULT_OK) {
             if (data != null) {
                 String city = data.getStringExtra(CityPickerActivity.KEY_PICKED_CITY);
+                SharedPrefrenceUtils.saveString(getActivity(), Config.PLACE, city);
                 place.setText(city);
             }
         }
@@ -114,7 +119,7 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
     }
 
     @Override
-    public void onError(int whichApi,Throwable e) {
+    public void onError(int whichApi, Throwable e) {
         Log.e("首页", "onError: " + e.getMessage());
     }
 
@@ -135,7 +140,7 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
                 firstBanner.setImageLoader(new ImageLoader() {
                     @Override
                     public void displayImage(Context context, Object path, ImageView imageView) {
-                        Glide.with(getActivity()).load((String)path).into(imageView);
+                        Glide.with(getActivity()).load((String) path).into(imageView);
                     }
                 });
                 firstBanner.setImages(images);

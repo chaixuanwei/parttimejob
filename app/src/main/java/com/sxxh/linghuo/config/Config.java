@@ -11,10 +11,7 @@ public class Config {
     public static final String BITMAP = "bitmap";
     public static final String SIGNA = "signa";
     public static final String TOPPHOTO = "topphoto";
-    public static final int BINDBACK = 100;
     public static final int FINISH = 101;
-    public static final int PHOTO = 2;
-    public static final int MOREPHOTO = 3;
     public static final String OPENID = "OpenId";
     public static final String NICKNAME = "nickName";
     public static final String SEX = "sex";
@@ -29,4 +26,6 @@ public class Config {
     public static final String USER_ID = "userid";
     public static final String TASK_ID = "taskid";
     public static final String SEARCH_STR = "search";
+    public static final String PLACE = "place";
+    public static final int PAY_ZFB = 1;
 }
