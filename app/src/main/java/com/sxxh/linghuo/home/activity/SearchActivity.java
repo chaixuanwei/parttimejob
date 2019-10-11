@@ -71,8 +71,13 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                searchLl.setVisibility(View.GONE);
-                searchSrl.setVisibility(View.VISIBLE);
+                if (etSearch.getText().toString().equals("")) {
+                    searchLl.setVisibility(View.VISIBLE);
+                    searchSrl.setVisibility(View.GONE);
+                } else {
+                    searchLl.setVisibility(View.GONE);
+                    searchSrl.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
@@ -108,6 +113,7 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
                 } else {
                     int mI = Integer.parseInt(mStr);
                     etSearch.setText(mHotList.get(mI));
+                    etSearch.setSelection(mHotList.get(mI).length());
                 }
             }
         });
@@ -133,6 +139,7 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
                 } else {
                     int mI = Integer.parseInt(mStr);
                     etSearch.setText(mHistoryList.get(mI));
+                    etSearch.setSelection(mHistoryList.get(mI).length());
                 }
             }
         });
