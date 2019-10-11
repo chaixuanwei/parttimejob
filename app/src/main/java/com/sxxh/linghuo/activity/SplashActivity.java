@@ -29,7 +29,7 @@ public class SplashActivity extends BaseActivity {
         mStart = new CountDownTimer(5000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                mCountDown.setText((int) (millisUntilFinished/1000)+"\t秒后跳过");
+
             }
 
             @Override

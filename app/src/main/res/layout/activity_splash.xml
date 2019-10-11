@@ -9,7 +9,9 @@
 
     <TextView
         android:id="@+id/count_down"
-        android:text="5秒后跳过"
+        android:text="跳过"
+        android:drawablePadding="@dimen/dp_10"
+        android:drawableRight="@mipmap/right"
         android:textSize="@dimen/sp_16"
         android:textColor="@color/write"
         android:padding="@dimen/dp_20"

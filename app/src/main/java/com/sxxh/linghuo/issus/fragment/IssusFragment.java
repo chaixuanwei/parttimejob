@@ -297,7 +297,7 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
                         Log.i("pvTime", "onTimeSelectChanged");
                     }
                 })
-                .setType(new boolean[]{true, true, true, true, true, true})
+                .setType(new boolean[]{true, true, true, true, false, false})
                 .isDialog(true) //默认设置false ，内部实现将DecorView 作为它的父控件。
                 .addOnCancelClickListener(new View.OnClickListener() {
                     @Override
