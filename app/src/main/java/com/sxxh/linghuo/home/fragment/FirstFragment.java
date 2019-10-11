@@ -88,7 +88,11 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
             }
         });
         String mPlace = SharedPrefrenceUtils.getString(getActivity(), Config.PLACE);
-        place.setText(mPlace);
+        if (mPlace.equals("")) {
+
+        } else {
+            place.setText(mPlace);
+        }
     }
 
     @Override
@@ -103,7 +107,11 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
             if (data != null) {
                 String city = data.getStringExtra(CityPickerActivity.KEY_PICKED_CITY);
                 SharedPrefrenceUtils.saveString(getActivity(), Config.PLACE, city);
-                place.setText(city);
+                if (city.equals("")) {
+
+                } else {
+                    place.setText(city);
+                }
             }
         }
     }

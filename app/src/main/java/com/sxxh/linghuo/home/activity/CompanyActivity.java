@@ -108,7 +108,7 @@ public class CompanyActivity extends BaseMvpActivity<CommonPresenter, HomeModel>
                     @Override
                     public void run() {
                         IssusMessageBean.DataBean mData = mIssusMessageBeans.getData();
-                        if (mData.getInfo().getCompany_name().equals("")) {
+                        if (mData.getInfo().getCompany_name() == null || mData.getInfo().getCompany_name().equals("")) {
 
                         } else {
                             companyName.setText(mData.getInfo().getCompany_name());
