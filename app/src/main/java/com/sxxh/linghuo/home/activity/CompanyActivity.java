@@ -113,7 +113,7 @@ public class CompanyActivity extends BaseMvpActivity<CommonPresenter, HomeModel>
                         } else {
                             companyName.setText(mData.getInfo().getCompany_name());
                         }
-                        if (mData.getInfo().getAvatar().equals("")) {
+                        if (mData.getInfo().getAvatar() == null || mData.getInfo().getAvatar().equals("")) {
 
                         } else {
                             Glide.with(CompanyActivity.this).load(mData.getInfo().getAvatar()).into(companyHead);
