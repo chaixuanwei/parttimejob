@@ -61,7 +61,6 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
     Banner firstBanner;
     private HomeAdapter mAdapter;
 
-
     public static FirstFragment newInstance() {
         if (fragment == null) fragment = new FirstFragment();
         return fragment;
@@ -69,7 +68,7 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_first2;
+        return R.layout.fragment_first;
     }
 
     @Override

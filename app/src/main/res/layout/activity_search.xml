@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,6 +8,7 @@
     android:fitsSystemWindows="true"
     tools:context=".home.activity.SearchActivity">
     <LinearLayout
+        android:id="@+id/tar_ll"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -61,35 +62,57 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <TextView
-        android:textSize="@dimen/sp_15"
-        android:layout_margin="@dimen/dp_15"
-        android:text="搜索热词"
+    <LinearLayout
+        android:id="@+id/search_ll"
+        android:layout_below="@id/tar_ll"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <com.zhy.view.flowlayout.TagFlowLayout
-        android:id="@+id/hot"
-        android:layout_margin="@dimen/dp_15"
-        app:max_select="1"
-        android:layout_width="fill_parent"
         android:layout_height="wrap_content">
-    </com.zhy.view.flowlayout.TagFlowLayout>
+        <TextView
+            android:textSize="@dimen/sp_15"
+            android:layout_margin="@dimen/dp_15"
+            android:text="搜索热词"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/bucket"
-        android:textSize="@dimen/sp_15"
-        android:layout_margin="@dimen/dp_15"
-        android:drawableRight="@mipmap/bucket"
-        android:text="最近搜索"
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/hot"
+            android:layout_margin="@dimen/dp_5"
+            app:max_select="1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+        </com.zhy.view.flowlayout.TagFlowLayout>
+
+        <TextView
+            android:id="@+id/bucket"
+            android:textSize="@dimen/sp_15"
+            android:layout_margin="@dimen/dp_15"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:drawableRight="@mipmap/bucket"
+            android:text="最近搜索"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/history"
+            android:layout_margin="@dimen/dp_5"
+            app:max_select="1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+        </com.zhy.view.flowlayout.TagFlowLayout>
+
+    </LinearLayout>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:layout_below="@id/tar_ll"
+        android:visibility="gone"
+        android:id="@+id/search_srl"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <com.zhy.view.flowlayout.TagFlowLayout
-        android:id="@+id/history"
-        android:layout_margin="@dimen/dp_15"
-        app:max_select="1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-    </com.zhy.view.flowlayout.TagFlowLayout>
-</LinearLayout>
+        android:layout_height="match_parent">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/search_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</RelativeLayout>

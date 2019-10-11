@@ -1,18 +1,23 @@
 package com.sxxh.linghuo.home.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.ToastUtils;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.sxxh.linghuo.R;
 import com.sxxh.linghuo.config.Config;
 import com.sxxh.linghuo.frame.BaseMvpActivity;
 import com.sxxh.linghuo.frame.CommonPresenter;
+import com.sxxh.linghuo.local_utils.SharedPrefrenceUtils;
 import com.sxxh.linghuo.model.HomeModel;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
@@ -42,6 +47,12 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
     List<String> mHistoryList = new ArrayList<>();
     @BindView(R.id.bucket)
     TextView bucket;
+    @BindView(R.id.search_ll)
+    LinearLayout searchLl;
+    @BindView(R.id.search_rv)
+    RecyclerView searchRv;
+    @BindView(R.id.search_srl)
+    SmartRefreshLayout searchSrl;
     private TagAdapter mHotAdapter;
     private TagAdapter mHistoryAdapter;
 
@@ -52,10 +63,25 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
 
     @Override
     public void initView() {
-        mHistoryList.add("aaaaaaaaaaaaaaaa");
-        mHistoryList.add("aaaaa");
-        mHistoryList.add("aaaaaaaaaaaaaaaaaaaaaaabbbbbb");
-        mHistoryList.add("bbbd");
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                searchLl.setVisibility(View.GONE);
+                searchSrl.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        List<String> mStringList = SharedPrefrenceUtils.getStringList(SearchActivity.this, Config.SEARCH_HISTORY);
+        mHistoryList.addAll(mStringList);
         mHotList.add("adf");
         mHotList.add("sdfasdfsdfas");
         mHotList.add("adsfasdf");
@@ -77,8 +103,12 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
                 String m1 = selectPosSet.toString();
                 String m2 = m1.replace("[", "");
                 String mStr = m2.replace("]", "");
-                int mI = Integer.parseInt(mStr);
-                etSearch.setText(mHotList.get(mI));
+                if (mStr.equals("")) {
+
+                } else {
+                    int mI = Integer.parseInt(mStr);
+                    etSearch.setText(mHotList.get(mI));
+                }
             }
         });
         mHistoryAdapter = new TagAdapter(mHistoryList) {
@@ -98,15 +128,12 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
                 String m1 = selectPosSet.toString();
                 String m2 = m1.replace("[", "");
                 String mStr = m2.replace("]", "");
-                int mI = Integer.parseInt(mStr);
-                etSearch.setText(mHistoryList.get(mI));
-            }
-        });
-        bucket.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mHistoryList.clear();
-                mHistoryAdapter.notifyDataChanged();
+                if (mStr.equals("")) {
+
+                } else {
+                    int mI = Integer.parseInt(mStr);
+                    etSearch.setText(mHistoryList.get(mI));
+                }
             }
         });
     }
@@ -136,7 +163,7 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
 
     }
 
-    @OnClick({R.id.back, R.id.txt_search})
+    @OnClick({R.id.back, R.id.txt_search, R.id.bucket})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
@@ -147,10 +174,17 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
                 if (mS.equals("")) {
                     ToastUtils.showShort("请填写搜索内容！");
                 } else {
-                    Intent mIntent = new Intent(this, SearchListActivity.class);
-                    mIntent.putExtra(Config.SEARCH_STR, mS);
-                    startActivity(mIntent);
+                    mHistoryList.add(etSearch.getText().toString());
+                    SharedPrefrenceUtils.putStringList(SearchActivity.this, Config.SEARCH_HISTORY, mHistoryList);
+                    mHistoryAdapter.notifyDataChanged();
+                    searchLl.setVisibility(View.GONE);
+                    searchSrl.setVisibility(View.VISIBLE);
                 }
+                break;
+            case R.id.bucket:
+                mHistoryList.clear();
+                SharedPrefrenceUtils.putStringList(SearchActivity.this, Config.SEARCH_HISTORY, mHistoryList);
+                mHistoryAdapter.notifyDataChanged();
                 break;
         }
     }
