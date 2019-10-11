@@ -25,7 +25,7 @@
                 android:id="@+id/back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/dp_20"
+                android:paddingRight="@dimen/dp_6"
                 android:src="@drawable/back" />
 
             <LinearLayout
@@ -38,17 +38,18 @@
                 android:background="@color/grey_second"
                 android:orientation="horizontal">
 
-                <TextView
+                <ImageView
                     android:id="@+id/search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_search_black_24dp"
-                    android:drawableTint="@color/text_color" />
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:src="@mipmap/icon_search_gray" />
 
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_30"
-                    android:background="@color/white_transparent"
+                    android:background="@null"
                     android:hint="搜索您感兴趣的兼职"
                     android:paddingLeft="@dimen/dp_10"
                     android:textColor="@color/text_color"
@@ -56,12 +57,13 @@
                     android:textSize="@dimen/sp_13" />
             </LinearLayout>
 
-            <ImageView
+            <TextView
                 android:id="@+id/first_message"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@mipmap/message" />
+                android:drawableTint="@color/text_color"
+                android:drawableLeft="@mipmap/message" />
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
 
