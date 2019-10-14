@@ -24,6 +24,7 @@ import com.sxxh.linghuo.frame.CommonPresenter;
 import com.sxxh.linghuo.home.activity.SearchActivity;
 import com.sxxh.linghuo.home.adapter.HomeAdapter;
 import com.sxxh.linghuo.home.bean.BannerBean;
+import com.sxxh.linghuo.home.bean.HomeData;
 import com.sxxh.linghuo.home.bean.MenuBean;
 import com.sxxh.linghuo.local_utils.SharedPrefrenceUtils;
 import com.sxxh.linghuo.model.HomeModel;
@@ -60,6 +61,7 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
     @BindView(R.id.first_banner)
     Banner firstBanner;
     private HomeAdapter mAdapter;
+    ArrayList<HomeData.DataBean> mList = new ArrayList<>();
 
     public static FirstFragment newInstance() {
         if (fragment == null) fragment = new FirstFragment();
@@ -76,7 +78,7 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
 //        mCollapsingToolbarLayout.setContentScrimResource(R.drawable.toolbar);
         mCollapsingToolbarLayout.setContentScrimColor(getResources().getColor(R.color.blue_theme));
         LinearLayoutManager mManager = new LinearLayoutManager(getContext());
-        mAdapter = new HomeAdapter(getActivity());
+        mAdapter = new HomeAdapter(getActivity(), mList);
         homeRv.setAdapter(mAdapter);
         homeRv.setLayoutManager(mManager);
         mSearch.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +100,7 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
     public void initData() {
         mPresenter.getData(ApiConfig.HOME_BANNER, LoadConfig.NORMAL, "1");
         mPresenter.getData(ApiConfig.HOME_MENU, LoadConfig.NORMAL);
+        mPresenter.getData(ApiConfig.HOME_DATA, LoadConfig.NORMAL);
     }
 
     @Override
@@ -174,6 +177,11 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
             case ApiConfig.HOME_MENU:
                 MenuBean mMenuBeans = (MenuBean) t[0];
 
+                break;
+            case ApiConfig.HOME_DATA:
+                HomeData mHomeData = (HomeData) t[0];
+                mList.addAll(mHomeData.getData());
+                mAdapter.notifyDataSetChanged();
                 break;
         }
     }

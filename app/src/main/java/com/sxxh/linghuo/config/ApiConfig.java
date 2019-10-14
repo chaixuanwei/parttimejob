@@ -51,4 +51,9 @@ public class ApiConfig {
     public static final int NON_READ_B = 48;//消息未读
     public static final int NON_READ_C = 49;//消息未读
     public static final int ISSUS_MESSAGE = 50;//首页发布人基础信息
+    public static final int TASKDETAIL = 51;//兼职详情
+    public static final int HOME_DATA = 52;//首页信息
+    public static final int SEARCH_DATA = 53;//搜索
+    public static final int BASIC_INFORMATION = 54;//基础信息
+    public static final int GET_ISSUE = 55;//获取发布详情
 }

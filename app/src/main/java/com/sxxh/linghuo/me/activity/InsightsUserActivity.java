@@ -66,7 +66,7 @@ public class InsightsUserActivity extends BaseMvpActivity<CommonPresenter, MeMod
     public void initData() {
         if (mTitleList.size() == 0 && mFragmentList.size() == 0) {
             mTitleList.add("基础信息");
-            mFragmentList.add(BasicInformationFragment.newInstance());
+            mFragmentList.add(BasicInformationFragment.newInstance(mUserId));
             mTitleList.add("项目经验");
             mFragmentList.add(ProjectExperienceFragment.newInstance(mUserId));
             mAdapter.notifyDataSetChanged();

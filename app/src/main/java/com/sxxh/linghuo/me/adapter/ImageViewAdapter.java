@@ -6,13 +6,21 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.sxxh.linghuo.R;
+import com.sxxh.linghuo.me.bean.BasicInformationBean;
+
+import java.util.ArrayList;
 
 public class ImageViewAdapter extends RecyclerView.Adapter<ImageViewAdapter.ViewHolder> {
     Context mContext;
-    public ImageViewAdapter(Context pContext) {
+    private ArrayList<BasicInformationBean.ProjectImagesBean> mList;
+
+    public ImageViewAdapter(Context pContext, ArrayList<BasicInformationBean.ProjectImagesBean> pList) {
         mContext = pContext;
+        mList = pList;
     }
 
     @NonNull
@@ -24,17 +32,19 @@ public class ImageViewAdapter extends RecyclerView.Adapter<ImageViewAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder pViewHolder, int pI) {
-
+        Glide.with(mContext).load(mList.get(pI).getPreview_url()).into(pViewHolder.mItemImg);
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return mList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        private ImageView mItemImg;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            mItemImg = itemView.findViewById(R.id.item_img);
         }
     }
 }

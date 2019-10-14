@@ -47,7 +47,7 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> implements View.OnFocusChangeListener, View.OnTouchListener {
+public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> {
     private static final String TAG = "IssusFragment";
     static IssusFragment fragment;
     @BindView(R.id.issus_job_name)
@@ -60,6 +60,8 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
     Spinner issusSpinner;
     @BindView(R.id.classify_spinner)
     Spinner classifySpinner;
+    @BindView(R.id.pay_spinner)
+    Spinner paySpinner;
     @BindView(R.id.issus_interview_yes)
     RadioButton issusInterviewYes;
     @BindView(R.id.issus_interview_no)
@@ -95,13 +97,14 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
     @BindView(R.id.sc)
     ScrollView sc;
     private static final String[] m_arr = {"网络", "线下"};
+    private static final String[] mPay = {"元/天", "元/月"};
     ArrayList<String> mStrings = new ArrayList<>();
     private TimePickerView pvTime;
     private int gathertime;
     private int starttime;
     private int endtime;
     private ArrayList<NatureBean.DataBean> mDataBeans = new ArrayList<>();
-    String pattern = "yyyy-MM-dd HH:mm:ss";
+    String pattern = "yyyy-MM-dd HH";
     int interview = 0;//是否面试
     int gather = 0;//是否集合
     int nature = 0;//任务属性
@@ -109,6 +112,8 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
     int click = 0;
     private ArrayAdapter<String> mStringAda;
     private ArrayAdapter<String> mAda;
+    private ArrayAdapter<String> mPayAdapter;
+    private String mStyle;
 
     public static IssusFragment newInstance() {
         if (fragment == null) fragment = new IssusFragment();
@@ -123,14 +128,6 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
     @Override
     public void initView() {
         initTimePicker();
-        issusPlace.setOnFocusChangeListener(this);
-        issusPlace.setOnTouchListener(this);
-        issusNumber.setOnFocusChangeListener(this);
-        issusNumber.setOnTouchListener(this);
-        issusName.setOnFocusChangeListener(this);
-        issusName.setOnTouchListener(this);
-        issusPhone.setOnFocusChangeListener(this);
-        issusPhone.setOnTouchListener(this);
     }
 
     private void initlist() {
@@ -146,7 +143,7 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
     @Override
     public void initData() {
         mPresenter.getData(ApiConfig.GET_NATURE, LoadConfig.NORMAL);
-        mAda = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, m_arr);
+        mAda = new ArrayAdapter<String>(getActivity(), R.layout.text_spinner, m_arr);
         mAda.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         issusSpinner.setAdapter(mAda);
         issusSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -166,12 +163,25 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
 
             }
         });
-        mStringAda = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, mStrings);
+        mStringAda = new ArrayAdapter<String>(getActivity(), R.layout.text_spinner, mStrings);
         classifySpinner.setAdapter(mStringAda);
         classifySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 classify = mDataBeans.get(position).getId();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        mPayAdapter = new ArrayAdapter<>(getActivity(), R.layout.text_spinner, mPay);
+        paySpinner.setAdapter(mPayAdapter);
+        paySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mStyle = mPay[position];
             }
 
             @Override
@@ -205,6 +215,8 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
                 startActivity(new Intent(getActivity(), PayCenterActivity.class));
                 break;
             case ApiConfig.GET_NATURE:
+                mStrings.clear();
+                mDataBeans.clear();
                 NatureBean mNatureBeans = (NatureBean) t[0];
                 mDataBeans.addAll(mNatureBeans.getData());
                 for (int i = 0; i < mDataBeans.size(); i++) {
@@ -245,7 +257,7 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
             case R.id.bt_issus_login:
                 String mIssusJobName = issusJobName.getText().toString();
                 String mIssusDescribe = issusDescribe.getText().toString();
-                String mIssusMoney = issusMoney.getText().toString();
+                String mIssusMoney = issusMoney.getText().toString() + mStyle;
                 String mIssusPlace = issusPlace.getText().toString();
                 String mIssusNumber = issusNumber.getText().toString();
                 int mNumber = 0;
@@ -259,6 +271,7 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
                 String mGatherPlace = gatherPlace.getText().toString();
                 if (!mIssusJobName.equals("") && !mIssusDescribe.equals("")
                         && !mIssusPlace.equals("") && !mIssusNumber.equals("")
+                        && !mIssusMoney.equals("")
                         && !mIssusName.equals("") && !mIssusPhone.equals("")) {
                     mPresenter.getData(ApiConfig.TO_ISSUS, LoadConfig.NORMAL, mIssusJobName, mIssusDescribe
                             , mIssusMoney, classify, nature, mIssusPlace, starttime, endtime, mNumber, mIssusName, mIssusPhone
@@ -266,8 +279,6 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
                 } else {
                     ToastUtils.showShort("请填写必填信息！");
                 }
-//                Intent mIntent = new Intent(getActivity(), PayCenterActivity.class);
-//                startActivity(mIntent);
                 break;
         }
     }
@@ -332,17 +343,5 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
         Log.d("getTime()", "choice date millis: " + date.getTime());
         SimpleDateFormat format = new SimpleDateFormat(pattern);
         return format.format(date);
-    }
-
-    @Override
-    public void onFocusChange(View v, boolean hasFocus) {
-        if (sc != null)
-        initlist();
-    }
-
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        initlist();
-        return false;
     }
 }

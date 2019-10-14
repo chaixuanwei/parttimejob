@@ -13,15 +13,21 @@ import android.widget.TextView;
 import com.sxxh.linghuo.R;
 import com.sxxh.linghuo.frame.BaseAdapter;
 import com.sxxh.linghuo.home.activity.DetailActivity;
+import com.sxxh.linghuo.home.bean.HomeData;
+import com.sxxh.linghuo.local_utils.DateUtil;
+
+import java.util.ArrayList;
 
 public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context mContext;
     private int HOME_OPTION = 0;
     private int HOME_TEXT = 1;
     private int HOME_CONTENT = 2;
+    ArrayList<HomeData.DataBean> mList = new ArrayList<>();
 
-    public HomeAdapter(Context pContext) {
+    public HomeAdapter(Context pContext, ArrayList<HomeData.DataBean> pList) {
         mContext = pContext;
+        mList = pList;
     }
 
     @NonNull
@@ -29,13 +35,13 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup pViewGroup, int pI) {
         RecyclerView.ViewHolder viewHolder = null;
         if (pI == HOME_OPTION) {
-            View mInflate = LayoutInflater.from(mContext).inflate(R.layout.item_home_option, pViewGroup,false);
+            View mInflate = LayoutInflater.from(mContext).inflate(R.layout.item_home_option, pViewGroup, false);
             viewHolder = new ViewOption(mInflate);
         } else if (pI == HOME_TEXT) {
-            View mInflate = LayoutInflater.from(mContext).inflate(R.layout.item_home_text, pViewGroup,false);
+            View mInflate = LayoutInflater.from(mContext).inflate(R.layout.item_home_text, pViewGroup, false);
             viewHolder = new ViewText(mInflate);
         } else {
-            View mInflate = LayoutInflater.from(mContext).inflate(R.layout.item_home_content, pViewGroup,false);
+            View mInflate = LayoutInflater.from(mContext).inflate(R.layout.item_home_content, pViewGroup, false);
             viewHolder = new ViewContent(mInflate);
         }
         return viewHolder;
@@ -48,11 +54,38 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         } else if (getItemViewType(pI) == HOME_TEXT) {
             ViewText mViewText = (ViewText) pViewHolder;
         } else if (getItemViewType(pI) == HOME_CONTENT) {
+            final HomeData.DataBean mDataBean = mList.get(pI - 2);
             ViewContent mViewContent = (ViewContent) pViewHolder;
+            mViewContent.mHomeJobName.setText(mDataBean.getName());
+            DateUtil mDateUtil = new DateUtil();
+            int mStart_time = mDataBean.getStart_time();
+            int mEnd_time = mDataBean.getEnd_time();
+            if (mStart_time != 0 && mEnd_time != 0) {
+                String mStartToString = mDateUtil.getDateToString(mStart_time, "yyyy-MM-dd");
+                String mEndToString = mDateUtil.getDateToString(mEnd_time, "yyyy-MM-dd");
+                mViewContent.mItemHomeJobDate.setText(mStartToString + "至" + mEndToString);
+            }
+            if (mDataBean.getIs_muster() == 1) {
+                int mMuster_time = mDataBean.getMuster_time();
+                if (mMuster_time != 0) {
+                    String mDateToString = mDateUtil.getDateToString(mMuster_time, "yy-MM-dd");
+                    mViewContent.mItemHomeJobTime.setText(mDateToString);
+                }
+            } else {
+                mViewContent.mItemHomeJobTime.setText("无需集合");
+            }
+            mViewContent.mItemHomePerson.setText(mDataBean.getZp_num() + "");
+            mViewContent.mItemHomeJobPlace.setText(mDataBean.getWork_location());
+            if (mDataBean.getPay().equals("") || mDataBean.getPay() == null) {
+//                mViewContent.mItemHomeTime.setText("薪资面议");
+            } else {
+                mViewContent.mItemHomeMoney.setText(mDataBean.getPay() + "");
+            }
             mViewContent.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent mIntent = new Intent(mContext, DetailActivity.class);
+                    mIntent.putExtra("uid", mDataBean.getId());
                     mContext.startActivity(mIntent);
                 }
             });
@@ -72,7 +105,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 10;
+        return mList.size() + 2;
     }
 
     class ViewOption extends BaseAdapter.ViewHolder {
@@ -100,13 +133,13 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     class ViewContent extends BaseAdapter.ViewHolder {
         private TextView mItemHomeTop;
+        private TextView mHomeJobName;
         private TextView mItemHomeJackaroo;
         private TextView mItemHomeHot;
         private TextView mItemHomeMoney;
-        private TextView mItemHomeTime;
         private TextView mItemHomePerson;
         private TextView mItemHomeJobPlace;
-        private TextView mItemInterview;
+//        private TextView mItemInterview;
         private TextView mItemHomeJobTime;
         private TextView mItemHomeJobDate;
         private TextView mItemHomeAtonce;
@@ -114,13 +147,13 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public ViewContent(View itemView) {
             super(itemView);
             mItemHomeTop = itemView.findViewById(R.id.item_home_top);
+            mHomeJobName = itemView.findViewById(R.id.home_job_name);
             mItemHomeJackaroo = itemView.findViewById(R.id.item_home_jackaroo);
             mItemHomeHot = itemView.findViewById(R.id.item_home_hot);
             mItemHomeMoney = itemView.findViewById(R.id.item_home_money);
-            mItemHomeTime = itemView.findViewById(R.id.item_home_time);
             mItemHomePerson = itemView.findViewById(R.id.item_home_person);
             mItemHomeJobPlace = itemView.findViewById(R.id.item_home_job_place);
-            mItemInterview = itemView.findViewById(R.id.item_interview);
+//            mItemInterview = itemView.findViewById(R.id.item_interview);
             mItemHomeJobTime = itemView.findViewById(R.id.item_home_job_time);
             mItemHomeJobDate = itemView.findViewById(R.id.item_home_job_date);
             mItemHomeAtonce = itemView.findViewById(R.id.item_home_atonce);

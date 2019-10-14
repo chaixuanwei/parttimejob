@@ -143,8 +143,9 @@ public class PeopleActivity extends BaseMvpActivity<CommonPresenter, MeModel> im
             case R.id.bt_issus_login:
                 String mName = peopleName.getText().toString();
                 String mCard = peopleCard.getText().toString();
-                if (!mName.equals("") && !mCard.equals("") && !people_classify_url.equals("") && !people_hand_url.equals("")) {
-                    mPresenter.getData(ApiConfig.SET_PEOPLE, LoadConfig.NORMAL, mCard, mName, people_classify_url, people_hand_url);
+                String mEmail = peopleEmail.getText().toString();
+                if (!mName.equals("") && !mCard.equals("") && !people_classify_url.equals("") && !people_hand_url.equals("") && !mEmail.equals("")) {
+                    mPresenter.getData(ApiConfig.SET_PEOPLE, LoadConfig.NORMAL, mCard, mName, people_classify_url, people_hand_url, mEmail);
                 } else {
                     ToastUtils.showShort("请填写完整信息");
                 }

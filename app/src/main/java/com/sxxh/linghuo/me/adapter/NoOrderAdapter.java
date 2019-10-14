@@ -43,6 +43,7 @@ public class NoOrderAdapter extends RecyclerView.Adapter<NoOrderAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 Intent mIssusIntent = new Intent(mContext, IssusActivity.class);
+                mIssusIntent.putExtra("id", Integer.parseInt(mDataBean.getT_id()));
                 mContext.startActivity(mIssusIntent);
             }
         });

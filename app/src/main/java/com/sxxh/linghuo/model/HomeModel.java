@@ -8,6 +8,7 @@ import com.sxxh.linghuo.frame.NetManager;
 public class HomeModel implements ICommonModel {
 
     private int mLoadMode;
+    private int mTId;
 
     @Override
     public void getData(ICommonView view, int whichApi, Object[] t) {
@@ -23,8 +24,22 @@ public class HomeModel implements ICommonModel {
                 break;
             case ApiConfig.ISSUS_MESSAGE:
                 mLoadMode = (int) t[0];
-                int tId = (int) t[1];
-                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getIssusMessage(tId), view, whichApi, mLoadMode);
+                mTId = (int) t[1];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getIssusMessage(mTId), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.TASKDETAIL:
+                mLoadMode = (int) t[0];
+                int Id = (int) t[1];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getTaskdetail(Id), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.SEARCH_DATA:
+                mLoadMode = (int) t[0];
+                String mData = (String) t[1];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getSearch(mData), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.HOME_DATA:
+                mLoadMode = (int) t[0];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getHomeData(), view, whichApi, mLoadMode);
                 break;
         }
     }

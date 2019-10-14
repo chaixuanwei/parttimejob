@@ -3,6 +3,9 @@ package com.sxxh.linghuo.frame;
 import com.sxxh.linghuo.home.bean.BannerBean;
 import com.sxxh.linghuo.home.bean.IssusMessageBean;
 import com.sxxh.linghuo.home.bean.MenuBean;
+import com.sxxh.linghuo.home.bean.SearchDataBean;
+import com.sxxh.linghuo.home.bean.TaskdetailBean;
+import com.sxxh.linghuo.home.bean.HomeData;
 import com.sxxh.linghuo.issus.bean.NatureBean;
 import com.sxxh.linghuo.login.bean.AuthCodeBean;
 import com.sxxh.linghuo.login.bean.LoginBean;
@@ -13,8 +16,10 @@ import com.sxxh.linghuo.login.bean.ZFBLoginBean;
 import com.sxxh.linghuo.login.bean.ZFBTokenBean;
 import com.sxxh.linghuo.me.bean.ApplyPeopleBean;
 import com.sxxh.linghuo.me.bean.BalanceDrawBean;
+import com.sxxh.linghuo.me.bean.BasicInformationBean;
 import com.sxxh.linghuo.me.bean.FeedBackBean;
 import com.sxxh.linghuo.me.bean.FinancialDetailsBean;
+import com.sxxh.linghuo.me.bean.GetIssueBean;
 import com.sxxh.linghuo.me.bean.HeadBalanceBean;
 import com.sxxh.linghuo.me.bean.IdBindBean;
 import com.sxxh.linghuo.me.bean.IndustryBean;
@@ -113,7 +118,8 @@ public interface INetService {
     Observable<AuthCodeBean> setPeople(@Field("id_number") String id_number,
                                        @Field("real_name") String real_name,
                                        @Field("id_front") String id_front,
-                                       @Field("id_back") String id_back);
+                                       @Field("id_back") String id_back,
+                                       @Field("user_email") String user_email);
 
     //获取个人认证结果
     @GET("api/user/profile/authInfo")
@@ -313,4 +319,27 @@ public interface INetService {
     //首页发布人基础信息
     @GET("api/user/companyinfo/job")
     Observable<IssusMessageBean> getIssusMessage(@Query("uid") int uId);
+
+    //兼职详情
+    @POST("demo/index/taskdetail")
+    @FormUrlEncoded
+    Observable<TaskdetailBean> getTaskdetail(@Field("id") int id);
+
+    //首页信息
+    @GET("demo/index/firstPage")
+    Observable<HomeData> getHomeData();
+
+    //搜索
+    @POST("demo/index/searchjobs")
+    @FormUrlEncoded
+    Observable<SearchDataBean> getSearch(@Field("name") String name);
+
+    //基础信息
+    @POST("demo/index/infomsg")
+    @FormUrlEncoded
+    Observable<BasicInformationBean> getBasicInformation(@Field("id") String id);
+
+    //获取发布信息
+    @GET("demo/index/nordermsg")
+    Observable<GetIssueBean> getIssue(@Query("id") String id);
 }

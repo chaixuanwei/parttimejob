@@ -3,7 +3,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="write">#ffffff</color>
+    <color name="write">#FFFFFF</color>
     <color name="app_theme_color">#0069FF</color>
     <color name="bottom_bar_bg">#EDEBEC</color>
     <color name="tab_bg">#F6F2A8</color>

@@ -1,9 +1,10 @@
 package com.sxxh.linghuo.home.activity;
 
-import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -14,9 +15,13 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.ToastUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.sxxh.linghuo.R;
+import com.sxxh.linghuo.config.ApiConfig;
 import com.sxxh.linghuo.config.Config;
+import com.sxxh.linghuo.config.LoadConfig;
 import com.sxxh.linghuo.frame.BaseMvpActivity;
 import com.sxxh.linghuo.frame.CommonPresenter;
+import com.sxxh.linghuo.home.adapter.SearchAdapter;
+import com.sxxh.linghuo.home.bean.SearchDataBean;
 import com.sxxh.linghuo.local_utils.SharedPrefrenceUtils;
 import com.sxxh.linghuo.model.HomeModel;
 import com.zhy.view.flowlayout.FlowLayout;
@@ -28,7 +33,6 @@ import java.util.List;
 import java.util.Set;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomeModel> {
@@ -55,6 +59,8 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
     SmartRefreshLayout searchSrl;
     private TagAdapter mHotAdapter;
     private TagAdapter mHistoryAdapter;
+    private SearchAdapter mAdapter;
+    ArrayList<SearchDataBean.DataBean> mList = new ArrayList<>();
 
     @Override
     public int getLayoutId() {
@@ -78,6 +84,7 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
                     searchLl.setVisibility(View.GONE);
                     searchSrl.setVisibility(View.VISIBLE);
                 }
+                mPresenter.getData(ApiConfig.SEARCH_DATA, LoadConfig.NORMAL, s.toString());
             }
 
             @Override
@@ -87,10 +94,10 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
         });
         List<String> mStringList = SharedPrefrenceUtils.getStringList(SearchActivity.this, Config.SEARCH_HISTORY);
         mHistoryList.addAll(mStringList);
-        mHotList.add("adf");
-        mHotList.add("sdfasdfsdfas");
-        mHotList.add("adsfasdf");
-        mHotList.add("adfasdfasdfasdfasdfadsf");
+//        mHotList.add("adf");
+//        mHotList.add("sdfasdfsdfas");
+//        mHotList.add("adsfasdf");
+//        mHotList.add("adfasdfasdfasdfasdfadsf");
         mHotAdapter = new TagAdapter(mHotList) {
             @Override
             public View getView(FlowLayout parent, int position, Object pO) {
@@ -143,6 +150,9 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
                 }
             }
         });
+        mAdapter = new SearchAdapter(this, mList);
+        searchRv.setAdapter(mAdapter);
+        searchRv.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
@@ -162,12 +172,22 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
 
     @Override
     public void onError(int whichApi, Throwable e) {
-
+        Log.e("搜索", "onError: 搜索" );
     }
 
     @Override
     public void onResponse(int whichApi, Object[] t) {
-
+        switch (whichApi) {
+            case ApiConfig.SEARCH_DATA:
+                SearchDataBean mSearchDataBeans = (SearchDataBean) t[0];
+                if (mSearchDataBeans.getData().size() > 0 ) {
+                    mList.addAll(mSearchDataBeans.getData());
+                } else {
+                    ToastUtils.showShort("抱歉，无搜索相关信息!");
+                }
+                mAdapter.notifyDataSetChanged();
+                break;
+        }
     }
 
     @OnClick({R.id.back, R.id.txt_search, R.id.bucket})
@@ -181,7 +201,12 @@ public class SearchActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
                 if (mS.equals("")) {
                     ToastUtils.showShort("请填写搜索内容！");
                 } else {
-                    mHistoryList.add(etSearch.getText().toString());
+                    mPresenter.getData(ApiConfig.SEARCH_DATA, LoadConfig.NORMAL, mS);
+                    if (mHistoryList.contains(mS)) {
+
+                    } else {
+                        mHistoryList.add(mS);
+                    }
                     SharedPrefrenceUtils.putStringList(SearchActivity.this, Config.SEARCH_HISTORY, mHistoryList);
                     mHistoryAdapter.notifyDataChanged();
                     searchLl.setVisibility(View.GONE);

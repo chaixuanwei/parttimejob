@@ -6,13 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".me.activity.IssusActivity">
+
     <android.support.v7.widget.Toolbar
-        android:paddingTop="@dimen/dp_30"
         android:id="@+id/message_tbr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/toolbar"
-        android:minHeight="?android:attr/actionBarSize">
+        android:minHeight="?android:attr/actionBarSize"
+        android:paddingTop="@dimen/dp_30">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -35,16 +36,21 @@
                 android:textStyle="bold" />
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
+
     <ScrollView
+        android:id="@+id/sc"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/write"
                 android:padding="@dimen/dp_10">
 
                 <TextView
@@ -57,18 +63,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/grey_second"
-                    android:text="职位名称" />
+                    android:text="职位名称"
+                    android:textColor="@color/text_color" />
 
                 <EditText
                     android:id="@+id/issus_job_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_5"
-                    android:textColor="@color/black_theme"
-                    android:textSize="@dimen/sp_13"
                     android:layout_weight="1"
-                    android:background="@null" />
+                    android:background="@null"
+                    android:textColor="@color/black_theme2"
+                    android:textSize="@dimen/sp_13" />
             </LinearLayout>
 
             <TextView
@@ -79,6 +85,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/write"
                 android:padding="@dimen/dp_10">
 
                 <TextView
@@ -91,18 +98,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/grey_second"
-                    android:text="职位描述" />
+                    android:text="职位描述"
+                    android:textColor="@color/text_color" />
 
                 <EditText
                     android:id="@+id/issus_describe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_5"
-                    android:textColor="@color/black_theme"
-                    android:textSize="@dimen/sp_13"
                     android:layout_weight="1"
-                    android:background="@null" />
+                    android:background="@null"
+                    android:textColor="@color/black_theme"
+                    android:textSize="@dimen/sp_13" />
             </LinearLayout>
 
             <TextView
@@ -111,8 +118,10 @@
                 android:background="@color/grey_second" />
 
             <LinearLayout
+                android:id="@+id/pay_scope"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/write"
                 android:padding="@dimen/dp_10">
 
                 <TextView
@@ -125,19 +134,24 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/grey_second"
-                    android:text="职位月薪" />
+                    android:text="职位月薪"
+                    android:textColor="@color/text_color" />
 
                 <EditText
                     android:id="@+id/issus_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:layout_marginLeft="@dimen/dp_5"
-                    android:textSize="@dimen/sp_13"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:hint="请填写薪资" />
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/sp_13" />
+                <Spinner
+                    android:id="@+id/pay_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scrollbarSize="@dimen/sp_13"
+                    android:textColor="@color/black_theme" />
             </LinearLayout>
 
             <TextView
@@ -148,6 +162,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/write"
                 android:padding="@dimen/dp_10">
 
                 <TextView
@@ -160,23 +175,64 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/grey_second"
-                    android:text="职位性质" />
+                    android:text="职位性质"
+                    android:textColor="@color/text_color" />
 
                 <Spinner
                     android:id="@+id/issus_spinner"
-                    android:textSize="@dimen/sp_13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_weight="1"
+                    android:scrollbarSize="@dimen/sp_13"
+                    android:textColor="@color/black_theme" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:background="@color/grey_second" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/write"
+                android:padding="@dimen/dp_10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:text="*"
+                    android:textColor="@color/red_theme" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="任务分类"
+                    android:textColor="@color/text_color" />
+
+                <Spinner
+                    android:id="@+id/classify_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_weight="1"
                     android:textColor="@color/black_theme"
-                    android:layout_weight="1" />
+                    android:textSize="@dimen/sp_13" />
             </LinearLayout>
 
             <RelativeLayout
                 android:id="@+id/show_hidden"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone">
+                android:background="@color/write"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_10"
+                    android:background="#F7F7F7" />
 
                 <LinearLayout
                     android:id="@+id/isinterview"
@@ -184,15 +240,15 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingLeft="@dimen/dp_20"
-                    android:paddingTop="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_10"
                     android:paddingRight="@dimen/dp_15">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/grey_second"
                         android:layout_weight="2"
-                        android:text="是否需要面试" />
+                        android:text="是否需要面试"
+                        android:textColor="@color/text_color" />
 
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -220,29 +276,33 @@
                     </RadioGroup>
                 </LinearLayout>
 
-                <TextView
+                <EditText
                     android:id="@+id/ishight"
-                    android:textColor="@color/grey_second"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/isinterview"
-                    android:drawableRight="@mipmap/right"
+                    android:background="@null"
+                    android:hint="身高要求(以“-”间隔)"
                     android:paddingLeft="@dimen/dp_20"
                     android:paddingTop="@dimen/dp_10"
                     android:paddingRight="@dimen/dp_15"
-                    android:text="身高要求" />
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/text_color"
+                    android:textSize="@dimen/sp_14" />
 
-                <TextView
+                <EditText
                     android:id="@+id/isfive"
-                    android:textColor="@color/grey_second"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/ishight"
-                    android:drawableRight="@mipmap/right"
+                    android:background="@null"
+                    android:hint="五官需求"
                     android:paddingLeft="@dimen/dp_20"
                     android:paddingTop="@dimen/dp_10"
                     android:paddingRight="@dimen/dp_15"
-                    android:text="五官需求" />
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/text_color"
+                    android:textSize="@dimen/sp_14" />
 
                 <LinearLayout
                     android:id="@+id/isgather"
@@ -251,15 +311,15 @@
                     android:layout_below="@id/isfive"
                     android:gravity="center"
                     android:paddingLeft="@dimen/dp_20"
-                    android:paddingTop="@dimen/dp_5"
+                    android:paddingTop="@dimen/dp_10"
                     android:paddingRight="@dimen/dp_15">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/grey_second"
                         android:layout_weight="2"
-                        android:text="是否需要集合" />
+                        android:text="是否需要集合"
+                        android:textColor="@color/text_color" />
 
                     <RadioGroup
                         android:layout_width="wrap_content"
@@ -291,35 +351,37 @@
                     android:id="@+id/gather_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/grey_second"
                     android:layout_below="@id/isgather"
-                    android:drawableRight="@mipmap/right"
                     android:paddingLeft="@dimen/dp_20"
                     android:paddingTop="@dimen/dp_10"
                     android:paddingRight="@dimen/dp_15"
-                    android:text="集合时间" />
+                    android:text="集合时间"
+                    android:textColor="@color/text_color" />
 
-                <TextView
+                <EditText
                     android:id="@+id/gather_place"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/grey_second"
                     android:layout_below="@id/gather_time"
-                    android:drawableRight="@mipmap/right"
+                    android:background="@null"
+                    android:hint="集合地点"
                     android:paddingLeft="@dimen/dp_20"
                     android:paddingTop="@dimen/dp_10"
                     android:paddingRight="@dimen/dp_15"
-                    android:text="集合地点" />
+                    android:textColor="@color/text_color"
+                    android:textColorHint="@color/text_color"
+                    android:textSize="@dimen/sp_14" />
             </RelativeLayout>
 
             <TextView
-                android:background="#F7F7F7"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_10" />
+                android:layout_height="@dimen/dp_10"
+                android:background="#F7F7F7" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/write"
                 android:padding="@dimen/dp_10">
 
                 <TextView
@@ -332,19 +394,19 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/grey_second"
-                    android:text="工作地点" />
+                    android:text="工作地点"
+                    android:textColor="@color/text_color" />
 
                 <EditText
                     android:id="@+id/issus_place"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_5"
-                    android:textSize="@dimen/sp_13"
+                    android:layout_weight="1"
+                    android:background="@null"
                     android:drawableRight="@mipmap/place"
                     android:textColor="@color/black_theme"
-                    android:layout_weight="1"
-                    android:background="@null" />
+                    android:textSize="@dimen/sp_13" />
             </LinearLayout>
 
             <TextView
@@ -355,6 +417,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/write"
                 android:padding="@dimen/dp_10">
 
                 <TextView
@@ -367,19 +430,18 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/grey_second"
-                    android:text="工作时间" />
+                    android:text="起始时间"
+                    android:textColor="@color/text_color" />
 
-                <EditText
-                    android:id="@+id/issus_time"
+                <TextView
+                    android:id="@+id/start_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="time"
                     android:layout_marginLeft="@dimen/dp_5"
-                    android:drawableRight="@mipmap/right"
-                    android:textColor="@color/black_theme"
                     android:layout_weight="1"
-                    android:background="@null" />
+                    android:background="@null"
+                    android:drawableRight="@mipmap/right"
+                    android:textColor="@color/black_theme" />
             </LinearLayout>
 
             <TextView
@@ -390,6 +452,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/write"
                 android:padding="@dimen/dp_10">
 
                 <TextView
@@ -402,20 +465,56 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/grey_second"
-                    android:text="招聘人数" />
+                    android:text="结束时间"
+                    android:textColor="@color/text_color" />
+
+                <TextView
+                    android:id="@+id/end_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:drawableRight="@mipmap/right"
+                    android:textColor="@color/black_theme" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:background="@color/grey_second" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/write"
+                android:padding="@dimen/dp_10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:text="*"
+                    android:textColor="@color/red_theme" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="招聘人数"
+                    android:textColor="@color/text_color" />
 
                 <EditText
                     android:id="@+id/issus_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp_5"
-                    android:textSize="@dimen/sp_13"
-                    android:textColor="@color/black_theme"
-                    android:inputType="number"
-                    android:hint="填写人数"
                     android:layout_weight="1"
-                    android:background="@null" />
+                    android:background="@null"
+                    android:hint="填写人数"
+                    android:inputType="number"
+                    android:textColor="@color/black_theme2"
+                    android:textColorHint="@color/black_theme2"
+                    android:textSize="@dimen/sp_13" />
             </LinearLayout>
 
             <TextView
@@ -426,6 +525,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/write"
                 android:padding="@dimen/dp_10">
 
                 <TextView
@@ -438,19 +538,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/grey_second"
-                    android:text="联系人    " />
+                    android:text="联系人\t\t"
+                    android:textColor="@color/text_color" />
 
                 <EditText
                     android:id="@+id/issus_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_5"
-                    android:textSize="@dimen/sp_13"
-                    android:textColor="@color/black_theme"
-                    android:hint="填写姓名"
+                    android:layout_marginLeft="@dimen/dp_8"
                     android:layout_weight="1"
-                    android:background="@null" />
+                    android:background="@null"
+                    android:hint="填写姓名"
+                    android:textColor="@color/black_theme2"
+                    android:textColorHint="@color/black_theme2"
+                    android:textSize="@dimen/sp_13" />
             </LinearLayout>
 
             <TextView
@@ -461,6 +562,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/write"
                 android:padding="@dimen/dp_10">
 
                 <TextView
@@ -473,32 +575,45 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/grey_second"
-                    android:text="联系电话" />
+                    android:text="联系电话"
+                    android:textColor="@color/text_color" />
 
                 <EditText
                     android:id="@+id/issus_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="phone"
                     android:layout_marginLeft="@dimen/dp_5"
-                    android:textSize="@dimen/sp_13"
-                    android:hint="填写电话"
-                    android:textColor="@color/black_theme"
                     android:layout_weight="1"
-                    android:background="@null" />
+                    android:background="@null"
+                    android:hint="填写电话"
+                    android:inputType="phone"
+                    android:textColor="@color/black_theme2"
+                    android:textColorHint="@color/black_theme2"
+                    android:textSize="@dimen/sp_13" />
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:background="@color/grey_second" />
 
             <TextView
                 android:id="@+id/bt_issus_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_50"
+                android:layout_marginRight="@dimen/dp_10"
                 android:background="@drawable/blue_round_frame"
                 android:gravity="center_horizontal"
-                android:textColor="@color/app_theme_color"
                 android:padding="@dimen/dp_15"
-                android:layout_margin="@dimen/dp_10"
-                android:text="修改任务" />
+                android:text="提交并付款"
+                android:textColor="@color/app_theme_color" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_150" />
         </LinearLayout>
+
     </ScrollView>
 </LinearLayout>

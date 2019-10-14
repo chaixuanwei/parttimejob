@@ -59,7 +59,8 @@ public class MeModel implements ICommonModel {
                 String name = (String) t[2];
                 String classify = (String) t[3];
                 String hand = (String) t[4];
-                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().setPeople(card, name, classify, hand), view, whichApi, mLoadMode);
+                String email = (String) t[5];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().setPeople(card, name, classify, hand, email), view, whichApi, mLoadMode);
                 break;
             case ApiConfig.GET_PEOPLE:
                 mLoadMode = (int) t[0];
@@ -213,10 +214,10 @@ public class MeModel implements ICommonModel {
                 break;
             case ApiConfig.COMPAINT_FIRM:
                 mLoadMode = (int) t[0];
-                int user_id = (int) t[1];
+                mUserid = (int) t[1];
                 String user_type = (String) t[2];
                 String user_content = (String) t[3];
-                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().setComplaintFirm(user_id, user_type, user_content), view, whichApi, mLoadMode);
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().setComplaintFirm(mUserid, user_type, user_content), view, whichApi, mLoadMode);
                 break;
             case ApiConfig.COMPAINT_PEOPLE:
                 mLoadMode = (int) t[0];
@@ -224,6 +225,19 @@ public class MeModel implements ICommonModel {
                 String firm_type = (String) t[2];
                 String firm_content = (String) t[3];
                 NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().setComplaintPeople(firm_id, firm_type, firm_content), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.BASIC_INFORMATION:
+                mLoadMode = (int) t[0];
+                mUserid = (int) t[1];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getBasicInformation(mUserid + ""), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.GET_NATURE:
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getNature(), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.GET_ISSUE:
+                mLoadMode = (int) t[0];
+                mUserid = (int) t[1];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getIssue(mUserid + ""), view, whichApi, mLoadMode);
                 break;
         }
     }
