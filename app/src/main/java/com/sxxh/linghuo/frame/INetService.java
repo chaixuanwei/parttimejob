@@ -1,6 +1,7 @@
 package com.sxxh.linghuo.frame;
 
 import com.sxxh.linghuo.home.bean.BannerBean;
+import com.sxxh.linghuo.home.bean.IssuerGeneralEvaluation;
 import com.sxxh.linghuo.home.bean.IssusMessageBean;
 import com.sxxh.linghuo.home.bean.MenuBean;
 import com.sxxh.linghuo.issus.bean.NatureBean;
@@ -313,4 +314,10 @@ public interface INetService {
     //首页发布人基础信息
     @GET("api/user/companyinfo/job")
     Observable<IssusMessageBean> getIssusMessage(@Query("uid") int uId);
+
+
+    //首页发布人整体评价
+    @POST("/demo/index/publicers")
+    @FormUrlEncoded
+    Observable<IssuerGeneralEvaluation> getIssuerGeneralEvaluation(@Field("id") int id);
 }

@@ -51,4 +51,5 @@ public class ApiConfig {
     public static final int NON_READ_B = 48;//消息未读
     public static final int NON_READ_C = 49;//消息未读
     public static final int ISSUS_MESSAGE = 50;//首页发布人基础信息
+    public static final int ISSUER_GENERAL_EVALUATION = 51;//发布人整体评价
 }

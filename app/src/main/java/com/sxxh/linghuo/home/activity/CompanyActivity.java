@@ -64,7 +64,7 @@ public class CompanyActivity extends BaseMvpActivity<CommonPresenter, HomeModel>
     @Override
     public void initView() {
         Intent mIntent = getIntent();
-        uId = mIntent.getIntExtra(Config.TASK_ID, uId);
+        uId = mIntent.getIntExtra(Config.TASK_ID, uId); //公司id
         mAdapter = new HomeVpAdapter(getSupportFragmentManager(), mFragmentList, mTitleList);
         companyVp.setAdapter(mAdapter);
         companyTab.setupWithViewPager(companyVp);
@@ -75,7 +75,7 @@ public class CompanyActivity extends BaseMvpActivity<CommonPresenter, HomeModel>
         mPresenter.getData(ApiConfig.ISSUS_MESSAGE, LoadConfig.NORMAL, uId);
         if (mTitleList.size() == 0 && mFragmentList.size() == 0) {
             mTitleList.add("整体评价");
-            mFragmentList.add(CompanyAppraiseFragment.newInstance());
+            mFragmentList.add(CompanyAppraiseFragment.newInstance(uId));
             mTitleList.add("任务历史");
             mFragmentList.add(CompanyHistoryFragment.newInstance());
             mTitleList.add("公司简介");
