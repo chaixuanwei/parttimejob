@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -21,6 +23,7 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectChangeListener;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
+import com.blankj.utilcode.util.ToastUtils;
 import com.sxxh.linghuo.R;
 import com.sxxh.linghuo.config.ApiConfig;
 import com.sxxh.linghuo.config.LoadConfig;
@@ -28,6 +31,7 @@ import com.sxxh.linghuo.frame.BaseMvpActivity;
 import com.sxxh.linghuo.frame.CommonPresenter;
 import com.sxxh.linghuo.issus.bean.NatureBean;
 import com.sxxh.linghuo.local_utils.DateUtil;
+import com.sxxh.linghuo.login.bean.AuthCodeBean;
 import com.sxxh.linghuo.me.bean.GetIssueBean;
 import com.sxxh.linghuo.model.MeModel;
 
@@ -85,6 +89,8 @@ public class IssusActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
     TextView btIssusLogin;
     @BindView(R.id.sc)
     ScrollView sc;
+    @BindView(R.id.back)
+    ImageView back;
     private static final String[] m_arr = {"网络", "线下"};
     private static final String[] mPay = {"元/天", "元/月"};
     ArrayList<String> mStrings = new ArrayList<>();
@@ -97,7 +103,7 @@ public class IssusActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
     int interview = 0;//是否面试
     int gather = 0;//是否集合
     int nature = 0;//任务属性
-    int classify = 0;//任务分类
+    String classify = "";//任务分类
     int click = 0;
     private ArrayAdapter<String> mStringAda;
     private ArrayAdapter<String> mAda;
@@ -146,7 +152,7 @@ public class IssusActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
         classifySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                classify = mDataBeans.get(position).getId();
+                classify = mDataBeans.get(position).getName();
             }
 
             @Override
@@ -246,6 +252,12 @@ public class IssusActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
                     gatherPlace.setText(mGetIssueBeans.getMuster_address());
                 }
                 break;
+            case ApiConfig.UPDATA_ISSUS:
+                AuthCodeBean mAuthCodeBeans = (AuthCodeBean) t[0];
+                if (mAuthCodeBeans.getMsg().equals("修改成功！")) {
+                    finish();
+                }
+                break;
         }
     }
 
@@ -311,9 +323,12 @@ public class IssusActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
         return format.format(date);
     }
 
-    @OnClick({R.id.start_time, R.id.end_time, R.id.issus_interview_yes, R.id.issus_interview_no, R.id.issus_gather_yes, R.id.issus_gather_no, R.id.gather_time, R.id.bt_issus_login})
+    @OnClick({R.id.back, R.id.start_time, R.id.end_time, R.id.issus_interview_yes, R.id.issus_interview_no, R.id.issus_gather_yes, R.id.issus_gather_no, R.id.gather_time, R.id.bt_issus_login})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.back:
+                finish();
+                break;
             case R.id.start_time:
                 click = 1;
                 pvTime.show(view);
@@ -353,16 +368,16 @@ public class IssusActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
                 String mHight = ishight.getText().toString();
                 String mFive = isfive.getText().toString();
                 String mGatherPlace = gatherPlace.getText().toString();
-//                if (!mIssusJobName.equals("") && !mIssusDescribe.equals("")
-//                        && !mIssusPlace.equals("") && !mIssusNumber.equals("")
-//                        && !mIssusMoney.equals("")
-//                        && !mIssusName.equals("") && !mIssusPhone.equals("")) {
-//                    mPresenter.getData(ApiConfig.TO_ISSUS, LoadConfig.NORMAL, mIssusJobName, mIssusDescribe
-//                            , mIssusMoney, classify, nature, mIssusPlace, starttime, endtime, mNumber, mIssusName, mIssusPhone
-//                            , interview, mHight, mFive, gather, gathertime, mGatherPlace);
-//                } else {
-//                    ToastUtils.showShort("请填写必填信息！");
-//                }
+                if (!mIssusJobName.equals("") && !mIssusDescribe.equals("")
+                        && !mIssusPlace.equals("") && !mIssusNumber.equals("")
+                        && !mIssusMoney.equals("")
+                        && !mIssusName.equals("") && !mIssusPhone.equals("")) {
+                    mPresenter.getData(ApiConfig.UPDATA_ISSUS, LoadConfig.NORMAL, mIssusJobName, mIssusDescribe
+                            , mIssusMoney, classify, nature, mIssusPlace, starttime, endtime, mNumber, mIssusName, mIssusPhone
+                            , interview, mHight, mFive, gather, gathertime, mGatherPlace, mId);
+                } else {
+                    ToastUtils.showShort("请填写必填信息！");
+                }
                 break;
         }
     }

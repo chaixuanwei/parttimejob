@@ -109,24 +109,25 @@ public class CompanyAppraiseFragment extends BaseMvpFragment<CommonPresenter, Ho
                     }
                 });
                 if (mDataList.get(0).getPaycomment() != null) {
-                    progressAppraise.setProgress(Integer.parseInt(mDataList.get(0).getPaycomment()));
+                    numAppraise.setText(Integer.parseInt(mDataList.get(0).getPaycomment()));
                 } else {
-                    progressAppraise.setProgress(5);
+                    numAppraise.setText(5 + "");
                 }
                 if (mDataList.get(0).getServicecomment() != null) {
                     numService.setText(Integer.parseInt(mDataList.get(0).getServicecomment()));
                 } else {
-                    progressAppraise.setProgress(5);
+                    numService.setText(5 + "");
                 }
                 if (mDataList.get(0).getStationcomment() != null) {
                     numEfficiency.setText(Integer.parseInt(mDataList.get(0).getStationcomment()));
                 } else {
-                    progressAppraise.setProgress(5);
+                    numEfficiency.setText(5 + "");
                 }
-                numAppraise.setText(progressAppraise.getProgress() + "");
-
+                progressAppraise.setProgress(Integer.parseInt(numAppraise.getText().toString()));
+                progressEfficiency.setProgress(Integer.parseInt(numEfficiency.getText().toString()));
+                progressService.setProgress(Integer.parseInt(numService.getText().toString()));
                 companyAppraiseRv.setFocusable(false);
-                CommpanyAppraiseAdapter mAdapter = new CommpanyAppraiseAdapter(getActivity(),mDatasList);
+                CommpanyAppraiseAdapter mAdapter = new CommpanyAppraiseAdapter(getActivity(), mDatasList);
                 LinearLayoutManager mManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false) {
                     @Override
                     public boolean canScrollVertically() {

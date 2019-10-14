@@ -14,6 +14,7 @@ public class MeModel implements ICommonModel {
     private int mPage;
     private int mTaskid;
     private int mUserid;
+    private int mT_id;
 
     @Override
     public void getData(ICommonView view, int whichApi, Object[] t) {
@@ -148,9 +149,9 @@ public class MeModel implements ICommonModel {
                 break;
             case ApiConfig.SET_SUBMIT:
                 mLoadMode = (int) t[0];
-                int t_id = (int) t[1];
+                mT_id = (int) t[1];
                 String task_images = (String) t[2];
-                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().setSubmit(t_id, task_images), view, whichApi, mLoadMode);
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().setSubmit(mT_id, task_images), view, whichApi, mLoadMode);
                 break;
             case ApiConfig.ID_BIND:
                 mLoadMode = (int) t[0];
@@ -238,6 +239,30 @@ public class MeModel implements ICommonModel {
                 mLoadMode = (int) t[0];
                 mUserid = (int) t[1];
                 NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getIssue(mUserid + ""), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.UPDATA_ISSUS:
+                mLoadMode = (int) t[0];
+                String comname = (String) t[1];
+                String des = (String) t[2];
+                String pay = (String) t[3];
+                String naparent_id = (String) t[4];
+                int property = (int) t[5];
+                String work_location = (String) t[6];
+                int start_time = (int) t[7];
+                int end_time = (int) t[8];
+                int zp_num = (int) t[9];
+                String contact = (String) t[10];
+                String phone = (String) t[11];
+                int is_interview = (int) t[12];
+                String height_require = (String) t[13];
+                String other_require = (String) t[14];
+                int is_muster = (int) t[15];
+                int muster_time = (int) t[16];
+                String muster_address = (String) t[17];
+                mT_id = (int) t[18];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService()
+                        .updataIssus(comname, des, pay, naparent_id, property, work_location, start_time, end_time, zp_num
+                                , contact, phone, is_interview, height_require, other_require, is_muster, muster_time, muster_address, mT_id), view, whichApi, mLoadMode);
                 break;
         }
     }

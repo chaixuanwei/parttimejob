@@ -29,4 +29,5 @@ public class Config {
     public static final String PLACE = "place";
     public static final int PAY_ZFB = 1;
     public static final String SEARCH_HISTORY = "searchhistory";
+    public static final String COMPANY_NAME = "company_name";
 }

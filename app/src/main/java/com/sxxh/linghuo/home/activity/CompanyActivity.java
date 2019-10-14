@@ -55,6 +55,7 @@ public class CompanyActivity extends BaseMvpActivity<CommonPresenter, HomeModel>
     TextView companyName;
     private HomeVpAdapter mAdapter;
     private int uId = 1;
+    private String mName;
 
     @Override
     public int getLayoutId() {
@@ -65,9 +66,11 @@ public class CompanyActivity extends BaseMvpActivity<CommonPresenter, HomeModel>
     public void initView() {
         Intent mIntent = getIntent();
         uId = mIntent.getIntExtra(Config.TASK_ID, uId); //公司id
+        mName = mIntent.getStringExtra(Config.COMPANY_NAME);//公司名称
         mAdapter = new HomeVpAdapter(getSupportFragmentManager(), mFragmentList, mTitleList);
         companyVp.setAdapter(mAdapter);
         companyTab.setupWithViewPager(companyVp);
+        companyName.setText(mName);
     }
 
     @Override

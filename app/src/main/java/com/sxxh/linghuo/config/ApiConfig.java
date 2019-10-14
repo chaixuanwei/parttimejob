@@ -57,4 +57,5 @@ public class ApiConfig {
     public static final int BASIC_INFORMATION = 54;//基础信息
     public static final int GET_ISSUE = 55;//获取发布详情
     public static final int ISSUER_GENERAL_EVALUATION = 56;//发布人整体评价
+    public static final int UPDATA_ISSUS = 57;//修改发布信息
 }

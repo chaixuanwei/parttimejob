@@ -349,4 +349,14 @@ public interface INetService {
     @POST("/demo/index/publicers")
     @FormUrlEncoded
     Observable<IssuerGeneralEvaluation> getIssuerGeneralEvaluation(@Field("id") int id);
+
+    //修改发布信息
+    @POST("demo/index/nordermsg")
+    @FormUrlEncoded
+    Observable<AuthCodeBean> updataIssus(@Field("name") String name, @Field("des") String des, @Field("pay") String pay
+            , @Field("parent_id") String parent_id, @Field("property") int property, @Field("work_location") String work_location
+            , @Field("start_time") int start_time, @Field("end_time") int end_time, @Field("zp_num") int zp_num, @Field("contact") String contact
+            , @Field("phone") String phone, @Field("is_interview") int is_interview, @Field("height_require") String height_require
+            , @Field("other_require") String other_require, @Field("is_muster") int is_muster, @Field("muster_time") int muster_time
+            , @Field("muster_address") String muster_address, @Field("id") int id);
 }

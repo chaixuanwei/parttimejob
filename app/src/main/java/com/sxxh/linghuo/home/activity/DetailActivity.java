@@ -82,6 +82,7 @@ public class DetailActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
     LinearLayout otherLl;
     private int tId = 1;
     private TaskdetailBean mBean;
+    String name = "";
 
     @Override
     public int getLayoutId() {
@@ -120,6 +121,7 @@ public class DetailActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
             case ApiConfig.TASKDETAIL:
                 TaskdetailBean mBean = (TaskdetailBean) t[0];
                 TaskdetailBean.DataBean mTaskdetailBeans = mBean.getData();
+                name = mTaskdetailBeans.getCompany_name();
                 jobName.setText(mTaskdetailBeans.getName());
                 jobPlace.setText(mTaskdetailBeans.getWork_location());
                 person.setText(mTaskdetailBeans.getZp_num() + "");
@@ -174,6 +176,7 @@ public class DetailActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
             case R.id.company_content:
                 Intent mCompanyIntent = new Intent(this, CompanyActivity.class);
                 mCompanyIntent.putExtra(Config.TASK_ID, tId);
+                mCompanyIntent.putExtra(Config.COMPANY_NAME , name);
                 startActivity(mCompanyIntent);
                 break;
             case R.id.complain:
