@@ -119,7 +119,8 @@ public interface INetService {
     Observable<AuthCodeBean> setPeople(@Field("id_number") String id_number,
                                        @Field("real_name") String real_name,
                                        @Field("id_front") String id_front,
-                                       @Field("id_back") String id_back);
+                                       @Field("id_back") String id_back,
+                                       @Field("user_email") String user_email);
 
     //获取个人认证结果
     @GET("api/user/profile/authInfo")
