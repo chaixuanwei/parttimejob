@@ -9,14 +9,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.sxxh.linghuo.R;
+import com.sxxh.linghuo.home.bean.IssuerGeneralEvaluation;
 import com.sxxh.linghuo.view.RoundImage;
+
+import java.util.List;
 
 public class CommpanyAppraiseAdapter extends RecyclerView.Adapter<CommpanyAppraiseAdapter.ViewHolder> {
     Context mContext;
+    private List<IssuerGeneralEvaluation.DatasBean> mDatasList;
 
-    public CommpanyAppraiseAdapter(Context pContext) {
+    public CommpanyAppraiseAdapter(Context pContext, List<IssuerGeneralEvaluation.DatasBean> mDatasList) {
         mContext = pContext;
+        this.mDatasList = mDatasList;
     }
 
     @NonNull
@@ -30,7 +36,14 @@ public class CommpanyAppraiseAdapter extends RecyclerView.Adapter<CommpanyApprai
     public void onBindViewHolder(@NonNull ViewHolder pViewHolder, int pI) {
         ViewHolder mViewHolder = pViewHolder;
         if (pI == 0) {
-
+            Glide.with(mContext).load(mDatasList.get(pI))
+                    .error(R.mipmap.logo)//异常时候显示的图片
+                    .fallback(R.mipmap.logo) //url为空的时候,显示的图片
+                    .into(mViewHolder.mCompanyPeoplePhoto);
+            mViewHolder.mCompanyPeopleName.setText(mDatasList.get(pI).getUser_nickname());
+            mViewHolder.mCompanyDegreeOfMatch.setText(mDatasList.get(pI).getStationcomment());
+            mViewHolder.mCompanyWageLevel.setText(mDatasList.get(pI).getPaycomment());
+            mViewHolder.mCompanyPersonnelAttitude.setText(mDatasList.get(pI).getServicecomment());
         } else {
             mViewHolder.mCompanyNewImg.setVisibility(View.GONE);
         }
@@ -38,7 +51,7 @@ public class CommpanyAppraiseAdapter extends RecyclerView.Adapter<CommpanyApprai
 
     @Override
     public int getItemCount() {
-        return 5;
+        return mDatasList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -47,8 +60,6 @@ public class CommpanyAppraiseAdapter extends RecyclerView.Adapter<CommpanyApprai
         private TextView mCompanyPeopleName;
         private TextView mCompanyDegreeOfMatch;
         private TextView mCompanyWageLevel;
-        private TextView mCompanyWageRate;
-        private TextView mCompanyTrainingBenefits;
         private TextView mCompanyPersonnelAttitude;
         private TextView mCompanyTime;
         public ViewHolder(@NonNull View itemView) {
@@ -58,8 +69,6 @@ public class CommpanyAppraiseAdapter extends RecyclerView.Adapter<CommpanyApprai
             mCompanyPeopleName = itemView.findViewById(R.id.company_people_name);
             mCompanyDegreeOfMatch = itemView.findViewById(R.id.company_degree_of_match);
             mCompanyWageLevel = itemView.findViewById(R.id.company_wage_level);
-            mCompanyWageRate = itemView.findViewById(R.id.company_wage_rate);
-            mCompanyTrainingBenefits = itemView.findViewById(R.id.company_training_benefits);
             mCompanyPersonnelAttitude = itemView.findViewById(R.id.company_personnel_attitude);
             mCompanyTime = itemView.findViewById(R.id.company_time);
         }

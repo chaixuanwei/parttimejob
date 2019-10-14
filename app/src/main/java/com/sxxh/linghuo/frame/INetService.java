@@ -1,6 +1,7 @@
 package com.sxxh.linghuo.frame;
 
 import com.sxxh.linghuo.home.bean.BannerBean;
+import com.sxxh.linghuo.home.bean.IssuerGeneralEvaluation;
 import com.sxxh.linghuo.home.bean.IssusMessageBean;
 import com.sxxh.linghuo.home.bean.MenuBean;
 import com.sxxh.linghuo.home.bean.SearchDataBean;
@@ -118,8 +119,7 @@ public interface INetService {
     Observable<AuthCodeBean> setPeople(@Field("id_number") String id_number,
                                        @Field("real_name") String real_name,
                                        @Field("id_front") String id_front,
-                                       @Field("id_back") String id_back,
-                                       @Field("user_email") String user_email);
+                                       @Field("id_back") String id_back);
 
     //获取个人认证结果
     @GET("api/user/profile/authInfo")
@@ -342,4 +342,10 @@ public interface INetService {
     //获取发布信息
     @GET("demo/index/nordermsg")
     Observable<GetIssueBean> getIssue(@Query("id") String id);
+
+
+    //首页发布人整体评价
+    @POST("/demo/index/publicers")
+    @FormUrlEncoded
+    Observable<IssuerGeneralEvaluation> getIssuerGeneralEvaluation(@Field("id") int id);
 }

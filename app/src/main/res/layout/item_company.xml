@@ -45,30 +45,11 @@
         android:layout_marginBottom="@dimen/dp_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/company_wage_rate"
-        android:text="工资发放速度(分值：8)"
-        android:layout_below="@id/company_wage_level"
-        android:layout_toRightOf="@id/company_people_photo"
-        android:textColor="@color/text_color"
-        android:textSize="@dimen/sp_14"
-        android:layout_marginBottom="@dimen/dp_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/company_training_benefits"
-        android:text="培训福利(分值：8)"
-        android:layout_below="@id/company_wage_rate"
-        android:layout_toRightOf="@id/company_people_photo"
-        android:textColor="@color/text_color"
-        android:textSize="@dimen/sp_14"
-        android:layout_marginBottom="@dimen/dp_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
     <TextView
         android:id="@+id/company_personnel_attitude"
         android:text="人员态度(分值：8)"
-        android:layout_below="@id/company_training_benefits"
+        android:layout_below="@id/company_wage_level"
         android:layout_toRightOf="@id/company_people_photo"
         android:textColor="@color/text_color"
         android:textSize="@dimen/sp_14"
