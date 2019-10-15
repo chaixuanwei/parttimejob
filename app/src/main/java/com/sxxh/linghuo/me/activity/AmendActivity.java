@@ -289,10 +289,11 @@ public class AmendActivity extends BaseMvpActivity<CommonPresenter, MeModel> imp
                         } else {
                             if (photo != 0) {
                                 mList.set(photo - 1, pUploadTopBean.getData().getUrl());
+                                mUpload.set(photo - 1, pUploadTopBean.getData().getFilepath());
                             } else {
                                 mList.add(pUploadTopBean.getData().getUrl());
+                                mUpload.add(pUploadTopBean.getData().getFilepath());
                             }
-                            mUpload.add(pUploadTopBean.getData().getFilepath());
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {

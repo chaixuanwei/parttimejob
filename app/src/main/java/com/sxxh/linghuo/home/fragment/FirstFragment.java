@@ -139,40 +139,45 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
             case ApiConfig.HOME_BANNER:
                 BannerBean mBannerBeans = (BannerBean) t[0];
                 List<BannerBean.DataBean> mData = mBannerBeans.getData();
-                List<String> images = new ArrayList<>();
+                final List<String> images = new ArrayList<>();
                 List<String> urls = new ArrayList<>();
-                List<String> titles = new ArrayList<>();
+                final List<String> titles = new ArrayList<>();
                 for (int i = 0; i < mData.size(); i++) {
                     images.add(mData.get(i).getImage());
                     urls.add(mData.get(i).getUrl());
                     titles.add(mData.get(i).getTitle());
                 }
-                firstBanner.setImageLoader(new ImageLoader() {
+                getActivity().runOnUiThread(new Runnable() {
                     @Override
-                    public void displayImage(Context context, Object path, ImageView imageView) {
-                        Glide.with(getActivity()).load((String) path).into(imageView);
+                    public void run() {
+                        firstBanner.setImageLoader(new ImageLoader() {
+                            @Override
+                            public void displayImage(Context context, Object path, ImageView imageView) {
+                                Glide.with(getActivity()).load((String) path).into(imageView);
+                            }
+                        });
+                        firstBanner.setImages(images);
+                        firstBanner.setBannerTitles(titles);
+                        firstBanner.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                            @Override
+                            public void onPageScrolled(int pI, float pV, int pI1) {
+
+                            }
+
+                            @Override
+                            public void onPageSelected(int pI) {
+
+                            }
+
+                            @Override
+                            public void onPageScrollStateChanged(int pI) {
+
+                            }
+                        });
+                        firstBanner.setDelayTime(3000);
+                        firstBanner.start();
                     }
                 });
-                firstBanner.setImages(images);
-                firstBanner.setBannerTitles(titles);
-                firstBanner.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-                    @Override
-                    public void onPageScrolled(int pI, float pV, int pI1) {
-
-                    }
-
-                    @Override
-                    public void onPageSelected(int pI) {
-
-                    }
-
-                    @Override
-                    public void onPageScrollStateChanged(int pI) {
-
-                    }
-                });
-                firstBanner.setDelayTime(3000);
-                firstBanner.start();
                 break;
             case ApiConfig.HOME_MENU:
                 MenuBean mMenuBeans = (MenuBean) t[0];
@@ -181,7 +186,12 @@ public class FirstFragment extends BaseMvpFragment<CommonPresenter, HomeModel> {
             case ApiConfig.HOME_DATA:
                 HomeData mHomeData = (HomeData) t[0];
                 mList.addAll(mHomeData.getData());
-                mAdapter.notifyDataSetChanged();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mAdapter.notifyDataSetChanged();
+                    }
+                });
                 break;
         }
     }

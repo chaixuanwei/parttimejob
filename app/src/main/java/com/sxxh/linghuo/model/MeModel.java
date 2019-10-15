@@ -269,6 +269,10 @@ public class MeModel implements ICommonModel {
                 mT_id = (int) t[1];
                 NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getTaskPhoto(mT_id), view, whichApi, mLoadMode);
                 break;
+            case ApiConfig.GET_MYMESSAGE:
+                mLoadMode = (int) t[0];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getMyMessage(), view, whichApi, mLoadMode);
+                break;
         }
     }
 }

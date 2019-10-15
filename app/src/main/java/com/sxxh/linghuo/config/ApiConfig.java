@@ -60,4 +60,6 @@ public class ApiConfig {
     public static final int UPDATA_ISSUS = 57;//修改发布信息
     public static final int GET_TASK_DETAILS = 58;//任务进度图片
     public static final int ATONCE_APPLY = 59;//立即报名
+    public static final int GET_MYMESSAGE = 60;//我的信息
+    public static final int PROJECT_REVIEW = 61;//项目审核
 }

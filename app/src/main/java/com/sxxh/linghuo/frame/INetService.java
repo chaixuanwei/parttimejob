@@ -21,6 +21,7 @@ import com.sxxh.linghuo.me.bean.BasicInformationBean;
 import com.sxxh.linghuo.me.bean.FeedBackBean;
 import com.sxxh.linghuo.me.bean.FinancialDetailsBean;
 import com.sxxh.linghuo.me.bean.GetIssueBean;
+import com.sxxh.linghuo.me.bean.GetMyMessageBean;
 import com.sxxh.linghuo.me.bean.HeadBalanceBean;
 import com.sxxh.linghuo.me.bean.IdBindBean;
 import com.sxxh.linghuo.me.bean.IndustryBean;
@@ -369,4 +370,8 @@ public interface INetService {
     @FormUrlEncoded
     Observable<AuthCodeBean> setApply(@Field("task_id") int task_id,
                                       @Field("enroll") int enroll);
+
+    //我的信息
+    @GET("api/user/public/myinfo")
+    Observable<GetMyMessageBean> getMyMessage();
 }

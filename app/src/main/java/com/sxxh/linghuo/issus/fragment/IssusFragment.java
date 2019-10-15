@@ -222,7 +222,12 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
                 for (int i = 0; i < mDataBeans.size(); i++) {
                     mStrings.add(mDataBeans.get(i).getName());
                 }
-                mStringAda.notifyDataSetChanged();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mStringAda.notifyDataSetChanged();
+                    }
+                });
                 break;
         }
     }

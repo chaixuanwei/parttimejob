@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -13,7 +14,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.sxxh.linghuo.R;
+import com.sxxh.linghuo.config.ApiConfig;
 import com.sxxh.linghuo.config.Config;
+import com.sxxh.linghuo.config.LoadConfig;
 import com.sxxh.linghuo.frame.BaseMvpFragment;
 import com.sxxh.linghuo.frame.CommonPresenter;
 import com.sxxh.linghuo.local_utils.SharedPrefrenceUtils;
@@ -28,6 +31,7 @@ import com.sxxh.linghuo.me.activity.SalaryActivity;
 import com.sxxh.linghuo.me.activity.WaitAppraiseActivity;
 import com.sxxh.linghuo.me.activity.WaitListActivity;
 import com.sxxh.linghuo.me.activity.WorkingActivity;
+import com.sxxh.linghuo.me.bean.GetMyMessageBean;
 import com.sxxh.linghuo.model.MeModel;
 import com.jph.takephoto.app.TakePhotoImpl;
 import com.jph.takephoto.model.InvokeParam;
@@ -108,6 +112,7 @@ public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
 
     @Override
     public void initData() {
+        mPresenter.getData(ApiConfig.GET_MYMESSAGE, LoadConfig.NORMAL);
         signature.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -147,12 +152,30 @@ public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
 
     @Override
     public void onError(int whichApi, Throwable e) {
-
+        Log.e("我的信息", "onError: 我的信息" );
     }
 
     @Override
     public void onResponse(int whichApi, Object[] t) {
+        switch (whichApi) {
+            case ApiConfig.GET_MYMESSAGE:
+                final GetMyMessageBean mGetMyMessageBeans = (GetMyMessageBean) t[0];
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (mGetMyMessageBeans.getAvatar().equals("")) {
 
+                        } else {
+                            Glide.with(getActivity()).load(mGetMyMessageBeans.getAvatar()).into(head);
+                        }
+                        name.setText(mGetMyMessageBeans.getUser_nickname());
+                        grade.setText(mGetMyMessageBeans.getLevel()+"级");
+                        credteLine.setText(mGetMyMessageBeans.getCredit());
+                        comment.setText(mGetMyMessageBeans.getComment());
+                    }
+                });
+                break;
+        }
     }
 
     @OnClick({R.id.me_amend, R.id.waitlist, R.id.work, R.id.salary, R.id.waitappraise, R.id.wallet, R.id.approve, R.id.me_issus, R.id.bind, R.id.feedback, R.id.log_out})
