@@ -81,6 +81,7 @@ public class TaskdetailBean {
         private int is_order;
         private int id;
         private String company_name;
+        private int num;
 
         public String getName() {
             return name;
@@ -248,6 +249,14 @@ public class TaskdetailBean {
 
         public void setCompany_name(String company_name) {
             this.company_name = company_name;
+        }
+
+        public int getNum() {
+            return num;
+        }
+
+        public void setNum(int pNum) {
+            num = pNum;
         }
     }
 }

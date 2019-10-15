@@ -52,8 +52,7 @@ public class InspectAdapter extends RecyclerView.Adapter<InspectAdapter.ViewHold
             mViewHolder.mItemInspectLl.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent mProjectReviewIntent = new Intent(mContext, ProjectReviewActivity.class);
-                    mContext.startActivity(mProjectReviewIntent);
+                    mTaskfinish.taskId();
                 }
             });
         } else {
@@ -81,5 +80,15 @@ public class InspectAdapter extends RecyclerView.Adapter<InspectAdapter.ViewHold
             mItemInspectName = itemView.findViewById(R.id.item_inspect_name);
             mItemInspectProgress = itemView.findViewById(R.id.item_inspect_progress);
         }
+    }
+
+    private taskfinish mTaskfinish;
+
+    public void setTaskfinish(taskfinish pTaskfinish) {
+        mTaskfinish = pTaskfinish;
+    }
+
+    public interface taskfinish{
+        void taskId();
     }
 }

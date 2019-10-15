@@ -11,16 +11,18 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.sxxh.linghuo.R;
-import com.sxxh.linghuo.home.bean.IssuerGeneralEvaluation;
+import com.sxxh.linghuo.home.bean.IssuerGeneralEvaluationBean;
+import com.sxxh.linghuo.local_utils.DateUtil;
 import com.sxxh.linghuo.view.RoundImage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommpanyAppraiseAdapter extends RecyclerView.Adapter<CommpanyAppraiseAdapter.ViewHolder> {
     Context mContext;
-    private List<IssuerGeneralEvaluation.DatasBean> mDatasList;
+    private List<IssuerGeneralEvaluationBean.DatasBean> mDatasList = new ArrayList<>();
 
-    public CommpanyAppraiseAdapter(Context pContext, List<IssuerGeneralEvaluation.DatasBean> mDatasList) {
+    public CommpanyAppraiseAdapter(Context pContext, List<IssuerGeneralEvaluationBean.DatasBean> mDatasList) {
         mContext = pContext;
         this.mDatasList = mDatasList;
     }
@@ -36,16 +38,26 @@ public class CommpanyAppraiseAdapter extends RecyclerView.Adapter<CommpanyApprai
     public void onBindViewHolder(@NonNull ViewHolder pViewHolder, int pI) {
         ViewHolder mViewHolder = pViewHolder;
         if (pI == 0) {
-            Glide.with(mContext).load(mDatasList.get(pI))
-                    .error(R.mipmap.logo)//异常时候显示的图片
-                    .fallback(R.mipmap.logo) //url为空的时候,显示的图片
-                    .into(mViewHolder.mCompanyPeoplePhoto);
-            mViewHolder.mCompanyPeopleName.setText(mDatasList.get(pI).getUser_nickname());
-            mViewHolder.mCompanyDegreeOfMatch.setText(mDatasList.get(pI).getStationcomment());
-            mViewHolder.mCompanyWageLevel.setText(mDatasList.get(pI).getPaycomment());
-            mViewHolder.mCompanyPersonnelAttitude.setText(mDatasList.get(pI).getServicecomment());
+            mViewHolder.mCompanyNewImg.setVisibility(View.VISIBLE);
         } else {
             mViewHolder.mCompanyNewImg.setVisibility(View.GONE);
+        }
+        String mAvatar = mDatasList.get(pI).getAvatar();
+        int mAdd_time = mDatasList.get(pI).getAdd_time();
+        if (mAvatar.equals("")) {
+
+        } else {
+            Glide.with(mContext).load(mAvatar).into(mViewHolder.mCompanyPeoplePhoto);
+        }
+        mViewHolder.mCompanyPeopleName.setText("姓名：" + mDatasList.get(pI).getUser_nickname());
+        mViewHolder.mCompanyDegreeOfMatch.setText("岗位与实际相符度:" + mDatasList.get(pI).getStationcomment() + "");
+        mViewHolder.mCompanyWageLevel.setText("工资水平:" + mDatasList.get(pI).getPaycomment() + "");
+        mViewHolder.mCompanyPersonnelAttitude.setText("人员态度:" + mDatasList.get(pI).getServicecomment() + "");
+        if (mAdd_time == 0) {
+
+        } else {
+            String mDate = DateUtil.getDateToString(mAdd_time, "yy-MM-dd HH:mm:ss");
+            mViewHolder.mCompanyTime.setText(mDate);
         }
     }
 
@@ -62,6 +74,7 @@ public class CommpanyAppraiseAdapter extends RecyclerView.Adapter<CommpanyApprai
         private TextView mCompanyWageLevel;
         private TextView mCompanyPersonnelAttitude;
         private TextView mCompanyTime;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             mCompanyNewImg = itemView.findViewById(R.id.company_new_img);

@@ -47,6 +47,12 @@ public class HomeModel implements ICommonModel {
                 NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService()
                         .getIssuerGeneralEvaluation(gsId), view, whichApi, mLoadMode);
                 break;
+            case ApiConfig.ATONCE_APPLY:
+                mLoadMode = (int) t[0];
+                mTId = (int) t[1];
+                int enroll = (int) t[2];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().setApply(mTId, enroll), view, whichApi, mLoadMode);
+                break;
         }
     }
 }

@@ -85,7 +85,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 @Override
                 public void onClick(View v) {
                     Intent mIntent = new Intent(mContext, DetailActivity.class);
-                    mIntent.putExtra("uid", mDataBean.getId());
+                    mIntent.putExtra("tid", mDataBean.getId());
                     mContext.startActivity(mIntent);
                 }
             });

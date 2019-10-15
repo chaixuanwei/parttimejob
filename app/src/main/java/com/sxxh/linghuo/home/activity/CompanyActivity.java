@@ -116,11 +116,11 @@ public class CompanyActivity extends BaseMvpActivity<CommonPresenter, HomeModel>
                         } else {
                             companyName.setText(mData.getInfo().getCompany_name());
                         }
-                        if (mData.getInfo().getAvatar() == null || mData.getInfo().getAvatar().equals("")) {
-
-                        } else {
-                            Glide.with(CompanyActivity.this).load(mData.getInfo().getAvatar()).into(companyHead);
-                        }
+//                        if (mData.getInfo().getAvatar() == null || mData.getInfo().getAvatar().equals("")) {
+//
+//                        } else {
+//                            Glide.with(CompanyActivity.this).load(mData.getInfo().getAvatar()).into(companyHead);
+//                        }
                         companyPeople.setText(mData.getSum_job() + "");
                         companyCredit.setText(mData.getCredit_point() + "");
                         companyComplain.setText(mData.getCount() + "");

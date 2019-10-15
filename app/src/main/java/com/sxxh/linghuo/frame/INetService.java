@@ -1,7 +1,7 @@
 package com.sxxh.linghuo.frame;
 
 import com.sxxh.linghuo.home.bean.BannerBean;
-import com.sxxh.linghuo.home.bean.IssuerGeneralEvaluation;
+import com.sxxh.linghuo.home.bean.IssuerGeneralEvaluationBean;
 import com.sxxh.linghuo.home.bean.IssusMessageBean;
 import com.sxxh.linghuo.home.bean.MenuBean;
 import com.sxxh.linghuo.home.bean.SearchDataBean;
@@ -30,6 +30,7 @@ import com.sxxh.linghuo.me.bean.ProjectProgressBean;
 import com.sxxh.linghuo.me.bean.ProjectSufferBean;
 import com.sxxh.linghuo.me.bean.SalaryBean;
 import com.sxxh.linghuo.me.bean.ScaleBean;
+import com.sxxh.linghuo.me.bean.TaskPhotoBean;
 import com.sxxh.linghuo.me.bean.UploadTopBean;
 import com.sxxh.linghuo.me.bean.WaitAppraiseBean;
 import com.sxxh.linghuo.me.bean.WorkingBean;
@@ -344,11 +345,10 @@ public interface INetService {
     @GET("demo/index/nordermsg")
     Observable<GetIssueBean> getIssue(@Query("id") String id);
 
-
     //首页发布人整体评价
     @POST("/demo/index/publicers")
     @FormUrlEncoded
-    Observable<IssuerGeneralEvaluation> getIssuerGeneralEvaluation(@Field("id") int id);
+    Observable<IssuerGeneralEvaluationBean> getIssuerGeneralEvaluation(@Field("id") int id);
 
     //修改发布信息
     @POST("demo/index/nordermsg")
@@ -359,4 +359,14 @@ public interface INetService {
             , @Field("phone") String phone, @Field("is_interview") int is_interview, @Field("height_require") String height_require
             , @Field("other_require") String other_require, @Field("is_muster") int is_muster, @Field("muster_time") int muster_time
             , @Field("muster_address") String muster_address, @Field("id") int id);
+
+    //任务进度图片
+    @GET("demo/index/orderimg")
+    Observable<TaskPhotoBean> getTaskPhoto(@Query("t_id") int t_id);
+
+    //立即报名
+    @POST("api/user/taskenroll/enroll")
+    @FormUrlEncoded
+    Observable<AuthCodeBean> setApply(@Field("task_id") int task_id,
+                                      @Field("enroll") int enroll);
 }

@@ -264,6 +264,11 @@ public class MeModel implements ICommonModel {
                         .updataIssus(comname, des, pay, naparent_id, property, work_location, start_time, end_time, zp_num
                                 , contact, phone, is_interview, height_require, other_require, is_muster, muster_time, muster_address, mT_id), view, whichApi, mLoadMode);
                 break;
+            case ApiConfig.GET_TASK_DETAILS:
+                mLoadMode = (int) t[0];
+                mT_id = (int) t[1];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getTaskPhoto(mT_id), view, whichApi, mLoadMode);
+                break;
         }
     }
 }

@@ -58,4 +58,6 @@ public class ApiConfig {
     public static final int GET_ISSUE = 55;//获取发布详情
     public static final int ISSUER_GENERAL_EVALUATION = 56;//发布人整体评价
     public static final int UPDATA_ISSUS = 57;//修改发布信息
+    public static final int GET_TASK_DETAILS = 58;//任务进度图片
+    public static final int ATONCE_APPLY = 59;//立即报名
 }

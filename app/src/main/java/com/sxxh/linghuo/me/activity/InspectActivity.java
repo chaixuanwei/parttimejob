@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.sxxh.linghuo.R;
 import com.sxxh.linghuo.config.ApiConfig;
+import com.sxxh.linghuo.config.Config;
 import com.sxxh.linghuo.config.LoadConfig;
 import com.sxxh.linghuo.frame.BaseMvpActivity;
 import com.sxxh.linghuo.frame.CommonPresenter;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class InspectActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
+public class InspectActivity extends BaseMvpActivity<CommonPresenter, MeModel> implements InspectAdapter.taskfinish {
 
     @BindView(R.id.back)
     ImageView back;
@@ -48,6 +49,7 @@ public class InspectActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
         mAdapter = new InspectAdapter(this,mList);
         inspectRv.setLayoutManager(new LinearLayoutManager(this));
         inspectRv.setAdapter(mAdapter);
+        mAdapter.setTaskfinish(this);
     }
 
     @Override
@@ -103,5 +105,12 @@ public class InspectActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
     public void loadMore() {
         mPage += mPage;
         mPresenter.getData(ApiConfig.GET_PROJECT_RATE, LoadConfig.LOADMORE, mTaskId, mPage);
+    }
+
+    @Override
+    public void taskId() {
+        Intent mProjectReviewIntent = new Intent(this, ProjectReviewActivity.class);
+        mProjectReviewIntent.putExtra(Config.GET_TASK_ID, mTaskId);
+        this.startActivity(mProjectReviewIntent);
     }
 }

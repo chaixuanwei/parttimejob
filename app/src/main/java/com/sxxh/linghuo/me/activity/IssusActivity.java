@@ -254,7 +254,7 @@ public class IssusActivity extends BaseMvpActivity<CommonPresenter, MeModel> {
                 break;
             case ApiConfig.UPDATA_ISSUS:
                 AuthCodeBean mAuthCodeBeans = (AuthCodeBean) t[0];
-                if (mAuthCodeBeans.getMsg().equals("修改成功！")) {
+                if (mAuthCodeBeans.getMsg().equals("修改成功")) {
                     finish();
                 }
                 break;

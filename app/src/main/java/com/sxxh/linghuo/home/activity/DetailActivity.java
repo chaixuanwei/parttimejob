@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.sxxh.linghuo.R;
 import com.sxxh.linghuo.config.ApiConfig;
 import com.sxxh.linghuo.config.Config;
@@ -15,6 +16,7 @@ import com.sxxh.linghuo.frame.BaseMvpActivity;
 import com.sxxh.linghuo.frame.CommonPresenter;
 import com.sxxh.linghuo.home.bean.TaskdetailBean;
 import com.sxxh.linghuo.local_utils.DateUtil;
+import com.sxxh.linghuo.login.bean.AuthCodeBean;
 import com.sxxh.linghuo.me.activity.CompaintActivity;
 import com.sxxh.linghuo.me.activity.FeedbackSuccessActivity;
 import com.sxxh.linghuo.model.HomeModel;
@@ -83,6 +85,7 @@ public class DetailActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
     private int tId = 1;
     private TaskdetailBean mBean;
     String name = "";
+    int enroll = 1;
 
     @Override
     public int getLayoutId() {
@@ -92,7 +95,7 @@ public class DetailActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
     @Override
     public void initView() {
         Intent mIntent = getIntent();
-        tId = mIntent.getIntExtra("uid", 1);
+        tId = mIntent.getIntExtra("tid", 1);
     }
 
     @Override
@@ -124,7 +127,7 @@ public class DetailActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
                 name = mTaskdetailBeans.getCompany_name();
                 jobName.setText(mTaskdetailBeans.getName());
                 jobPlace.setText(mTaskdetailBeans.getWork_location());
-                person.setText(mTaskdetailBeans.getZp_num() + "");
+                person.setText(mTaskdetailBeans.getNum() + "/" + mTaskdetailBeans.getZp_num());
                 DateUtil mDateUtil = new DateUtil();
                 money.setText(mTaskdetailBeans.getPay());
                 describeContent.setText(mTaskdetailBeans.getDes());
@@ -164,6 +167,14 @@ public class DetailActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
                     }
                 }
                 break;
+            case ApiConfig.ATONCE_APPLY:
+                AuthCodeBean mAuthCodeBeans = (AuthCodeBean) t[0];
+                ToastUtils.showShort(mAuthCodeBeans.getMsg());
+                Intent mSuccessIntent = new Intent(this, FeedbackSuccessActivity.class);
+                mSuccessIntent.putExtra(Config.SUCCESS, Config.APPLY);
+                startActivity(mSuccessIntent);
+                finish();
+                break;
         }
     }
 
@@ -188,9 +199,7 @@ public class DetailActivity extends BaseMvpActivity<CommonPresenter, HomeModel> 
             case R.id.detail_call:
                 break;
             case R.id.detail_apply:
-                Intent mSuccessIntent = new Intent(this, FeedbackSuccessActivity.class);
-                mSuccessIntent.putExtra(Config.SUCCESS, Config.APPLY);
-                startActivity(mSuccessIntent);
+                mPresenter.getData(ApiConfig.ATONCE_APPLY, LoadConfig.NORMAL, tId, enroll);
                 break;
         }
     }
