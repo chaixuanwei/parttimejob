@@ -108,9 +108,10 @@ public class InspectActivity extends BaseMvpActivity<CommonPresenter, MeModel> i
     }
 
     @Override
-    public void taskId() {
+    public void taskId(String u_id) {
         Intent mProjectReviewIntent = new Intent(this, ProjectReviewActivity.class);
         mProjectReviewIntent.putExtra(Config.GET_TASK_ID, mTaskId);
+        mProjectReviewIntent.putExtra(Config.GET_USER_ID, u_id);
         this.startActivity(mProjectReviewIntent);
     }
 }

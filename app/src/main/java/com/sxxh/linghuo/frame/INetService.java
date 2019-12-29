@@ -374,4 +374,11 @@ public interface INetService {
     //我的信息
     @GET("api/user/public/myinfo")
     Observable<GetMyMessageBean> getMyMessage();
+
+    //项目审核
+    @POST
+    @FormUrlEncoded
+    Observable<AuthCodeBean> setProjectApply(@Field("taskid") int taskid,
+                                             @Field("userid") int userid,
+                                             @Field("enroll") int enroll);
 }

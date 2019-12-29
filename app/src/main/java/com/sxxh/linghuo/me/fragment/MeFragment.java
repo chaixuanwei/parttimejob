@@ -163,11 +163,11 @@ public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (mGetMyMessageBeans.getAvatar().equals("")) {
-
-                        } else {
+//                        if (mGetMyMessageBeans.getAvatar().equals("")) {
+//
+//                        } else {
                             Glide.with(getActivity()).load(mGetMyMessageBeans.getAvatar()).into(head);
-                        }
+//                        }
                         name.setText(mGetMyMessageBeans.getUser_nickname());
                         grade.setText(mGetMyMessageBeans.getLevel()+"级");
                         credteLine.setText(mGetMyMessageBeans.getCredit());

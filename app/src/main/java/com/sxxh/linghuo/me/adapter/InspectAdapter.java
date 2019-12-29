@@ -37,7 +37,7 @@ public class InspectAdapter extends RecyclerView.Adapter<InspectAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder pViewHolder, int pI) {
         ViewHolder mViewHolder = pViewHolder;
-        ProjectProgressBean.DataBean mDataBean = mList.get(pI);
+        final ProjectProgressBean.DataBean mDataBean = mList.get(pI);
         mViewHolder.mItemInspectName.setText(mDataBean.getReal_name());
         Glide.with(mContext).load(mDataBean.getAvatar()).into(mViewHolder.mItemInspectImg);
         int mComplete = mDataBean.getComplete();
@@ -52,7 +52,7 @@ public class InspectAdapter extends RecyclerView.Adapter<InspectAdapter.ViewHold
             mViewHolder.mItemInspectLl.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mTaskfinish.taskId();
+                    mTaskfinish.taskId(mDataBean.getUser_id());
                 }
             });
         } else {
@@ -89,6 +89,6 @@ public class InspectAdapter extends RecyclerView.Adapter<InspectAdapter.ViewHold
     }
 
     public interface taskfinish{
-        void taskId();
+        void taskId(String u_id);
     }
 }

@@ -26,6 +26,7 @@ public class Config {
     public static final String USER_ID = "userid";
     public static final String TASK_ID = "taskid";
     public static final String GET_TASK_ID = "gettaskid";
+    public static final String GET_USER_ID = "getuserid";
     public static final String SEARCH_STR = "search";
     public static final String PLACE = "place";
     public static final int PAY_ZFB = 1;

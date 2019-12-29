@@ -47,6 +47,8 @@ public class ProjectReviewActivity extends BaseMvpActivity<CommonPresenter, MeMo
     private int mTaskid;
     ArrayList<TaskPhotoBean.ProjectImagesBean> mList = new ArrayList<>();
     private TaskImageAdapter mAdapter;
+    private int mUserId;
+    private int mEnroll = 0;
 
     @Override
     public int getLayoutId() {
@@ -57,6 +59,10 @@ public class ProjectReviewActivity extends BaseMvpActivity<CommonPresenter, MeMo
     public void initView() {
         Intent mIntent = getIntent();
         mTaskid = mIntent.getIntExtra(Config.GET_TASK_ID, 1);
+        String user_id = mIntent.getStringExtra(Config.GET_USER_ID);
+        if (!user_id.equals("")) {
+            mUserId = Integer.parseInt(user_id);
+        }
         GridLayoutManager mGridLayoutManager = new GridLayoutManager(this, 3);
         projectRv.setLayoutManager(mGridLayoutManager);
         mAdapter = new TaskImageAdapter(this, mList);
@@ -101,8 +107,12 @@ public class ProjectReviewActivity extends BaseMvpActivity<CommonPresenter, MeMo
                 finish();
                 break;
             case R.id.review_refuse:
+                mEnroll = 0;
+                mPresenter.getData(ApiConfig.PROJECT_REVIEW, mTaskid, mUserId, mEnroll);
                 break;
             case R.id.review_pass:
+                mEnroll = 1;
+                mPresenter.getData(ApiConfig.PROJECT_REVIEW, mTaskid, mUserId, mEnroll);
                 break;
         }
     }

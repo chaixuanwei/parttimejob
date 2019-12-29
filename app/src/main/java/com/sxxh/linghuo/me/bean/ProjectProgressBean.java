@@ -46,6 +46,7 @@ public class ProjectProgressBean {
 
         private String real_name;
         private String avatar;
+        private String user_id;
         private int complete;
 
         public String getReal_name() {
@@ -70,6 +71,14 @@ public class ProjectProgressBean {
 
         public void setComplete(int complete) {
             this.complete = complete;
+        }
+
+        public String getUser_id() {
+            return user_id;
+        }
+
+        public void setUser_id(String pUser_id) {
+            user_id = pUser_id;
         }
     }
 }
