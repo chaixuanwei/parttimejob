@@ -8,6 +8,10 @@ import com.sxxh.linghuo.frame.NetManager;
 public class IssusModel implements ICommonModel {
 
     private int mLoadMode;
+    private String mTask_id;
+    private String mPrice;
+    private String mPay_type;
+    private String mId;
 
     @Override
     public void getData(ICommonView view, int whichApi, Object[] t) {
@@ -37,6 +41,22 @@ public class IssusModel implements ICommonModel {
                 break;
             case ApiConfig.GET_NATURE:
                 NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getNature(), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.PAY:
+                mLoadMode = (int) t[0];
+                mTask_id = (String) t[1];
+                mPrice = (String) t[2];
+                mPay_type = (String) t[3];
+                mId = (String) t[4];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getZFBPay(mTask_id, mPrice, mPay_type, mId), view, whichApi, mLoadMode);
+                break;
+            case ApiConfig.WXPAY:
+                mLoadMode = (int) t[0];
+                mTask_id = (String) t[1];
+                mPrice = (String) t[2];
+                mPay_type = (String) t[3];
+                mId = (String) t[4];
+                NetManager.getNetManager().netMethod(NetManager.getNetManager().getNetService().getWXPay(mTask_id, mPrice, mPay_type, mId), view, whichApi, mLoadMode);
                 break;
         }
     }

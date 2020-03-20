@@ -163,15 +163,17 @@ public class MeFragment extends BaseMvpFragment<CommonPresenter, MeModel> {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        GetMyMessageBean.DataBean mData = mGetMyMessageBeans.getData();
+                        SharedPrefrenceUtils.saveString(getActivity(), "my_id", mData.getId()+"");
 //                        if (mGetMyMessageBeans.getAvatar().equals("")) {
 //
 //                        } else {
-                            Glide.with(getActivity()).load(mGetMyMessageBeans.getAvatar()).into(head);
+                            Glide.with(getActivity()).load(mData.getAvatar()).into(head);
 //                        }
-                        name.setText(mGetMyMessageBeans.getUser_nickname());
-                        grade.setText(mGetMyMessageBeans.getLevel()+"级");
-                        credteLine.setText(mGetMyMessageBeans.getCredit());
-                        comment.setText(mGetMyMessageBeans.getComment());
+                        name.setText(mData.getUser_nickname());
+                        grade.setText(mData.getLevel()+"级");
+                        credteLine.setText(mData.getCredit());
+                        comment.setText(mData.getComment());
                     }
                 });
                 break;

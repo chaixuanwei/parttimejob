@@ -62,4 +62,6 @@ public class ApiConfig {
     public static final int ATONCE_APPLY = 59;//立即报名
     public static final int GET_MYMESSAGE = 60;//我的信息
     public static final int PROJECT_REVIEW = 61;//项目审核
+    public static final int PAY = 62;//支付
+    public static final int WXPAY = 63;//支付
 }

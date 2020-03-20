@@ -32,6 +32,7 @@ import com.sxxh.linghuo.config.LoadConfig;
 import com.sxxh.linghuo.frame.BaseMvpFragment;
 import com.sxxh.linghuo.frame.CommonPresenter;
 import com.sxxh.linghuo.issus.activity.PayCenterActivity;
+import com.sxxh.linghuo.issus.bean.IssusBean;
 import com.sxxh.linghuo.issus.bean.NatureBean;
 import com.sxxh.linghuo.local_utils.DateUtil;
 import com.sxxh.linghuo.login.bean.AuthCodeBean;
@@ -114,6 +115,7 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
     private ArrayAdapter<String> mAda;
     private ArrayAdapter<String> mPayAdapter;
     private String mStyle;
+    private String mMoney;
 
     public static IssusFragment newInstance() {
         if (fragment == null) fragment = new IssusFragment();
@@ -210,9 +212,12 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
     public void onResponse(int whichApi, Object[] t) {
         switch (whichApi) {
             case ApiConfig.TO_ISSUS:
-                AuthCodeBean mAuthCodeBeans = (AuthCodeBean) t[0];
-                ToastUtils.showShort(mAuthCodeBeans.getMsg());
-                startActivity(new Intent(getActivity(), PayCenterActivity.class));
+                IssusBean mIssusBean = (IssusBean) t[0];
+                ToastUtils.showShort("提交成功");
+                Intent mPayIntent = new Intent(getActivity(), PayCenterActivity.class);
+                mPayIntent.putExtra("task_id", mIssusBean.getData().getTask_id());
+                mPayIntent.putExtra("money", mMoney);
+                startActivity(mPayIntent);
                 break;
             case ApiConfig.GET_NATURE:
                 mStrings.clear();
@@ -262,7 +267,8 @@ public class IssusFragment extends BaseMvpFragment<CommonPresenter, IssusModel> 
             case R.id.bt_issus_login:
                 String mIssusJobName = issusJobName.getText().toString();
                 String mIssusDescribe = issusDescribe.getText().toString();
-                String mIssusMoney = issusMoney.getText().toString() + mStyle;
+                mMoney = issusMoney.getText().toString();
+                String mIssusMoney = mMoney + mStyle;
                 String mIssusPlace = issusPlace.getText().toString();
                 String mIssusNumber = issusNumber.getText().toString();
                 int mNumber = 0;

@@ -51,6 +51,10 @@ public class NoOrderAdapter extends RecyclerView.Adapter<NoOrderAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 Intent mPayCenterIntent = new Intent(mContext, PayCenterActivity.class);
+                mPayCenterIntent.putExtra("task_id", mDataBean.getT_id());
+                String mPay = mDataBean.getPay();
+                String mSubstring = mPay.substring(0, mPay.length() - 3);
+                mPayCenterIntent.putExtra("money", mSubstring);
                 mContext.startActivity(mPayCenterIntent);
             }
         });

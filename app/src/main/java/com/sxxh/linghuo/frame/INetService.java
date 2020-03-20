@@ -7,7 +7,10 @@ import com.sxxh.linghuo.home.bean.MenuBean;
 import com.sxxh.linghuo.home.bean.SearchDataBean;
 import com.sxxh.linghuo.home.bean.TaskdetailBean;
 import com.sxxh.linghuo.home.bean.HomeData;
+import com.sxxh.linghuo.issus.bean.IssusBean;
 import com.sxxh.linghuo.issus.bean.NatureBean;
+import com.sxxh.linghuo.issus.bean.WeiXinBean;
+import com.sxxh.linghuo.issus.bean.ZFBPayBean;
 import com.sxxh.linghuo.login.bean.AuthCodeBean;
 import com.sxxh.linghuo.login.bean.LoginBean;
 import com.sxxh.linghuo.login.bean.WBTokenBean;
@@ -104,7 +107,7 @@ public interface INetService {
     //发布任务
     @POST("api/task/publish/index")
     @FormUrlEncoded
-    Observable<AuthCodeBean> ToIssus(@Field("name") String name, @Field("des") String des, @Field("pay") String pay
+    Observable<IssusBean> ToIssus(@Field("name") String name, @Field("des") String des, @Field("pay") String pay
             , @Field("parent_id") int parent_id, @Field("property") int property, @Field("work_location") String work_location
             , @Field("start_time") int start_time, @Field("end_time") int end_time, @Field("zp_num") int zp_num, @Field("contact") String contact
             , @Field("phone") String phone, @Field("is_interview") int is_interview, @Field("height_require") String height_require
@@ -233,9 +236,21 @@ public interface INetService {
                                        @Field("city") String city,
                                        @Field("act") String act);
 
-//    //支付宝支付
-//    @GET("api/user/alipay/order_pay")
-//    Observable<> getZFBPay();
+    //支付宝支付
+    @POST("api/task/pay/gopay")
+    @FormUrlEncoded
+    Observable<ZFBPayBean> getZFBPay(@Field("task_id") String task_id,
+                                     @Field("price") String price,
+                                     @Field("pay_type") String pay_type,
+                                     @Field("uid") String uid);
+
+    //微信支付
+    @POST("api/task/pay/gopay")
+    @FormUrlEncoded
+    Observable<WeiXinBean> getWXPay(@Field("task_id") String task_id,
+                                    @Field("price") String price,
+                                    @Field("pay_type") String pay_type,
+                                    @Field("uid") String uid);
 
     //工资未结列表
     @GET("api/user/taskorder/notpay")
